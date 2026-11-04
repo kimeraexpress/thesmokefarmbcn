@@ -2,9 +2,9 @@
   "version": 2,
   "cleanUrls": true,
   "rewrites": [
-    { "source": "/admin", "destination": "/admin.html" },
-    { "source": "/menu", "destination": "/pages/catalogo.html" },
-    { "source": "/catalogo", "destination": "/pages/catalogo.html" }
+    { "source": "/admin", "destination": "/admin" },
+    { "source": "/menu", "destination": "/pages/catalogo" },
+    { "source": "/catalogo", "destination": "/pages/catalogo" }
   ],
   "headers": [
     {
