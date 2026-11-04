@@ -1364,29 +1364,27 @@ function initCatalog() {
         }
     });
 
-    // Sincronizzazione remota cloud opzionale
-    try {
-        const cloudConfig = localStorage.getItem("tsfbcn_cloud_sync");
-        if (cloudConfig) {
-            const conf = JSON.parse(cloudConfig);
-            if (conf && conf.url) {
-                const headers = {};
-                if (conf.apiKey) headers["X-Master-Key"] = conf.apiKey;
-                fetch(conf.url, { headers })
-                    .then(r => r.ok ? r.json() : null)
-                    .then(data => {
-                        const rec = (data && data.record) ? data.record : data;
-                        if (rec && Array.isArray(rec.products) && Array.isArray(rec.categories)) {
-                            localStorage.setItem("tsfbcn_menu_data", JSON.stringify(rec));
-                            allProducts = rec.products;
-                            allCategories = rec.categories;
-                            updateCatalogUI();
-                        }
-                    })
-                    .catch(() => {});
+    // Sincronizzazione automatica da Vercel Blob in tempo reale
+    fetch("/api/menu?t=" + Date.now())
+        .then(res => {
+            if (res.ok) return res.json();
+            throw new Error("API non disponibile");
+        })
+        .then(cloudData => {
+            if (cloudData && Array.isArray(cloudData.products) && Array.isArray(cloudData.categories)) {
+                allProducts = cloudData.products;
+                allCategories = cloudData.categories;
+                try {
+                    localStorage.setItem("tsfbcn_menu_data", JSON.stringify(cloudData));
+                } catch(e) {}
+                renderCategoryFilter();
+                renderSubcategories();
+                renderProducts();
             }
-        }
-    } catch(e) {}
+        })
+        .catch(() => {
+            // Continua con la cache locale istantanea
+        });
 }
 
 document.addEventListener("DOMContentLoaded", initCatalog);

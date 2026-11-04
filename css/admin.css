@@ -1135,3 +1135,58 @@ body {
         justify-content: space-between;
     }
 }
+
+/* ==========================================
+   VERCEL BLOB REAL-TIME SYNC INDICATOR
+   ========================================== */
+.cloud-sync-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.45rem 0.85rem;
+    border-radius: var(--radius-full);
+    background: rgba(46, 204, 113, 0.1);
+    border: 1px solid rgba(46, 204, 113, 0.3);
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: #2ecc71;
+    letter-spacing: 0.02em;
+    user-select: none;
+}
+
+.cloud-sync-pill.syncing {
+    background: rgba(243, 156, 18, 0.1);
+    border-color: rgba(243, 156, 18, 0.3);
+    color: #f39c12;
+}
+
+.cloud-sync-pill.offline {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.15);
+    color: var(--text-muted);
+}
+
+.cloud-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #2ecc71;
+    box-shadow: 0 0 8px #2ecc71;
+    animation: pulse-dot 2s infinite ease-in-out;
+}
+
+.cloud-sync-pill.syncing .cloud-dot {
+    background: #f39c12;
+    box-shadow: 0 0 8px #f39c12;
+}
+
+.cloud-sync-pill.offline .cloud-dot {
+    background: #888;
+    box-shadow: none;
+    animation: none;
+}
+
+@keyframes pulse-dot {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.85); }
+}

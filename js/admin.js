@@ -171,8 +171,7 @@
             loadInfoText();
         } else if (tabId === "tab-products") {
             renderProductsList();
-        } else if (tabId === "tab-cloud") {
-            loadCloudConfigInputs();
+
         }
     };
 
@@ -829,166 +828,41 @@
     };
 
 
-    // --- 8. Export, Backup & Cloud (Tab 4) ---
-    window.openBackupModal = function() {
-        document.getElementById("backup-modal-overlay").classList.add("open");
-    };
-
-    window.closeBackupModal = function() {
-        document.getElementById("backup-modal-overlay").classList.remove("open");
-    };
-
-    window.downloadDataJson = function() {
-        const jsonStr = JSON.stringify(currentData, null, 2);
-        const blob = new Blob([jsonStr], { type: "application/json" });
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement("a");
-        a.href = url;
-        a.download = "data.json";
-        a.click();
-        URL.revokeObjectURL(url);
-        showToast("📥 File data.json scaricato!");
-    };
-
-    window.downloadMenuDataJs = function() {
-        const jsonStr = JSON.stringify(currentData, null, 2);
-        const jsContent = `// The Smoke Farm BCN - Master Menu Data (Esportato da Admin Panel)\nwindow.TSF_INITIAL_DATA = ${jsonStr};\n`;
-        const blob = new Blob([jsContent], { type: "text/javascript" });
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement("a");
-        a.href = url;
-        a.download = "menu-data.js";
-        a.click();
-        URL.revokeObjectURL(url);
-        showToast("📥 File menu-data.js scaricato!");
-    };
-
-    window.copyJsonToClipboard = function() {
-        const jsonStr = JSON.stringify(currentData, null, 2);
-        navigator.clipboard.writeText(jsonStr).then(() => {
-            showToast("📋 Dati JSON copiati negli appunti!");
-        }).catch(err => {
-            alert("Impossibile copiare: " + err);
-        });
-    };
-
-    window.handleFileImport = function(event) {
-        const file = event.target.files && event.target.files[0];
-        if (!file) return;
-
-        const reader = new FileReader();
-        reader.onload = function(e) {
-            try {
-                const parsed = JSON.parse(e.target.result);
-                if (parsed && Array.isArray(parsed.products) && Array.isArray(parsed.categories)) {
-                    currentData = parsed;
-                    saveAllChanges(true);
-                    renderProductsList();
-                    showToast("📤 Backup JSON caricato con successo!");
-                } else {
-                    alert("Il file caricato non sembra un formato valido di The Smoke Farm BCN.");
-                }
-            } catch(err) {
-                alert("Errore nella lettura del file JSON: " + err.message);
-            }
-        };
-        reader.readAsText(file);
-    };
-
-    window.confirmResetDefaults = function() {
-        if (confirm("ATTENZIONE: Questa azione ripristinerà il menu alle impostazioni originali di fabbrica cancellando le modifiche locali non esportate. Continuare?")) {
-            localStorage.removeItem(STORAGE_KEY_DATA);
-            loadData();
-            renderProductsList();
-            showToast("🔄 Menu ripristinato ai dati iniziali.");
-        }
-    };
-
-    // Cloud Sync Opzionale
-    function loadCloudConfigInputs() {
-        try {
-            const raw = localStorage.getItem(STORAGE_KEY_CLOUD);
-            if (raw) {
-                const conf = JSON.parse(raw);
-                if (conf.url) document.getElementById("cloud-endpoint-url").value = conf.url;
-                if (conf.apiKey) document.getElementById("cloud-api-key").value = conf.apiKey;
-            }
-        } catch(e) {}
+    // --- 8. Sincronizzazione Vercel Blob in Tempo Reale ---
+    function updateCloudIndicator(state, label) {
+        const pill = document.getElementById("cloud-sync-pill");
+        const text = document.getElementById("cloud-status-text");
+        if (!pill) return;
+        pill.className = "cloud-sync-pill " + state;
+        if (text && label) text.textContent = label;
     }
 
-    window.saveCloudConfigAndSync = async function() {
-        const url = document.getElementById("cloud-endpoint-url").value.trim();
-        const apiKey = document.getElementById("cloud-api-key").value.trim();
-
-        if (!url) {
-            alert("Inserisci l'URL dell'endpoint cloud.");
-            return;
-        }
-
-        const config = { url, apiKey };
-        localStorage.setItem(STORAGE_KEY_CLOUD, JSON.stringify(config));
-
+    async function syncToVercelBlob(data) {
+        updateCloudIndicator("syncing", "Salvataggio Cloud...");
         try {
-            showToast("☁️ Sincronizzazione con il cloud in corso...");
-            const headers = { "Content-Type": "application/json" };
-            if (apiKey) headers["X-Master-Key"] = apiKey;
-
-            const res = await fetch(url, {
-                method: "PUT",
-                headers,
-                body: JSON.stringify(currentData)
+            const res = await fetch("/api/menu", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    data: data,
+                    pin: getStoredPin()
+                })
             });
 
             if (res.ok) {
-                showToast("☁️ Sincronizzazione Cloud completata con successo!");
+                const json = await res.json();
+                updateCloudIndicator("online", "Vercel Blob Live");
+                return { success: true, message: json.message };
             } else {
-                alert("Il server cloud ha risposto con errore: " + res.status + " " + res.statusText);
-            }
-        } catch(err) {
-            alert("Errore connessione cloud: " + err.message);
-        }
-    };
-
-    window.testCloudConnection = async function() {
-        const url = document.getElementById("cloud-endpoint-url").value.trim();
-        const apiKey = document.getElementById("cloud-api-key").value.trim();
-        if (!url) {
-            alert("Inserisci un URL cloud valido.");
-            return;
-        }
-
-        try {
-            const headers = {};
-            if (apiKey) headers["X-Master-Key"] = apiKey;
-            const res = await fetch(url, { headers });
-            if (res.ok) {
-                alert("Connessione riuscita! Il server risponde correttamente.");
-            } else {
-                alert("Errore: il server risponde con status " + res.status);
+                const err = await res.json().catch(() => ({}));
+                updateCloudIndicator("offline", "Vercel Blob Sync");
+                return { success: false, error: err.error || ("HTTP " + res.status) };
             }
         } catch(e) {
-            alert("Connessione fallita: " + e.message);
+            updateCloudIndicator("offline", "Vercel Blob Sync");
+            return { success: false, error: e.message };
         }
-    };
-
-    async function syncToCloudIfConfigured() {
-        try {
-            const raw = localStorage.getItem(STORAGE_KEY_CLOUD);
-            if (!raw) return;
-            const conf = JSON.parse(raw);
-            if (!conf.url) return;
-
-            const headers = { "Content-Type": "application/json" };
-            if (conf.apiKey) headers["X-Master-Key"] = conf.apiKey;
-
-            fetch(conf.url, {
-                method: "PUT",
-                headers,
-                body: JSON.stringify(currentData)
-            }).catch(e => console.warn("Cloud auto-sync background error:", e));
-        } catch(e) {}
     }
-
 
     // --- 9. Toast Notifiche ---
     function showToast(message) {
