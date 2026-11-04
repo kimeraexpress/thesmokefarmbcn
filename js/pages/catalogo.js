@@ -181,7 +181,7 @@ const TRANSLATIONS = {
     }
 };
 
-const STORAGE_KEY = "tsf_lang";
+const STORAGE_KEY = "tsfbcn_lang";
 const SUPPORTED_LANGS = ["it", "es", "en"];
 
 function getLang() {
@@ -792,7 +792,7 @@ const MAX_VISIBLE_PRICES = 3;
 
 function loadStoreData() {
     try {
-        const stored = localStorage.getItem("tsf_menu_data");
+        const stored = localStorage.getItem("tsfbcn_menu_data");
         if (stored) {
             const parsed = JSON.parse(stored);
             if (parsed && Array.isArray(parsed.products) && Array.isArray(parsed.categories)) {
@@ -807,7 +807,7 @@ function loadStoreData() {
     }
     if (typeof window !== "undefined" && window.TSF_INITIAL_DATA) {
         try {
-            localStorage.setItem("tsf_menu_data", JSON.stringify(window.TSF_INITIAL_DATA));
+            localStorage.setItem("tsfbcn_menu_data", JSON.stringify(window.TSF_INITIAL_DATA));
         } catch(e) {}
         return window.TSF_INITIAL_DATA;
     }
@@ -1356,7 +1356,7 @@ function initCatalog() {
 
     // Ascolta aggiornamenti da localStorage (se salvati dal pannello admin)
     window.addEventListener("storage", (e) => {
-        if (e.key === "tsf_menu_data") {
+        if (e.key === "tsfbcn_menu_data") {
             currentStore = loadStoreData();
             allProducts = currentStore.products || [];
             allCategories = currentStore.categories || [];
@@ -1366,7 +1366,7 @@ function initCatalog() {
 
     // Sincronizzazione remota cloud opzionale
     try {
-        const cloudConfig = localStorage.getItem("tsf_cloud_sync");
+        const cloudConfig = localStorage.getItem("tsfbcn_cloud_sync");
         if (cloudConfig) {
             const conf = JSON.parse(cloudConfig);
             if (conf && conf.url) {
@@ -1377,7 +1377,7 @@ function initCatalog() {
                     .then(data => {
                         const rec = (data && data.record) ? data.record : data;
                         if (rec && Array.isArray(rec.products) && Array.isArray(rec.categories)) {
-                            localStorage.setItem("tsf_menu_data", JSON.stringify(rec));
+                            localStorage.setItem("tsfbcn_menu_data", JSON.stringify(rec));
                             allProducts = rec.products;
                             allCategories = rec.categories;
                             updateCatalogUI();

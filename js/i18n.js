@@ -195,7 +195,7 @@ export const TRANSLATIONS = {
     }
 };
 
-const STORAGE_KEY = "tsf_lang";
+const STORAGE_KEY = "tsfbcn_lang";
 const SUPPORTED_LANGS = ["it", "es", "en"];
 
 export function getLang() {

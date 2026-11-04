@@ -8,10 +8,10 @@
 
     // --- Configurazione & Stato ---
     const DEFAULT_PIN = "tsfbcn2026";
-    const STORAGE_KEY_DATA = "tsf_menu_data";
-    const STORAGE_KEY_PIN = "tsf_admin_pin";
-    const STORAGE_KEY_AUTH = "tsf_admin_auth";
-    const STORAGE_KEY_CLOUD = "tsf_cloud_sync";
+    const STORAGE_KEY_DATA = "tsfbcn_menu_data";
+    const STORAGE_KEY_PIN = "tsfbcn_admin_pin";
+    const STORAGE_KEY_AUTH = "tsfbcn_admin_auth";
+    const STORAGE_KEY_CLOUD = "tsfbcn_cloud_sync";
 
     let currentData = null;
     let activeCategoryTabId = 1;

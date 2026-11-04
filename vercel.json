@@ -1,6 +1,11 @@
 {
   "version": 2,
   "cleanUrls": true,
+  "rewrites": [
+    { "source": "/admin", "destination": "/admin.html" },
+    { "source": "/menu", "destination": "/pages/catalogo.html" },
+    { "source": "/catalogo", "destination": "/pages/catalogo.html" }
+  ],
   "headers": [
     {
       "source": "/assets/(.*)",
