@@ -1,0 +1,299 @@
+/* ==========================================
+   LANDING / LINKTREE MINIMAL - TSF BCN
+   ========================================== */
+
+.landing-container {
+    width: 100%;
+    max-width: 440px;
+    margin: 0 auto;
+    padding: 2.5rem 1.25rem 3.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+/* Selettore Lingua in alto a destra */
+.landing-topbar {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-bottom: -0.25rem;
+}
+
+/* Header Profilo & Logo */
+.profile-header {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.profile-avatar {
+    width: 106px;
+    height: 106px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--accent);
+    box-shadow: 0 0 25px var(--accent-glow);
+    margin-bottom: 0.75rem;
+    padding: 2px;
+    background-color: var(--bg-main);
+    transition: transform 0.3s ease;
+}
+
+.profile-avatar:hover {
+    transform: scale(1.04);
+}
+
+.profile-scritta {
+    max-width: 310px;
+    width: 86%;
+    height: auto;
+    margin: 0.1rem 0 0.35rem;
+    filter: drop-shadow(0 3px 16px rgba(0,0,0,0.85));
+}
+
+.profile-bio {
+    font-family: var(--font-display);
+    font-style: italic;
+    color: var(--text-secondary);
+    font-size: 0.98rem;
+    max-width: 340px;
+    margin-top: 0.25rem;
+    line-height: 1.45;
+    letter-spacing: 0.3px;
+}
+
+/* Lista Canali / Tasti Cliccabili (MENU, TELEGRAM, SITO WEB, INSTAGRAM) */
+.links-list {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+}
+
+/* Tutti i 4 tasti sono identici nello stile */
+.link-card {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+    min-height: 60px;
+    padding: 0.85rem 1.25rem;
+    background: var(--bg-card);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--border-glass);
+    border-radius: var(--radius-md);
+    color: var(--text-primary);
+    transition: all 0.2s ease;
+    text-decoration: none;
+    position: relative;
+}
+
+.link-card:hover {
+    border-color: var(--border-highlight);
+    background: var(--bg-card-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+}
+
+.link-card:active {
+    transform: scale(0.98);
+}
+
+.link-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 9px;
+    background: rgba(224, 180, 107, 0.08);
+    border: 1px solid rgba(224, 180, 107, 0.28);
+    color: var(--accent);
+    flex-shrink: 0;
+    transition: all 0.2s ease;
+}
+
+.link-icon svg {
+    color: var(--accent);
+    stroke: var(--accent);
+    filter: drop-shadow(0 0 6px rgba(224, 180, 107, 0.35));
+    transition: all 0.2s ease;
+}
+
+.link-card:hover .link-icon {
+    background: var(--accent);
+    color: #000000;
+    border-color: var(--accent);
+    transform: scale(1.06);
+    box-shadow: 0 0 16px var(--accent-glow);
+}
+
+.link-card:hover .link-icon svg {
+    color: #000000;
+    stroke: #000000;
+    filter: none;
+}
+
+.link-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    flex-grow: 1;
+    min-width: 0;
+}
+
+.link-title {
+    font-size: 0.92rem;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    color: var(--text-primary);
+    line-height: 1.25;
+}
+
+.link-desc {
+    font-size: 0.74rem;
+    color: var(--text-secondary);
+    letter-spacing: 0.2px;
+    line-height: 1.3;
+}
+
+.link-arrow {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-secondary);
+    transition: transform 0.2s ease, color 0.2s ease;
+    flex-shrink: 0;
+    margin-left: 0.25rem;
+}
+
+.link-card:hover .link-arrow {
+    color: var(--accent);
+    transform: translateX(4px);
+}
+
+/* Disclaimer Footer */
+.landing-footer {
+    text-align: center;
+    margin-top: 0.5rem;
+}
+
+.footer-legal {
+    font-size: 0.72rem;
+    color: rgba(255, 255, 255, 0.35);
+    letter-spacing: 0.4px;
+}
+
+/* Mobile responsive */
+@media (max-width: 480px) {
+    .landing-container {
+        padding: 1.5rem 1rem 3rem;
+        gap: 1.25rem;
+    }
+
+    .profile-avatar {
+        width: 96px;
+        height: 96px;
+    }
+
+    .profile-scritta {
+        max-width: 270px;
+    }
+}
+
+/* ==========================================
+   CINEMATIC INTRO OVERLAY
+   ========================================== */
+.intro-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 99999;
+    background-color: #000000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    transition: opacity 0.55s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.55s ease;
+    opacity: 1;
+    visibility: visible;
+}
+
+.intro-overlay[hidden] {
+    display: none !important;
+}
+
+.intro-overlay.fade-out {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.intro-video {
+    width: 100%;
+    height: 100%;
+    max-width: 100vw;
+    max-height: 100vh;
+    object-fit: contain;
+    background-color: #000000;
+    display: block;
+}
+
+.intro-controls {
+    position: absolute;
+    bottom: max(1.5rem, env(safe-area-inset-bottom, 1.5rem));
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1.5rem;
+    z-index: 100000;
+    pointer-events: none;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.btn-intro-action {
+    pointer-events: auto;
+    background: rgba(14, 13, 17, 0.85);
+    color: #e0b46b;
+    border: 1px solid rgba(224, 180, 107, 0.45);
+    padding: 0.5rem 1.05rem;
+    border-radius: 999px;
+    font-family: var(--font-mono, monospace);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    cursor: pointer;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.75);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    transition: all 0.2s ease;
+    user-select: none;
+    text-transform: uppercase;
+}
+
+.btn-intro-action:hover {
+    background: #e0b46b;
+    color: #000000;
+    border-color: #e0b46b;
+    box-shadow: 0 0 16px rgba(224, 180, 107, 0.5);
+    transform: translateY(-1px);
+}
+
+.btn-intro-action:active {
+    transform: scale(0.96);
+}

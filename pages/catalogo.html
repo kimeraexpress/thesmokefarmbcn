@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Smoke Farm BCN | Product Catalog</title>
+    <link rel="icon" type="image/png" href="../assets/favicon.png">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/catalogo.css">
+</head>
+<body>
+    <header class="catalog-topbar">
+        <a href="../index.html" class="btn-back" id="btn-back">← Back</a>
+        <div class="topbar-title">
+            <img id="topbar-avatar" class="topbar-avatar" src="../assets/logo-badge.png" alt="The Smoke Farm BCN">
+            <h1 id="topbar-title">MENU</h1>
+        </div>
+        <div id="catalog-lang-picker" class="catalog-lang-picker"></div>
+    </header>
+
+    <main class="catalog-container">
+        <!-- Barra delle categorie orizzontale -->
+        <div id="filter-container" class="filter-wrapper"></div>
+
+        <!-- Barra delle sottocategorie minimal -->
+        <div id="subfilter-container" class="subcategories-wrapper"></div>
+
+        <div id="active-category-banner" class="category-banner">
+            <span id="active-category-text">Showing: <strong>All products</strong></span>
+        </div>
+
+        <!-- Tabellone Elenco Prodotti Testuale (Stile Reference packzbcn, Zero Foto) -->
+        <section id="catalog-board" class="catalog-text-board" aria-label="Menu List">
+            <div class="skeleton-loader">Loading catalog...</div>
+        </section>
+    </main>
+
+    <footer id="catalog-footer" class="catalog-footer">
+        <!-- Popolato dinamicamente da catalogo.js -->
+    </footer>
+
+    <!-- Modal Prodotto Completo -->
+    <div id="product-modal" class="modal-overlay" aria-hidden="true">
+        <div id="modal-content" class="modal-card">
+            <!-- Iniezione dinamica da catalogo.js -->
+        </div>
+    </div>
+
+    <script src="../js/data/menu-data.js"></script>
+    <script src="../js/pages/catalogo.js"></script>
+</body>
+</html>

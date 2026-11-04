@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Smoke Farm BCN | Official Links</title>
+    <link rel="icon" type="image/png" href="./assets/favicon.png">
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./css/landing.css">
+</head>
+<body>
+    <!-- Intro Video Overlay (Autoplay con sound toggle & Skip) -->
+    <div id="intro-overlay" class="intro-overlay" aria-label="Intro Cinematic Video">
+        <video id="intro-video" class="intro-video" src="./assets/intro.mp4" autoplay muted playsinline webkit-playsinline preload="auto"></video>
+        <div class="intro-controls">
+            <button type="button" id="btn-intro-sound" class="btn-intro-action" aria-label="Toggle Sound">
+                <span id="sound-icon">🔇</span> <span id="sound-text">SOUND</span>
+            </button>
+            <button type="button" id="btn-intro-skip" class="btn-intro-action" aria-label="Skip Intro">
+                <span>SKIP</span> <span>→</span>
+            </button>
+        </div>
+    </div>
+
+    <main id="landing-main" class="landing-container">
+        
+        <!-- Barra Superiore: Selettore Lingua -->
+        <div class="landing-topbar">
+            <div class="lang-selector" role="group" aria-label="Language Selector">
+                <button type="button" class="lang-btn active" data-lang="it">IT</button>
+                <span class="lang-sep">|</span>
+                <button type="button" class="lang-btn" data-lang="es">ES</button>
+                <span class="lang-sep">|</span>
+                <button type="button" class="lang-btn" data-lang="en">EN</button>
+            </div>
+        </div>
+
+        <!-- Profile Header -->
+        <header id="profile-container" class="profile-header">
+            <img src="./assets/logo-badge.png" alt="The Smoke Farm BCN" class="profile-avatar">
+            <img src="./assets/scritta-transparent.png" alt="The Smoke Farm BCN" class="profile-scritta">
+            <p id="profile-bio" class="profile-bio">Link Ufficiali &amp; Menu Riservato &nbsp;·&nbsp; Barcellona 🇪🇸</p>
+        </header>
+
+        <!-- Canali Ufficiali: MENU, CANALE TELEGRAM, SITO WEB, INSTAGRAM (Tutti uguali) -->
+        <nav id="links-container" class="links-list">
+            
+            <!-- 1. MENU (Stesso stile link-card degli altri tasti) -->
+            <a href="./pages/catalogo.html" class="link-card link-menu">
+                <span class="link-icon">
+                    <svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path><line x1="9" y1="7" x2="15" y2="7"></line><line x1="9" y1="11" x2="14" y2="11"></line></svg>
+                </span>
+                <div class="link-content">
+                    <span class="link-title" id="menu-title">MENU</span>
+                    <span class="link-desc" id="menu-desc">Catalogo Completo &amp; Listino Prezzi</span>
+                </div>
+                <span class="link-arrow">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                </span>
+            </a>
+
+            <!-- 2. CANALE TELEGRAM (con specifica Drop, Video e News) -->
+            <a href="https://t.me/+fe7RDT8eo9E0MjZk" target="_blank" rel="noopener noreferrer" class="link-card link-telegram">
+                <span class="link-icon">
+                    <svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m22 2-7 20-4-9-9-4Z"></path><path d="M22 2 11 13"></path></svg>
+                </span>
+                <div class="link-content">
+                    <span class="link-title" id="telegram-title">CANALE TELEGRAM</span>
+                    <span class="link-desc" id="telegram-desc">Drop Live, Macro Video 4K &amp; Aggiornamenti</span>
+                </div>
+                <span class="link-arrow">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                </span>
+            </a>
+
+            <!-- 3. SITO WEB -->
+            <a href="https://thesmokefarmspain.vercel.app/" target="_blank" rel="noopener noreferrer" class="link-card link-website">
+                <span class="link-icon">
+                    <svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                </span>
+                <div class="link-content">
+                    <span class="link-title" id="website-title">SITO WEB</span>
+                    <span class="link-desc" id="website-desc">Portale Ufficiale &amp; Info The Smoke Farm</span>
+                </div>
+                <span class="link-arrow">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                </span>
+            </a>
+
+            <!-- 4. INSTAGRAM -->
+            <a href="https://instagram.com/officialbcn123" target="_blank" rel="noopener noreferrer" class="link-card link-instagram">
+                <span class="link-icon">
+                    <svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                </span>
+                <div class="link-content">
+                    <span class="link-title" id="instagram-title">INSTAGRAM</span>
+                    <span class="link-desc" id="instagram-desc">Galleria Foto, Eventi &amp; Lifestyle Club</span>
+                </div>
+                <span class="link-arrow">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                </span>
+            </a>
+        </nav>
+
+        <!-- Disclaimer Legale Footer -->
+        <footer class="landing-footer">
+            <p class="footer-legal" id="footer-legal">The Smoke Farm BCN · Private Selection · 18+ Only</p>
+            <div style="margin-top: 0.5rem;">
+                <a href="./admin.html" style="color: rgba(255, 255, 255, 0.25); text-decoration: none; font-size: 0.72rem; transition: color 0.2s ease;" onmouseover="this.style.color='#e0b46b'" onmouseout="this.style.color='rgba(255, 255, 255, 0.25)'" title="Pannello Amministratore">🔒 Admin</a>
+            </div>
+        </footer>
+
+    </main>
+
+    <!-- Script Autonomo Compatibile anche con apertura diretta file:/// senza server -->
+    <script>
+        (function() {
+            const I18N = {
+                it: {
+                    bio: "Link Ufficiali & Menu Riservato · Barcellona 🇪🇸",
+                    menuTitle: "MENU",
+                    menuDesc: "Catalogo Completo & Listino Prezzi",
+                    tgTitle: "CANALE TELEGRAM",
+                    tgDesc: "Drop Live, Macro Video 4K & Aggiornamenti",
+                    webTitle: "SITO WEB",
+                    webDesc: "Portale Ufficiale & Info The Smoke Farm",
+                    igTitle: "INSTAGRAM",
+                    igDesc: "Galleria Foto, Eventi & Lifestyle Club",
+                    footerLegal: "The Smoke Farm BCN · Private Selection · 18+ Only"
+                },
+                es: {
+                    bio: "Enlaces Oficiales & Menú Privado · Barcelona 🇪🇸",
+                    menuTitle: "MENÚ",
+                    menuDesc: "Catálogo Completo y Lista de Precios",
+                    tgTitle: "CANAL TELEGRAM",
+                    tgDesc: "Drops en Vivo, Macro Vídeos 4K & Novedades",
+                    webTitle: "SITIO WEB",
+                    webDesc: "Portal Oficial & Info The Smoke Farm",
+                    igTitle: "INSTAGRAM",
+                    igDesc: "Galería de Fotos, Eventos & Lifestyle Club",
+                    footerLegal: "The Smoke Farm BCN · Selección Privada · Solo +18"
+                },
+                en: {
+                    bio: "Official Links & Private Menu · Barcelona 🇪🇸",
+                    menuTitle: "MENU",
+                    menuDesc: "Full Catalog & Official Price List",
+                    tgTitle: "TELEGRAM CHANNEL",
+                    tgDesc: "Live Drops, Macro 4K Videos & Updates",
+                    webTitle: "OFFICIAL WEBSITE",
+                    webDesc: "Official Portal & Club Info",
+                    igTitle: "INSTAGRAM",
+                    igDesc: "Photo Gallery, Events & Club Lifestyle",
+                    footerLegal: "The Smoke Farm BCN · Private Selection · 18+ Only"
+                }
+            };
+
+            function applyLang(lang) {
+                const dict = I18N[lang] || I18N.it;
+                const setTxt = (id, text) => {
+                    const el = document.getElementById(id);
+                    if (el) el.textContent = text;
+                };
+
+                setTxt("profile-bio", dict.bio);
+                setTxt("menu-title", dict.menuTitle);
+                setTxt("menu-desc", dict.menuDesc);
+                setTxt("telegram-title", dict.tgTitle);
+                setTxt("telegram-desc", dict.tgDesc);
+                setTxt("website-title", dict.webTitle);
+                setTxt("website-desc", dict.webDesc);
+                setTxt("instagram-title", dict.igTitle);
+                setTxt("instagram-desc", dict.igDesc);
+                setTxt("footer-legal", dict.footerLegal);
+
+                document.querySelectorAll(".lang-btn").forEach(btn => {
+                    btn.classList.toggle("active", btn.dataset.lang === lang);
+                });
+
+                try {
+                    localStorage.setItem("tsf_lang", lang);
+                } catch(e) {}
+            }
+
+            document.querySelectorAll(".lang-btn").forEach(btn => {
+                btn.addEventListener("click", () => {
+                    applyLang(btn.dataset.lang);
+                });
+            });
+
+            // Inizializza lingua salvata o default
+            let savedLang = "it";
+            try {
+                savedLang = localStorage.getItem("tsf_lang") || "it";
+            } catch(e) {}
+            applyLang(savedLang);
+
+            // --- Intro Video Controller ---
+            const introOverlay = document.getElementById("intro-overlay");
+            const introVideo = document.getElementById("intro-video");
+            const btnSound = document.getElementById("btn-intro-sound");
+            const btnSkip = document.getElementById("btn-intro-skip");
+            const soundIcon = document.getElementById("sound-icon");
+            const soundText = document.getElementById("sound-text");
+
+            let introDone = false;
+            function finishIntro() {
+                if (introDone) return;
+                introDone = true;
+                if (introOverlay) {
+                    introOverlay.classList.add("fade-out");
+                    setTimeout(() => {
+                        introOverlay.hidden = true;
+                        if (introVideo) introVideo.pause();
+                        document.body.style.overflow = "";
+                    }, 550);
+                }
+            }
+
+            if (introVideo && introOverlay) {
+                document.body.style.overflow = "hidden";
+
+                // Autoplay tentata subito
+                introVideo.muted = true;
+                const playPromise = introVideo.play();
+                if (playPromise !== undefined) {
+                    playPromise.catch(() => {
+                        // Fallback se autoplay bloccato dalle policy del browser
+                    });
+                }
+
+                // Fine video naturale
+                introVideo.addEventListener("ended", finishIntro);
+
+                // Timeout di sicurezza nel caso in cui il video non caricasse (max 7s)
+                setTimeout(() => {
+                    if (!introDone && introVideo.paused && introVideo.currentTime === 0) {
+                        finishIntro();
+                    }
+                }, 7000);
+
+                // Sound Toggle
+                if (btnSound) {
+                    btnSound.addEventListener("click", (e) => {
+                        e.stopPropagation();
+                        if (introVideo.muted) {
+                            introVideo.muted = false;
+                            introVideo.volume = 1.0;
+                            if (soundIcon) soundIcon.textContent = "🔊";
+                            if (soundText) soundText.textContent = "MUTE";
+                        } else {
+                            introVideo.muted = true;
+                            if (soundIcon) soundIcon.textContent = "🔇";
+                            if (soundText) soundText.textContent = "SOUND";
+                        }
+                    });
+                }
+
+                // Skip Button
+                if (btnSkip) {
+                    btnSkip.addEventListener("click", (e) => {
+                        e.stopPropagation();
+                        finishIntro();
+                    });
+                }
+
+                // Tasto ESC o Spazio per saltare
+                window.addEventListener("keydown", (e) => {
+                    if (!introDone && (e.key === "Escape" || e.key === " ")) {
+                        finishIntro();
+                    }
+                });
+            }
+        })();
+    </script>
+</body>
+</html>

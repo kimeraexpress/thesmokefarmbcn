@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Smoke Farm BCN | Admin Dashboard</title>
+    <link rel="icon" type="image/png" href="./assets/favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,600;1,700&family=DM+Sans:wght@400;500;600;700&family=SF+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/admin.css">
+</head>
+<body>
+
+    <!-- ==========================================
+         SCHERMATA DI BLOCCO / ACCESSO PIN
+         ========================================== -->
+    <div id="admin-lock-screen" class="admin-lock-screen">
+        <div class="lock-card">
+            <img src="./assets/logo-badge.png" alt="TSF BCN" class="lock-logo">
+            <h1 class="lock-title">The Smoke Farm BCN</h1>
+            <p class="lock-subtitle">Pannello di Amministrazione Riservato</p>
+            
+            <form id="lock-form" class="lock-form" onsubmit="event.preventDefault(); handleAdminLogin();">
+                <div class="input-password-wrap">
+                    <input type="password" id="admin-pin-input" class="lock-input" placeholder="Inserisci Password / PIN" autofocus autocomplete="current-password">
+                </div>
+                <div id="lock-error-msg" class="lock-error">Password errata. Riprova.</div>
+                <button type="submit" class="btn-lock-submit">Accedi al Pannello</button>
+            </form>
+            <p class="lock-footer-hint">Accesso autorizzato solo per il team di gestione TSF BCN</p>
+        </div>
+    </div>
+
+    <!-- ==========================================
+         HEADER PRINCIPALE DASHBOARD
+         ========================================== -->
+    <header class="admin-header">
+        <div class="header-inner">
+            <a href="#" class="brand-section">
+                <img src="./assets/logo-badge.png" alt="TSF BCN" class="brand-avatar">
+                <div class="brand-text-col">
+                    <span class="brand-name">The Smoke Farm BCN</span>
+                    <span class="brand-badge">ADMIN DASHBOARD</span>
+                </div>
+            </a>
+
+            <div class="header-actions">
+                <a href="./pages/catalogo.html" target="_blank" rel="noopener" class="btn-header btn-header-secondary" title="Apri il catalogo in una nuova scheda">
+                    <span>👁️</span> <span>Vedi Menu Live</span>
+                </a>
+                <button type="button" id="btn-save-all" class="btn-header btn-header-primary" onclick="saveAllChanges(true)">
+                    <span>💾</span> <span>Salva Modifiche</span>
+                </button>
+                <button type="button" class="btn-header btn-header-secondary" onclick="openBackupModal()" title="Esporta o importa dati">
+                    <span>📥</span> <span>Backup &amp; Export</span>
+                </button>
+                <button type="button" class="btn-header btn-header-secondary" onclick="handleAdminLogout()" title="Disconnettiti">
+                    <span>🚪</span> <span>Esci</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ==========================================
+         BARRA DELLE SCHEDE (TABS)
+         ========================================== -->
+    <nav class="admin-nav-tabs">
+        <div class="tabs-inner">
+            <button type="button" class="nav-tab-btn active" data-tab="tab-products" onclick="switchTab('tab-products')">
+                <span>📦</span> <span>Prodotti</span> <span id="badge-prod-count" class="tab-badge">0</span>
+            </button>
+            <button type="button" class="nav-tab-btn" data-tab="tab-categories" onclick="switchTab('tab-categories')">
+                <span>🗂️</span> <span>Categorie &amp; Sottocategorie</span> <span id="badge-cat-count" class="tab-badge">0</span>
+            </button>
+            <button type="button" class="nav-tab-btn" data-tab="tab-info" onclick="switchTab('tab-info')">
+                <span>ℹ️</span> <span>Info &amp; Spedizioni</span>
+            </button>
+            <button type="button" class="nav-tab-btn" data-tab="tab-cloud" onclick="switchTab('tab-cloud')">
+                <span>☁️</span> <span>Cloud &amp; Backup</span>
+            </button>
+            <button type="button" class="nav-tab-btn" data-tab="tab-settings" onclick="switchTab('tab-settings')">
+                <span>⚙️</span> <span>Impostazioni</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- ==========================================
+         CONTENUTO PRINCIPALE (PANNELLI TAB)
+         ========================================== -->
+    <main class="admin-main">
+
+        <!-- ================= TAB 1: PRODOTTI ================= -->
+        <section id="tab-products" class="tab-panel active">
+            
+            <!-- Striscia Statistiche Veloci -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <span class="stat-label">Totale Prodotti</span>
+                    <span id="stat-total-products" class="stat-value">0</span>
+                    <span class="stat-hint">Nel catalogo del menu</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-label">Disponibili Ora</span>
+                    <span id="stat-active-products" class="stat-value" style="color: #2ecc71;">0</span>
+                    <span class="stat-hint">Pronti per gli ordini</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-label">Esauriti / Out of Stock</span>
+                    <span id="stat-soldout-products" class="stat-value" style="color: #e74c3c;">0</span>
+                    <span class="stat-hint">Contrassegnati esauriti</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-label">Categorie Attive</span>
+                    <span id="stat-total-categories" class="stat-value">0</span>
+                    <span class="stat-hint">Con sottocategorie</span>
+                </div>
+            </div>
+
+            <!-- Toolbar Ricerca, Filtri & Azioni -->
+            <div class="toolbar-wrap">
+                <div class="toolbar-filters">
+                    <div class="search-box">
+                        <span class="search-icon">🔍</span>
+                        <input type="text" id="search-products-input" class="search-input" placeholder="Cerca prodotto, varietà..." oninput="handleProductSearch(this.value)">
+                    </div>
+
+                    <select id="filter-category-select" class="select-filter" onchange="handleCategoryFilter(this.value)">
+                        <option value="ALL">Tutte le Categorie</option>
+                    </select>
+
+                    <select id="filter-subcategory-select" class="select-filter" onchange="handleSubcategoryFilter(this.value)">
+                        <option value="ALL">Tutte le Sottocategorie</option>
+                    </select>
+
+                    <select id="filter-status-select" class="select-filter" onchange="handleStatusFilter(this.value)">
+                        <option value="ALL">Tutti gli Stati</option>
+                        <option value="ACTIVE">Solo Disponibili 🟢</option>
+                        <option value="SOLDOUT">Solo Esauriti 🔴</option>
+                    </select>
+                </div>
+
+                <button type="button" class="btn-primary-action" onclick="openProductModal()">
+                    <span>➕</span> <span>Nuovo Prodotto</span>
+                </button>
+            </div>
+
+            <!-- Griglia Prodotti -->
+            <div id="admin-products-container" class="admin-products-grid">
+                <!-- Render dinamico da admin.js -->
+            </div>
+        </section>
+
+
+        <!-- ================= TAB 2: CATEGORIE & SOTTOCATEGORIE ================= -->
+        <section id="tab-categories" class="tab-panel">
+            <div class="categories-manager-layout">
+                
+                <!-- Colonna Sinistra: Categorie Principali -->
+                <aside class="categories-sidebar">
+                    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.5rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border-subtle);">
+                        <span style="font-size: 0.82rem; font-weight: 700; text-transform: uppercase; color: var(--accent); letter-spacing: 0.5px;">Categorie</span>
+                    </div>
+                    <div id="cat-nav-list">
+                        <!-- Popolato dinamicamente da admin.js -->
+                    </div>
+                </aside>
+
+                <!-- Colonna Destra: Gestione Sottocategorie per Categoria Selezionata -->
+                <div class="category-detail-panel">
+                    <div class="panel-header">
+                        <div>
+                            <h2 id="active-cat-title" class="panel-title">Cali Flower</h2>
+                            <p id="active-cat-slug" style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-muted); margin-top: 2px;">slug: cali-flower</p>
+                        </div>
+                        <span id="active-cat-count" class="tab-badge" style="font-size: 0.82rem; padding: 4px 10px;">0 Sottocategorie</span>
+                    </div>
+
+                    <!-- Elenco Sottocategorie Esistenti -->
+                    <h3 style="font-size: 0.92rem; font-weight: 700; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.75rem;">
+                        Sottocategorie Attive
+                    </h3>
+                    
+                    <div id="subcategories-container" class="subcategories-list">
+                        <!-- Popolato dinamicamente -->
+                    </div>
+
+                    <!-- Card Aggiungi Nuova Sottocategoria -->
+                    <div class="add-subcat-card">
+                        <div class="add-subcat-title">
+                            <span>➕</span> <span>Aggiungi Nuova Sottocategoria a questa categoria</span>
+                        </div>
+                        <form id="add-subcat-form" class="add-subcat-form" onsubmit="event.preventDefault(); handleAddSubcategory();">
+                            <input type="text" id="new-subcat-name-input" class="add-subcat-input" placeholder="Es. Limited Edition Jars, Static 90u, Amnesia Line..." required>
+                            <button type="submit" class="btn-primary-action">
+                                <span>+ Aggiungi</span>
+                            </button>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ================= TAB 3: INFO & SPEDIZIONI ================= -->
+        <section id="tab-info" class="tab-panel">
+            <div class="info-editor-card">
+                <div>
+                    <h2 style="font-size: 1.25rem; font-weight: 700; color: var(--accent);">Testo Scheda Info, Spedizioni &amp; Pagamenti</h2>
+                    <p style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 4px;">
+                        Questo testo compare quando un cliente clicca sulla scheda "Info" nel catalogo. Supporta formattazione HTML semplice (&lt;b&gt;, &lt;i&gt;, &lt;u&gt;, &lt;code&gt;).
+                    </p>
+                </div>
+
+                <textarea id="info-text-input" class="info-textarea" spellcheck="false"></textarea>
+
+                <div style="display: flex; justify-content: flex-end; gap: 0.75rem;">
+                    <button type="button" class="btn-header btn-header-secondary" onclick="resetInfoText()">Ripristina Default</button>
+                    <button type="button" class="btn-header btn-header-primary" onclick="saveInfoText()">💾 Salva Testo Info</button>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ================= TAB 4: CLOUD & BACKUP ================= -->
+        <section id="tab-cloud" class="tab-panel">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem;">
+                
+                <!-- Card 1: Esportazione File Indipendente -->
+                <div class="info-editor-card">
+                    <h3 style="font-size: 1.15rem; color: var(--accent); font-weight: 700;">📥 Esporta File per Aggiornamento Sito</h3>
+                    <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5;">
+                        Scarica i file aggiornati con tutti i tuoi prodotti e categorie. Puoi salvarli come backup o sostituirli direttamente nella cartella del sito/repository GitHub per aggiornare Vercel.
+                    </p>
+                    
+                    <div style="display: flex; flex-direction: column; gap: 0.75rem; margin-top: 0.5rem;">
+                        <button type="button" class="btn-primary-action" style="justify-content: center;" onclick="downloadDataJson()">
+                            <span>📥 Scarica data.json</span>
+                        </button>
+                        <button type="button" class="btn-header btn-header-secondary" style="justify-content: center;" onclick="downloadMenuDataJs()">
+                            <span>📥 Scarica menu-data.js</span>
+                        </button>
+                        <button type="button" class="btn-header btn-header-secondary" style="justify-content: center;" onclick="copyJsonToClipboard()">
+                            <span>📋 Copia Dati JSON negli Appunti</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Card 2: Importa Backup -->
+                <div class="info-editor-card">
+                    <h3 style="font-size: 1.15rem; color: var(--accent); font-weight: 700;">📤 Ripristina da Backup</h3>
+                    <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5;">
+                        Hai un file <code>data.json</code> precedentemente esportato? Puoi caricarlo per ripristinare tutti i prodotti e le categorie.
+                    </p>
+
+                    <input type="file" id="import-json-file" accept=".json" style="display: none;" onchange="handleFileImport(event)">
+                    
+                    <div style="display: flex; flex-direction: column; gap: 0.75rem; margin-top: 0.5rem;">
+                        <button type="button" class="btn-header btn-header-secondary" style="justify-content: center;" onclick="document.getElementById('import-json-file').click()">
+                            <span>📂 Seleziona file data.json</span>
+                        </button>
+                        <button type="button" class="btn-header btn-header-secondary" style="justify-content: center; color: #e74c3c; border-color: rgba(231, 76, 60, 0.4);" onclick="confirmResetDefaults()">
+                            <span>🔄 Ripristina Dati Originali di Fabbrica</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Card 3: Cloud Sync Opzionale -->
+                <div class="info-editor-card" style="grid-column: 1 / -1;">
+                    <h3 style="font-size: 1.15rem; color: var(--accent); font-weight: 700;">☁️ Sincronizzazione Cloud in Tempo Reale (Opzionale)</h3>
+                    <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5;">
+                        Se vuoi che ogni modifica salvata dall'admin appaia <strong>immediatamente su tutti i telefoni dei clienti nel mondo</strong> senza dover ricaricare file o fare deploy su Vercel, puoi collegare un endpoint cloud gratuito (es. JSONBin.io o un tuo endpoint).
+                    </p>
+
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; margin-top: 0.5rem;">
+                        <div class="form-group">
+                            <label class="form-label">URL Endpoint Cloud / Bin URL</label>
+                            <input type="url" id="cloud-endpoint-url" class="form-input" placeholder="https://api.jsonbin.io/v3/b/TUO_BIN_ID">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Chiave API / Master Key (se richiesta)</label>
+                            <input type="password" id="cloud-api-key" class="form-input" placeholder="Es. $2a$10$...">
+                        </div>
+                    </div>
+
+                    <div style="display: flex; justify-content: flex-end; gap: 0.75rem; margin-top: 0.5rem;">
+                        <button type="button" class="btn-header btn-header-secondary" onclick="testCloudConnection()">🧪 Testa Connessione Cloud</button>
+                        <button type="button" class="btn-primary-action" onclick="saveCloudConfigAndSync()">☁️ Salva &amp; Sincronizza Ora</button>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- ================= TAB 5: IMPOSTAZIONI ================= -->
+        <section id="tab-settings" class="tab-panel">
+            <div class="info-editor-card" style="max-width: 500px;">
+                <h3 style="font-size: 1.15rem; color: var(--accent); font-weight: 700;">🔒 Cambia Password / PIN di Accesso</h3>
+                <p style="font-size: 0.85rem; color: var(--text-secondary);">
+                    Modifica il PIN di accesso per il pannello amministratore. Il PIN predefinito è <code>tsfbcn2026</code>.
+                </p>
+
+                <div class="form-group" style="margin-top: 0.5rem;">
+                    <label class="form-label">PIN Attuale</label>
+                    <input type="password" id="current-pin-input" class="form-input" placeholder="Inserisci il PIN attuale">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Nuovo PIN</label>
+                    <input type="password" id="new-pin-input" class="form-input" placeholder="Inserisci il nuovo PIN">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Conferma Nuovo PIN</label>
+                    <input type="password" id="confirm-new-pin-input" class="form-input" placeholder="Ripeti il nuovo PIN">
+                </div>
+
+                <button type="button" class="btn-primary-action" style="align-self: flex-start; margin-top: 0.5rem;" onclick="handleChangePin()">
+                    Salva Nuovo PIN
+                </button>
+            </div>
+        </section>
+
+    </main>
+
+
+    <!-- ==========================================
+         MODALE PRODOTTO (CREA / MODIFICA)
+         ========================================== -->
+    <div id="product-modal-overlay" class="admin-modal-overlay">
+        <div class="admin-modal-card">
+            
+            <div class="modal-header-bar">
+                <h3 id="product-modal-title" class="modal-header-title">Modifica Prodotto</h3>
+                <button type="button" class="modal-close-btn" onclick="closeProductModal()">✕</button>
+            </div>
+
+            <form id="product-edit-form" class="modal-body-scroll" onsubmit="event.preventDefault(); handleSaveProduct();">
+                <input type="hidden" id="edit-prod-id">
+
+                <!-- 1. Nome Prodotto -->
+                <div class="form-group">
+                    <label class="form-label">Nome Prodotto *</label>
+                    <input type="text" id="edit-prod-name" class="form-input" placeholder="Es. The Ten Co - Blue Zushi (Limited Edition)" required>
+                </div>
+
+                <!-- 2. Categoria e Sottocategoria -->
+                <div class="form-row-2">
+                    <div class="form-group">
+                        <label class="form-label">Categoria *</label>
+                        <select id="edit-prod-category" class="form-select" onchange="onModalCategoryChange(this.value)" required>
+                            <!-- Popolato dinamicamente -->
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Sottocategoria *</label>
+                        <select id="edit-prod-subcategory" class="form-select" required>
+                            <!-- Popolato dinamicamente in base alla categoria -->
+                        </select>
+                    </div>
+                </div>
+
+                <!-- 3. Stato Disponibilità -->
+                <div class="form-group">
+                    <label class="form-label">Disponibilità a Listino</label>
+                    <div style="display: flex; gap: 1.5rem; margin-top: 0.25rem;">
+                        <label style="display: flex; align-items: center; gap: 0.4rem; cursor: pointer; font-size: 0.88rem;">
+                            <input type="radio" name="prod-status" id="status-available" value="available" checked>
+                            <span style="color: #2ecc71; font-weight: 600;">🟢 Disponibile</span>
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 0.4rem; cursor: pointer; font-size: 0.88rem;">
+                            <input type="radio" name="prod-status" id="status-soldout" value="soldout">
+                            <span style="color: #e74c3c; font-weight: 600;">🔴 Esaurito (Out of stock)</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- 4. Descrizione -->
+                <div class="form-group">
+                    <label class="form-label">Descrizione Prodotto</label>
+                    <textarea id="edit-prod-desc" class="form-textarea" rows="3" placeholder="Descrivi il prodotto, cura, note aromatiche, provenienza..."></textarea>
+                </div>
+
+                <!-- 5. Varietà / Terpeni (Strains) -->
+                <div class="form-group">
+                    <label class="form-label">Varietà / Terpeni / Aromi (Strains)</label>
+                    <div style="display: flex; gap: 0.5rem;">
+                        <input type="text" id="strain-input" class="form-input" placeholder="Es. Blue Zushi, Zkittlez, Gelato 41..." onkeydown="if(event.key==='Enter'){event.preventDefault();addStrainTag();}">
+                        <button type="button" class="btn-header btn-header-secondary" onclick="addStrainTag()">+ Aggiungi</button>
+                    </div>
+                    <div id="strains-tags-container" style="display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.5rem;">
+                        <!-- Tag renderizzati qui -->
+                    </div>
+                </div>
+
+                <!-- 6. Listino Prezzi & Formati (Tiers) -->
+                <div class="form-group">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.4rem;">
+                        <label class="form-label" style="margin-bottom: 0;">Listino Prezzi &amp; Formati *</label>
+                    </div>
+
+                    <!-- Presets Veloci -->
+                    <div class="pricing-presets-strip">
+                        <span style="font-size: 0.72rem; color: var(--text-muted); align-self: center;">Preset veloci:</span>
+                        <button type="button" class="btn-preset" onclick="applyPricingPreset('flower')">🌸 Fiori (3.5g / 7g / 14g / 28g)</button>
+                        <button type="button" class="btn-preset" onclick="applyPricingPreset('hash')">🍯 Hash (10g / 25g / 50g / 100g / 1Kg)</button>
+                        <button type="button" class="btn-preset" onclick="applyPricingPreset('spain')">🇪🇸 Spagna (10g / 25g / 50g / 100g)</button>
+                        <button type="button" class="btn-preset" onclick="applyPricingPreset('pieces')">🍫 Pezzi (1 pz / 5 pz / 10 pz)</button>
+                    </div>
+
+                    <div id="pricing-tiers-container" class="tiers-table">
+                        <!-- Righe prezzi generate dinamicamente -->
+                    </div>
+
+                    <button type="button" class="btn-add-row" onclick="addPricingTierRow('', '')" style="margin-top: 0.4rem;">
+                        + Aggiungi Formato &amp; Prezzo
+                    </button>
+                </div>
+
+                <!-- 7. Media & Immagini -->
+                <div class="form-group">
+                    <label class="form-label">Immagini Prodotto (URL o Carica file)</label>
+                    
+                    <div style="display: flex; gap: 0.5rem; margin-bottom: 0.5rem;">
+                        <input type="url" id="media-url-input" class="form-input" placeholder="Incolla URL immagine (https://...)">
+                        <button type="button" class="btn-header btn-header-secondary" onclick="addMediaFromUrl()">+ Aggiungi URL</button>
+                        <button type="button" class="btn-header btn-header-secondary" onclick="document.getElementById('media-file-input').click()">📁 Carica Foto</button>
+                        <input type="file" id="media-file-input" accept="image/*" style="display: none;" onchange="handleLocalImageUpload(event)">
+                    </div>
+
+                    <div id="media-previews-container" style="display: flex; flex-wrap: wrap; gap: 0.75rem;">
+                        <!-- Anteprime immagini -->
+                    </div>
+                </div>
+
+            </form>
+
+            <div class="modal-footer-bar">
+                <button type="button" class="btn-header btn-header-secondary" onclick="closeProductModal()">Annulla</button>
+                <button type="button" class="btn-header btn-header-primary" onclick="handleSaveProduct()">💾 Salva Prodotto</button>
+            </div>
+
+        </div>
+    </div>
+
+
+    <!-- ==========================================
+         MODALE BACKUP / EXPORT
+         ========================================== -->
+    <div id="backup-modal-overlay" class="admin-modal-overlay">
+        <div class="admin-modal-card" style="max-width: 520px;">
+            <div class="modal-header-bar">
+                <h3 class="modal-header-title">Backup &amp; Esportazione Menu</h3>
+                <button type="button" class="modal-close-btn" onclick="closeBackupModal()">✕</button>
+            </div>
+            <div class="modal-body-scroll" style="gap: 1rem;">
+                <p style="font-size: 0.88rem; color: var(--text-secondary); line-height: 1.5;">
+                    Scegli il formato che preferisci per esportare o salvare il tuo catalogo:
+                </p>
+                <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+                    <button type="button" class="btn-primary-action" style="justify-content: center;" onclick="downloadDataJson()">
+                        <span>📥 Scarica data.json (Completo)</span>
+                    </button>
+                    <button type="button" class="btn-header btn-header-secondary" style="justify-content: center;" onclick="downloadMenuDataJs()">
+                        <span>📥 Scarica menu-data.js (Pronto per il sito)</span>
+                    </button>
+                    <button type="button" class="btn-header btn-header-secondary" style="justify-content: center;" onclick="copyJsonToClipboard()">
+                        <span>📋 Copia Dati JSON negli Appunti</span>
+                    </button>
+                </div>
+            </div>
+            <div class="modal-footer-bar">
+                <button type="button" class="btn-header btn-header-secondary" onclick="closeBackupModal()">Chiudi</button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ==========================================
+         TOAST FEEDBACK
+         ========================================== -->
+    <div id="admin-toast" class="admin-toast">
+        <span id="toast-icon">✅</span>
+        <span id="toast-message">Operazione completata con successo!</span>
+    </div>
+
+    <!-- Script Dati Master & Script Admin -->
+    <script src="./js/data/menu-data.js"></script>
+    <script src="./js/admin.js"></script>
+</body>
+</html>

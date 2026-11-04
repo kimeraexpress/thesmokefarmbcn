@@ -1,0 +1,30 @@
+# File originali raw / non web
+/LOGO*.jpg
+/SCRITTA*.jpg
+/httpspackzbcn*.txt
+
+# Media temporanei & reference video pesanti
+/*.mp4
+!/assets/intro.mp4
+/*.gif
+/*.wav
+/*.avi
+/*.mov
+
+# Script locali di generazione / render / test
+*.py
+*.bat
+intro_canvas.html
+matrix_promo.html
+preview_player.html
+
+# Cartelle temporanee di test
+/assets/admin_test/
+/assets/video_frames/
+/assets/menu_text_test/
+/assets/menu_test_categories/
+
+# OS & Logs
+.DS_Store
+Thumbs.db
+*.log

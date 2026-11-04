@@ -1,0 +1,120 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@400;500;600;700&family=Roboto+Mono:wght@400;500;600&display=swap');
+
+:root {
+    --bg-main: #000000;
+    --bg-surface: #0a0a0c;
+    --bg-card: rgba(14, 14, 16, 0.9);
+    --bg-card-hover: rgba(24, 23, 28, 0.95);
+    
+    /* Colore Oro identico alla scritta The Smoke Farm BCN (#e0b46b) */
+    --accent: #e0b46b;
+    --accent-hover: #f0cb85;
+    --accent-dim: rgba(224, 180, 107, 0.12);
+    --accent-glow: rgba(224, 180, 107, 0.38);
+    --accent-gold-dark: #b8860b;
+    --accent-sunset: #ff6b4a;
+    
+    --text-primary: #f4f4f6;
+    --text-secondary: #8a8f9e;
+    --border-glass: rgba(255, 255, 255, 0.08);
+    --border-highlight: rgba(224, 180, 107, 0.5);
+    
+    --radius-lg: 16px;
+    --radius-md: 10px;
+    --radius-sm: 6px;
+    
+    --font-main: 'DM Sans', system-ui, -apple-system, sans-serif;
+    --font-display: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+    --font-mono: 'Roboto Mono', ui-monospace, SFMono-Regular, monospace;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    -webkit-tap-highlight-color: transparent;
+}
+
+html, body {
+    overflow-x: hidden;
+    background-color: #000000;
+    color: var(--text-primary);
+    font-family: var(--font-main);
+    line-height: 1.5;
+    min-height: 100vh;
+    min-height: 100dvh;
+}
+
+/* Sfondo completamente nero solido (senza alcuna sfumatura) */
+body {
+    background-color: #000000;
+    background-image: none;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.skeleton-loader {
+    text-align: center;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    padding: 3rem 1rem;
+}
+
+/* Display font for editorial headings */
+h1, h2, .product-title, .modal-title {
+    font-family: var(--font-display);
+}
+
+/* ==========================================
+   LANGUAGE SELECTOR MINIMAL & LUXURY
+   ========================================== */
+.lang-selector {
+    display: inline-flex;
+    align-items: center;
+    background: rgba(18, 17, 22, 0.75);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--border-glass);
+    border-radius: 999px;
+    padding: 3px 8px;
+    gap: 4px;
+    user-select: none;
+}
+
+.lang-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    padding: 3px 8px;
+    border-radius: 999px;
+    transition: all 0.2s ease;
+    line-height: 1.2;
+}
+
+.lang-btn:hover {
+    color: var(--accent);
+}
+
+.lang-btn.active {
+    background: var(--accent);
+    color: #000000;
+    font-weight: 800;
+    box-shadow: 0 0 14px var(--accent-glow);
+}
+
+.lang-sep {
+    color: rgba(255, 255, 255, 0.18);
+    font-size: 0.68rem;
+    user-select: none;
+}
