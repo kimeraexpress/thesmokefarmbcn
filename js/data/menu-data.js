@@ -19,10 +19,10 @@ window.TSF_INITIAL_DATA = {
     },
     {
       "id": 2,
-      "title": "SITO WEB",
-      "desc": "Portale Ufficiale & Info Club",
+      "title": "GALLERIA PRODOTTI",
+      "desc": "Foto HD, Dettagli & Macro delle Cime",
       "url": "https://thesmokefarmspain.vercel.app/",
-      "icon": "website"
+      "icon": "gallery"
     },
     {
       "id": 3,
@@ -40,7 +40,7 @@ window.TSF_INITIAL_DATA = {
     },
     {
       "id": 2,
-      "title": "Sito Web",
+      "title": "Galleria Prodotti",
       "url": "https://thesmokefarmspain.vercel.app/"
     },
     {

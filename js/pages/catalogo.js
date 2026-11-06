@@ -45,8 +45,8 @@ const TRANSLATIONS = {
         telegram_desc: "Drop Live, Macro Video & Aggiornamenti",
         telegram_badge: "DROP & VIDEO",
         
-        website_title: "SITO WEB",
-        website_desc: "Portale Ufficiale & Info Club",
+        website_title: "GALLERIA PRODOTTI",
+        website_desc: "Foto HD, Dettagli & Macro delle Cime",
         
         instagram_title: "INSTAGRAM",
         instagram_desc: "Galleria, Lifestyle & Community",
@@ -66,7 +66,7 @@ const TRANSLATIONS = {
         modal_cta: "Ordina su Telegram",
         order_msg_prefix: "Ciao The Smoke Farm BCN! Vorrei informazioni/ordinare:",
         footer_telegram: "Telegram",
-        footer_website: "Sito Web",
+        footer_website: "Galleria Prodotti",
         footer_instagram: "Instagram",
 
         // Categorie
@@ -93,8 +93,8 @@ const TRANSLATIONS = {
         telegram_desc: "Drops en Vivo, Macro Vídeos & Novedades",
         telegram_badge: "DROPS Y VÍDEOS",
         
-        website_title: "SITIO WEB",
-        website_desc: "Portal Oficial & Info del Club",
+        website_title: "GALERÍA PRODUCTOS",
+        website_desc: "Fotos HD, Detalles & Macro de Flores",
         
         instagram_title: "INSTAGRAM",
         instagram_desc: "Galería, Lifestyle & Comunidad",
@@ -141,8 +141,8 @@ const TRANSLATIONS = {
         telegram_desc: "Live Drops, Macro Videos & Updates",
         telegram_badge: "DROPS & VIDEOS",
         
-        website_title: "OFFICIAL WEBSITE",
-        website_desc: "Official Portal & Club Info",
+        website_title: "PRODUCT GALLERY",
+        website_desc: "HD Photos, Macro & Product Details",
         
         instagram_title: "INSTAGRAM",
         instagram_desc: "Gallery, Lifestyle & Community",
@@ -268,10 +268,10 @@ const DB = {
         },
         {
             id: 2,
-            title: "SITO WEB",
-            desc: "Portale Ufficiale & Info Club",
+            title: "GALLERIA PRODOTTI",
+            desc: "Foto HD, Dettagli & Macro delle Cime",
             url: "https://thesmokefarmspain.vercel.app/",
-            icon: "website"
+            icon: "gallery"
         },
         {
             id: 3,
@@ -285,7 +285,7 @@ const DB = {
     // Footer rapido del catalogo
     footer_links: [
         { id: 1, title: "Telegram", url: "https://t.me/+fe7RDT8eo9E0MjZk" },
-        { id: 2, title: "Sito Web", url: "https://thesmokefarmspain.vercel.app/" },
+        { id: 2, title: "Galleria Prodotti", url: "https://thesmokefarmspain.vercel.app/" },
         { id: 3, title: "Instagram", url: "https://instagram.com/officialbcn123" }
     ],
 
