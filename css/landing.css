@@ -209,7 +209,7 @@
 }
 
 /* ==========================================
-   CINEMATIC INTRO OVERLAY
+   CINEMATIC INTRO OVERLAY (AUTOPLAY FULLSCREEN)
    ========================================== */
 .intro-overlay {
     position: fixed;
@@ -223,9 +223,10 @@
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    transition: opacity 0.55s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.55s ease;
+    transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.5s ease;
     opacity: 1;
     visibility: visible;
+    cursor: pointer;
 }
 
 .intro-overlay[hidden] {
@@ -246,54 +247,32 @@
     object-fit: contain;
     background-color: #000000;
     display: block;
-}
-
-.intro-controls {
-    position: absolute;
-    bottom: max(1.5rem, env(safe-area-inset-bottom, 1.5rem));
-    left: 0;
-    right: 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 1.5rem;
-    z-index: 100000;
     pointer-events: none;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.btn-intro-action {
-    pointer-events: auto;
-    background: rgba(14, 13, 17, 0.85);
-    color: #e0b46b;
-    border: 1px solid rgba(224, 180, 107, 0.45);
-    padding: 0.5rem 1.05rem;
-    border-radius: 999px;
-    font-family: var(--font-mono, monospace);
-    font-size: 0.78rem;
-    font-weight: 700;
-    letter-spacing: 0.8px;
-    cursor: pointer;
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.75);
-    display: inline-flex;
-    align-items: center;
-    gap: 0.45rem;
-    transition: all 0.2s ease;
     user-select: none;
-    text-transform: uppercase;
+    -webkit-user-select: none;
 }
 
-.btn-intro-action:hover {
-    background: #e0b46b;
-    color: #000000;
-    border-color: #e0b46b;
-    box-shadow: 0 0 16px rgba(224, 180, 107, 0.5);
-    transform: translateY(-1px);
+/* Nasconde categoricamente ogni tasto play nativo o controlli del player del browser (iOS Safari, Android Chrome, WebKit, Edge) */
+.intro-video::-webkit-media-controls,
+.intro-video::-webkit-media-controls-enclosure,
+.intro-video::-webkit-media-controls-panel,
+.intro-video::-webkit-media-controls-play-button,
+.intro-video::-webkit-media-controls-start-playback-button,
+.intro-video::-webkit-media-controls-overlay-play-button,
+.intro-video::-webkit-media-controls-current-time-display,
+.intro-video::-webkit-media-controls-time-remaining-display,
+.intro-video::-webkit-media-controls-timeline,
+.intro-video::-webkit-media-controls-volume-slider,
+.intro-video::-webkit-media-controls-mute-button,
+.intro-video::-webkit-media-controls-fullscreen-button {
+    display: none !important;
+    -webkit-appearance: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
 }
 
-.btn-intro-action:active {
-    transform: scale(0.96);
+video::-webkit-media-controls-start-playback-button {
+    display: none !important;
+    -webkit-appearance: none;
 }

@@ -9,17 +9,9 @@
     <link rel="stylesheet" href="./css/landing.css">
 </head>
 <body>
-    <!-- Intro Video Overlay (Autoplay con sound toggle & Skip) -->
+    <!-- Intro Video Overlay (Autoplay automatico senza tasti player) -->
     <div id="intro-overlay" class="intro-overlay" aria-label="Intro Cinematic Video">
-        <video id="intro-video" class="intro-video" src="./assets/intro.mp4" autoplay muted playsinline webkit-playsinline preload="auto"></video>
-        <div class="intro-controls">
-            <button type="button" id="btn-intro-sound" class="btn-intro-action" aria-label="Toggle Sound">
-                <span id="sound-icon">🔇</span> <span id="sound-text">SOUND</span>
-            </button>
-            <button type="button" id="btn-intro-skip" class="btn-intro-action" aria-label="Skip Intro">
-                <span>SKIP</span> <span>→</span>
-            </button>
-        </div>
+        <video id="intro-video" class="intro-video" src="./assets/intro.mp4" autoplay muted playsinline webkit-playsinline preload="auto" disablepictureinpicture disableremoteplayback></video>
     </div>
 
     <main id="landing-main" class="landing-container">
@@ -194,13 +186,9 @@
             } catch(e) {}
             applyLang(savedLang);
 
-            // --- Intro Video Controller ---
+            // --- Intro Video Controller (Autoplay automatico senza tasti player) ---
             const introOverlay = document.getElementById("intro-overlay");
             const introVideo = document.getElementById("intro-video");
-            const btnSound = document.getElementById("btn-intro-sound");
-            const btnSkip = document.getElementById("btn-intro-skip");
-            const soundIcon = document.getElementById("sound-icon");
-            const soundText = document.getElementById("sound-text");
 
             let introDone = false;
             function finishIntro() {
@@ -210,58 +198,48 @@
                     introOverlay.classList.add("fade-out");
                     setTimeout(() => {
                         introOverlay.hidden = true;
-                        if (introVideo) introVideo.pause();
+                        if (introVideo) {
+                            try { introVideo.pause(); } catch(e) {}
+                        }
                         document.body.style.overflow = "";
-                    }, 550);
+                    }, 500);
                 }
             }
 
             if (introVideo && introOverlay) {
                 document.body.style.overflow = "hidden";
 
-                // Autoplay tentata subito
+                // Impostazioni per garantire autoplay su tutti i browser e dispositivi mobili
                 introVideo.muted = true;
-                const playPromise = introVideo.play();
-                if (playPromise !== undefined) {
-                    playPromise.catch(() => {
-                        // Fallback se autoplay bloccato dalle policy del browser
-                    });
-                }
+                introVideo.defaultMuted = true;
+                introVideo.playsInline = true;
+                introVideo.setAttribute("muted", "");
+                introVideo.setAttribute("playsinline", "");
+                introVideo.setAttribute("webkit-playsinline", "");
 
-                // Fine video naturale
+                // Avvia la riproduzione immediata
+                const tryPlay = () => {
+                    if (introDone) return;
+                    introVideo.muted = true;
+                    const promise = introVideo.play();
+                    if (promise !== undefined) {
+                        promise.catch(() => {
+                            // Se le policy del browser richiedono interazione,
+                            // riproviamo al primo tocco
+                        });
+                    }
+                };
+
+                tryPlay();
+                introVideo.addEventListener("loadeddata", tryPlay);
+                introVideo.addEventListener("canplay", tryPlay);
+
+                // Quando il video finisce (dura circa 5.5s), transizione automatica al sito
                 introVideo.addEventListener("ended", finishIntro);
 
-                // Timeout di sicurezza nel caso in cui il video non caricasse (max 7s)
-                setTimeout(() => {
-                    if (!introDone && introVideo.paused && introVideo.currentTime === 0) {
-                        finishIntro();
-                    }
-                }, 7000);
-
-                // Sound Toggle
-                if (btnSound) {
-                    btnSound.addEventListener("click", (e) => {
-                        e.stopPropagation();
-                        if (introVideo.muted) {
-                            introVideo.muted = false;
-                            introVideo.volume = 1.0;
-                            if (soundIcon) soundIcon.textContent = "🔊";
-                            if (soundText) soundText.textContent = "MUTE";
-                        } else {
-                            introVideo.muted = true;
-                            if (soundIcon) soundIcon.textContent = "🔇";
-                            if (soundText) soundText.textContent = "SOUND";
-                        }
-                    });
-                }
-
-                // Skip Button
-                if (btnSkip) {
-                    btnSkip.addEventListener("click", (e) => {
-                        e.stopPropagation();
-                        finishIntro();
-                    });
-                }
+                // Tocco o click ovunque per saltare immediatamente senza pulsanti visibili
+                introOverlay.addEventListener("click", finishIntro);
+                introOverlay.addEventListener("touchstart", finishIntro, { passive: true });
 
                 // Tasto ESC o Spazio per saltare
                 window.addEventListener("keydown", (e) => {
@@ -269,6 +247,13 @@
                         finishIntro();
                     }
                 });
+
+                // Timeout di sicurezza (6.2s): assicura che il sito appaia anche in caso di rete lenta
+                setTimeout(() => {
+                    if (!introDone) {
+                        finishIntro();
+                    }
+                }, 6200);
             }
         })();
     </script>
