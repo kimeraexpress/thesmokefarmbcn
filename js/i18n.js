@@ -14,8 +14,8 @@ export const TRANSLATIONS = {
         telegram_desc: "Drop Live, Macro Video & Aggiornamenti",
         telegram_badge: "DROP & VIDEO",
         
-        website_title: "GALLERIA PRODOTTI",
-        website_desc: "Foto HD, Dettagli & Macro delle Cime",
+        website_title: "SITO WEB",
+        website_desc: "Portale Ufficiale & Info Club",
         
         instagram_title: "INSTAGRAM",
         instagram_desc: "Galleria, Lifestyle & Community",
@@ -35,7 +35,7 @@ export const TRANSLATIONS = {
         modal_cta: "Ordina su Telegram",
         order_msg_prefix: "Ciao The Smoke Farm BCN! Vorrei informazioni/ordinare:",
         footer_telegram: "Telegram",
-        footer_website: "Galleria Prodotti",
+        footer_website: "Sito Web",
         footer_instagram: "Instagram",
 
         // Categorie

@@ -29,8 +29,8 @@ export const DB = {
         },
         {
             id: 3,
-            title: "GALLERIA PRODOTTI",
-            desc: "Foto HD, Dettagli & Macro delle Cime",
+            title: "SITO WEB",
+            desc: "Portale Ufficiale & Info Club",
             url: "https://thesmokefarmspain.vercel.app/",
             icon: "website"
         },
@@ -46,7 +46,7 @@ export const DB = {
     // Footer rapido del catalogo
     footer_links: [
         { id: 1, title: "Telegram", url: "https://t.me/+fe7RDT8eo9E0MjZk" },
-        { id: 2, title: "Galleria Prodotti", url: "https://thesmokefarmspain.vercel.app/" },
+        { id: 2, title: "Sito Web", url: "https://thesmokefarmspain.vercel.app/" },
         { id: 3, title: "Instagram", url: "https://www.instagram.com/thesmokeofbarcelona?xtok=d3pqcmY2cTlhZWpn" }
     ],
 

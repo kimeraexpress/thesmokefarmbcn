@@ -45,8 +45,8 @@ const TRANSLATIONS = {
         telegram_desc: "Drop Live, Macro Video & Aggiornamenti",
         telegram_badge: "DROP & VIDEO",
         
-        website_title: "GALLERIA PRODOTTI",
-        website_desc: "Foto HD, Dettagli & Macro delle Cime",
+        website_title: "SITO WEB",
+        website_desc: "Portale Ufficiale & Info Club",
         
         instagram_title: "INSTAGRAM",
         instagram_desc: "Galleria, Lifestyle & Community",
@@ -66,7 +66,7 @@ const TRANSLATIONS = {
         modal_cta: "Ordina su Telegram",
         order_msg_prefix: "Ciao The Smoke Farm BCN! Vorrei informazioni/ordinare:",
         footer_telegram: "Telegram",
-        footer_website: "Galleria Prodotti",
+        footer_website: "Sito Web",
         footer_instagram: "Instagram",
 
         // Categorie
@@ -93,8 +93,8 @@ const TRANSLATIONS = {
         telegram_desc: "Drops en Vivo, Macro Vídeos & Novedades",
         telegram_badge: "DROPS Y VÍDEOS",
         
-        website_title: "GALERÍA PRODUCTOS",
-        website_desc: "Fotos HD, Detalles & Macro de Flores",
+        website_title: "SITIO WEB",
+        website_desc: "Portal Oficial & Info del Club",
         
         instagram_title: "INSTAGRAM",
         instagram_desc: "Galería, Lifestyle & Comunidad",
@@ -141,8 +141,8 @@ const TRANSLATIONS = {
         telegram_desc: "Live Drops, Macro Videos & Updates",
         telegram_badge: "DROPS & VIDEOS",
         
-        website_title: "PRODUCT GALLERY",
-        website_desc: "HD Photos, Macro & Product Details",
+        website_title: "OFFICIAL WEBSITE",
+        website_desc: "Official Portal & Club Info",
         
         instagram_title: "INSTAGRAM",
         instagram_desc: "Gallery, Lifestyle & Community",
@@ -268,10 +268,10 @@ const DB = {
         },
         {
             id: 2,
-            title: "GALLERIA PRODOTTI",
-            desc: "Foto HD, Dettagli & Macro delle Cime",
+            title: "SITO WEB",
+            desc: "Portale Ufficiale & Info Club",
             url: "https://thesmokefarmspain.vercel.app/",
-            icon: "gallery"
+            icon: "website"
         },
         {
             id: 3,
