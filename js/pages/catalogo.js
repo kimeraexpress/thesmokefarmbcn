@@ -277,7 +277,7 @@ const DB = {
             id: 3,
             title: "INSTAGRAM",
             desc: "Galleria, Lifestyle & Community",
-            url: "https://instagram.com/officialbcn123",
+            url: "https://www.instagram.com/thesmokeofbarcelona?xtok=d3pqcmY2cTlhZWpn",
             icon: "instagram"
         }
     ],
@@ -286,7 +286,7 @@ const DB = {
     footer_links: [
         { id: 1, title: "Telegram", url: "https://t.me/+fe7RDT8eo9E0MjZk" },
         { id: 2, title: "Galleria Prodotti", url: "https://thesmokefarmspain.vercel.app/" },
-        { id: 3, title: "Instagram", url: "https://instagram.com/officialbcn123" }
+        { id: 3, title: "Instagram", url: "https://www.instagram.com/thesmokeofbarcelona?xtok=d3pqcmY2cTlhZWpn" }
     ],
 
     // Categorie con Sottocategorie
@@ -1307,7 +1307,7 @@ function renderFooter() {
         <a href="https://thesmokefarmspain.vercel.app/" target="_blank" rel="noopener noreferrer" class="footer-btn">
             ${ICONS.website} ${t("footer_website")}
         </a>
-        <a href="https://instagram.com/officialbcn123" target="_blank" rel="noopener noreferrer" class="footer-btn">
+        <a href="https://www.instagram.com/thesmokeofbarcelona?xtok=d3pqcmY2cTlhZWpn" target="_blank" rel="noopener noreferrer" class="footer-btn">
             ${ICONS.instagram} ${t("footer_instagram")}
         </a>
         <a href="../admin.html" class="footer-btn" title="Pannello Amministratore" style="opacity: 0.35; padding: 0.5rem 0.65rem;">

@@ -38,7 +38,7 @@ export const DB = {
             id: 4,
             title: "INSTAGRAM",
             desc: "Galleria, Lifestyle & Community",
-            url: "https://instagram.com/officialbcn123",
+            url: "https://www.instagram.com/thesmokeofbarcelona?xtok=d3pqcmY2cTlhZWpn",
             icon: "instagram"
         }
     ],
@@ -47,7 +47,7 @@ export const DB = {
     footer_links: [
         { id: 1, title: "Telegram", url: "https://t.me/+fe7RDT8eo9E0MjZk" },
         { id: 2, title: "Galleria Prodotti", url: "https://thesmokefarmspain.vercel.app/" },
-        { id: 3, title: "Instagram", url: "https://instagram.com/officialbcn123" }
+        { id: 3, title: "Instagram", url: "https://www.instagram.com/thesmokeofbarcelona?xtok=d3pqcmY2cTlhZWpn" }
     ],
 
     // Categorie con Sottocategorie

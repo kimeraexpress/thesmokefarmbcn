@@ -41,7 +41,7 @@ function renderLanding() {
                 id: "instagram",
                 title: t("instagram_title"),
                 desc: t("instagram_desc"),
-                url: "https://instagram.com/officialbcn123",
+                url: "https://www.instagram.com/thesmokeofbarcelona?xtok=d3pqcmY2cTlhZWpn",
                 icon: ICONS.instagram,
                 isInternal: false
             }

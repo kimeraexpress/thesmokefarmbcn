@@ -28,7 +28,7 @@ window.TSF_INITIAL_DATA = {
       "id": 3,
       "title": "INSTAGRAM",
       "desc": "Galleria, Lifestyle & Community",
-      "url": "https://instagram.com/officialbcn123",
+      "url": "https://www.instagram.com/thesmokeofbarcelona?xtok=d3pqcmY2cTlhZWpn",
       "icon": "instagram"
     }
   ],
@@ -46,7 +46,7 @@ window.TSF_INITIAL_DATA = {
     {
       "id": 3,
       "title": "Instagram",
-      "url": "https://instagram.com/officialbcn123"
+      "url": "https://www.instagram.com/thesmokeofbarcelona?xtok=d3pqcmY2cTlhZWpn"
     }
   ],
   "categories": [
