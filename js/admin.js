@@ -121,19 +121,30 @@
         }
     }
 
-    window.saveAllChanges = function(showFeedback = true) {
+    window.saveAllChanges = async function(showFeedback = true) {
         if (!currentData) return;
         try {
             localStorage.setItem(STORAGE_KEY_DATA, JSON.stringify(currentData));
             hasUnsavedChanges = false;
             updateSaveButtonIndicator();
             if (showFeedback) {
-                showToast("💾 Modifiche salvate! Il menu è aggiornato.");
+                showToast("💾 Salvataggio in corso...");
             }
 
-            // Sync Cloud se attivo
-            syncToCloudIfConfigured();
+            // Sincronizzazione in tempo reale con Vercel Blob
+            const syncRes = await syncToVercelBlob(currentData);
+            if (syncRes && syncRes.success) {
+                if (showFeedback) {
+                    showToast("☁️ Modifiche salvate e sincronizzate online!");
+                }
+            } else if (syncRes && syncRes.error) {
+                console.warn("Vercel Blob sync note:", syncRes.error);
+                if (showFeedback) {
+                    showToast("💾 Salvato in locale (Cloud: " + syncRes.error + ")");
+                }
+            }
         } catch(e) {
+            console.error("Errore salvataggio:", e);
             alert("Errore durante il salvataggio dei dati: " + e.message);
         }
     };
@@ -880,11 +891,70 @@
     }
 
 
+    // --- 8b. Caricamento & Ripristino Dati Cloud ---
+    async function fetchLatestFromCloud(showFeedback = false) {
+        if (!window.location.protocol.startsWith("http")) {
+            return false;
+        }
+
+        updateCloudIndicator("syncing", "Connessione Cloud...");
+        try {
+            const res = await fetch("/api/menu?t=" + Date.now(), { cache: "no-store" });
+            if (res.ok) {
+                const cloudData = await res.json();
+                if (cloudData && Array.isArray(cloudData.products) && Array.isArray(cloudData.categories)) {
+                    currentData = cloudData;
+                    try {
+                        localStorage.setItem(STORAGE_KEY_DATA, JSON.stringify(currentData));
+                    } catch(e) {}
+                    renderProductsList();
+                    renderCategoriesManager();
+                    updateCloudIndicator("online", "Vercel Blob Live");
+                    if (showFeedback) {
+                        showToast(`☁️ Sincronizzato dal Cloud: ${currentData.products.length} prodotti`);
+                    }
+                    return true;
+                }
+            }
+            updateCloudIndicator("offline", "Vercel Blob Offline");
+            if (showFeedback) {
+                showToast("⚠️ Impossibile caricare dal Cloud. Usati dati locali.");
+            }
+        } catch(e) {
+            console.warn("fetchLatestFromCloud error:", e);
+            updateCloudIndicator("offline", "Vercel Blob Offline");
+            if (showFeedback) {
+                showToast("⚠️ Connessione Cloud: " + e.message);
+            }
+        }
+        return false;
+    }
+    window.fetchLatestFromCloud = fetchLatestFromCloud;
+
+    window.restoreFactoryData = async function() {
+        if (!confirm("Attenzione: vuoi davvero ripristinare il menu originale di fabbrica (16 prodotti e 4 categorie)? Tutte le modifiche locali verranno reimpostate.")) {
+            return;
+        }
+        if (window.TSF_INITIAL_DATA) {
+            currentData = JSON.parse(JSON.stringify(window.TSF_INITIAL_DATA));
+            localStorage.setItem(STORAGE_KEY_DATA, JSON.stringify(currentData));
+            renderProductsList();
+            renderCategoriesManager();
+            showToast("🔄 Menu originale ricaricato! Salvataggio sul Cloud...");
+            await saveAllChanges(true);
+        }
+    };
+
     // --- 10. Inizializzazione ---
-    function init() {
+    async function init() {
         checkAuth();
         loadData();
         renderProductsList();
+
+        // Se online su HTTP/HTTPS, sincronizza automaticamente l'ultimo stato da Vercel Blob
+        if (window.location.protocol.startsWith("http")) {
+            await fetchLatestFromCloud(false);
+        }
     }
 
     document.addEventListener("DOMContentLoaded", init);

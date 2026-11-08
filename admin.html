@@ -49,7 +49,7 @@
                 <a href="./pages/catalogo.html" target="_blank" rel="noopener" class="btn-header btn-header-secondary" title="Apri il catalogo in una nuova scheda">
                     <span>👁️</span> <span>Vedi Menu Live</span>
                 </a>
-                <div id="cloud-sync-pill" class="cloud-sync-pill" title="Sincronizzazione in tempo reale con Vercel Blob">
+                <div id="cloud-sync-pill" class="cloud-sync-pill" style="cursor: pointer;" onclick="fetchLatestFromCloud(true)" title="Sincronizzazione in tempo reale con Vercel Blob (Clicca per ricaricare)">
                     <span class="cloud-dot"></span>
                     <span id="cloud-status-text">Vercel Blob Live</span>
                 </div>
@@ -247,6 +247,23 @@
                 <button type="button" class="btn-primary-action" style="align-self: flex-start; margin-top: 0.5rem;" onclick="handleChangePin()">
                     Salva Nuovo PIN
                 </button>
+            </div>
+
+            <!-- Sincronizzazione & Ripristino Menu Cloud -->
+            <div class="card-glass" style="margin-top: 1.5rem; display: flex; flex-direction: column; gap: 1rem;">
+                <h3 style="font-size: 1.15rem; color: var(--accent); margin: 0;">☁️ Gestione Dati &amp; Cloud Vercel Blob</h3>
+                <p style="color: var(--text-secondary); font-size: 0.88rem; margin: 0; line-height: 1.5;">
+                    Il menu è sincronizzato in tempo reale con Vercel Blob. Da qui puoi forzare il ricaricamento dei dati dal Cloud o ripristinare il listino originale di fabbrica (16 prodotti) se sono stati rimossi per errore.
+                </p>
+
+                <div style="display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: 0.5rem;">
+                    <button type="button" class="btn-header btn-header-secondary" onclick="fetchLatestFromCloud(true)">
+                        <span>🔄</span> <span>Ricarica dal Cloud</span>
+                    </button>
+                    <button type="button" class="btn-header btn-header-secondary" style="border-color: rgba(231, 76, 60, 0.4); color: #e74c3c;" onclick="restoreFactoryData()">
+                        <span>⚠️</span> <span>Ripristina Menu di Fabbrica (16 Prodotti)</span>
+                    </button>
+                </div>
             </div>
         </section>
 
