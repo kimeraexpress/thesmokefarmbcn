@@ -100,8 +100,7 @@
             if (local) {
                 const parsed = JSON.parse(local);
                 if (parsed && Array.isArray(parsed.products) && Array.isArray(parsed.categories)) {
-                    const hasAsh = parsed.categories.some(c => c.slug === "ash" || c.name === "ASH");
-                    if (hasAsh) {
+                    if (parsed.categories.length > 0) {
                         currentData = parsed;
                         return;
                     }
@@ -437,6 +436,7 @@
             ];
         }
 
+        window.modalPricingTiers = modalPricingTiers;
         renderModalStrainsTags();
         renderModalPricingTiers();
         renderModalMediaPreviews();
@@ -495,6 +495,48 @@
         `).join("");
     }
 
+    function escapeHtml(str) {
+        if (!str) return "";
+        return String(str)
+            .replace(/&/g, "&amp;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#39;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;");
+    }
+
+    // Sincronizza sempre i formati e i prezzi direttamente dai campi di input visibili nel DOM
+    function syncPricingTiersFromDOM() {
+        const cont = document.getElementById("pricing-tiers-container");
+        if (!cont) return;
+        const rows = cont.querySelectorAll(".tier-row");
+        if (!rows || rows.length === 0) return;
+
+        const freshTiers = [];
+        rows.forEach(row => {
+            const qtyInput = row.querySelector(".tier-qty-input") || row.querySelectorAll("input")[0];
+            const priceInput = row.querySelector(".tier-price-input") || row.querySelectorAll("input")[1];
+            const qty = qtyInput ? qtyInput.value.trim() : "";
+            const price = priceInput ? priceInput.value.trim() : "";
+            freshTiers.push({ qty, price });
+        });
+
+        if (freshTiers.length > 0) {
+            modalPricingTiers = freshTiers;
+            window.modalPricingTiers = modalPricingTiers;
+        }
+    }
+
+    // Aggiornamento in tempo reale di un singolo campo listino prezzi
+    window.updatePricingTier = function(idx, field, val) {
+        if (!modalPricingTiers[idx]) {
+            modalPricingTiers[idx] = { qty: "", price: "" };
+        }
+        modalPricingTiers[idx][field] = val;
+        window.modalPricingTiers = modalPricingTiers;
+    };
+    window.modalPricingTiers = modalPricingTiers;
+
     // Listino Prezzi & Formati
     window.applyPricingPreset = function(type) {
         if (type === "flower") {
@@ -528,29 +570,39 @@
                 { qty: "25 pz", price: "1375€" }
             ];
         }
+        window.modalPricingTiers = modalPricingTiers;
         renderModalPricingTiers();
     };
 
     window.addPricingTierRow = function(qty = "", price = "") {
+        syncPricingTiersFromDOM();
         modalPricingTiers.push({ qty, price });
+        window.modalPricingTiers = modalPricingTiers;
         renderModalPricingTiers();
     };
 
     window.removePricingTierRow = function(idx) {
+        syncPricingTiersFromDOM();
         modalPricingTiers.splice(idx, 1);
+        if (modalPricingTiers.length === 0) {
+            modalPricingTiers = [{ qty: "", price: "" }];
+        }
+        window.modalPricingTiers = modalPricingTiers;
         renderModalPricingTiers();
     };
 
     function renderModalPricingTiers() {
         const cont = document.getElementById("pricing-tiers-container");
-        if (modalPricingTiers.length === 0) {
+        if (!cont) return;
+        if (!modalPricingTiers || modalPricingTiers.length === 0) {
             modalPricingTiers = [{ qty: "", price: "" }];
         }
+        window.modalPricingTiers = modalPricingTiers;
 
         cont.innerHTML = modalPricingTiers.map((tier, i) => `
-            <div class="tier-row">
-                <input type="text" class="form-input" placeholder="Formato (es. 3.5g, 100g)" value="${tier.qty}" oninput="modalPricingTiers[${i}].qty = this.value">
-                <input type="text" class="form-input" placeholder="Prezzo (es. 100€)" value="${tier.price}" oninput="modalPricingTiers[${i}].price = this.value">
+            <div class="tier-row" data-tier-index="${i}">
+                <input type="text" class="form-input tier-qty-input" placeholder="Formato (es. 3.5g, 100g)" value="${escapeHtml(tier.qty || '')}" oninput="updatePricingTier(${i}, 'qty', this.value)" onchange="updatePricingTier(${i}, 'qty', this.value)">
+                <input type="text" class="form-input tier-price-input" placeholder="Prezzo (es. 100€)" value="${escapeHtml(tier.price || '')}" oninput="updatePricingTier(${i}, 'price', this.value)" onchange="updatePricingTier(${i}, 'price', this.value)">
                 <button type="button" class="btn-icon-sm delete-subcat" title="Rimuovi riga" onclick="removePricingTierRow(${i})">🗑️</button>
             </div>
         `).join("");
@@ -602,7 +654,18 @@
     }
 
     // Salvataggio Prodotto
-    window.handleSaveProduct = function() {
+    window.handleSaveProduct = async function() {
+        // 1. Sincronizza sempre i prezzi direttamente dai campi di input visibili nel DOM!
+        syncPricingTiersFromDOM();
+
+        // 2. Se l'utente ha scritto una varietà e ha dimenticato di premere "+ Aggiungi"
+        const strainInput = document.getElementById("strain-input");
+        const leftoverStrain = (strainInput ? strainInput.value : "").trim();
+        if (leftoverStrain && !modalStrains.includes(leftoverStrain)) {
+            modalStrains.push(leftoverStrain);
+            if (strainInput) strainInput.value = "";
+        }
+
         const idVal = document.getElementById("edit-prod-id").value;
         const nameVal = document.getElementById("edit-prod-name").value.trim();
         const catIdVal = Number(document.getElementById("edit-prod-category").value);
@@ -621,7 +684,7 @@
         const subcatName = subcat ? subcat.name : subIdVal;
 
         // Pulisci listino prezzi
-        const validTiers = modalPricingTiers.filter(t => t.qty.trim() || t.price.trim());
+        const validTiers = modalPricingTiers.filter(t => (t.qty && t.qty.trim()) || (t.price && t.price.trim()));
         if (validTiers.length === 0) {
             alert("Inserisci almeno un formato e prezzo nel listino.");
             return;
@@ -656,10 +719,10 @@
             currentData.products.unshift(prodObj);
         }
 
-        saveAllChanges(false);
         closeProductModal();
         renderProductsList();
         showToast(`✅ Prodotto "${nameVal}" salvato con successo!`);
+        await saveAllChanges(false);
     };
 
 

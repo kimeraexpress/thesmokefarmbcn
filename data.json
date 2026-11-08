@@ -111,27 +111,24 @@
   ],
   "products": [
     {
-      "id": 401,
-      "name": "BLUE MAGIC 2025/2026 – PREMIUM STATIC",
+      "id": 1794174232167,
+      "name": "BLUE MAGIC PATRON PREMIUM FROZEN SIFT",
       "category_id": 1,
       "category_name": "ASH",
-      "subcategory_id": "static",
-      "subcategory_name": "STATIC",
-      "description": "Top tier cured static sift from Blue Magic season 2025/2026. High terpene retention and clean burn.",
+      "subcategory_id": "fresh-frozen",
+      "subcategory_name": "FRESH FROZEN",
+      "description": "BLUE MAGIC PATRON PREMIUM FROZEN SIFT SEASON 2026",
+      "status": "available",
       "flavours_strains": [
-        "Cherry Ville",
-        "The Hashaahin",
-        "Zafiro Anejo (GMO x Azulcar)",
-        "Forbidden Aglio",
-        "Five Guys (Hashburger x Tropi Cherry)",
-        "Mansa Musa (24K x Papaya)",
-        "Boofed Out (Superboof Cherry 26mm)",
-        "Mad Honey"
+        "FORBIDDEN PEEL",
+        "YELLOW MELON",
+        "FORBIDDEN ORANGE",
+        "WEDDING CAKE"
       ],
       "pricing_tiers": [
         {
           "qty": "10g",
-          "price": "175€"
+          "price": "150€"
         },
         {
           "qty": "25g",
@@ -146,15 +143,57 @@
           "price": "1050€"
         },
         {
-          "qty": "250g",
-          "price": "2500€"
+          "qty": "1000g (1 Kg)",
+          "price": "9500€"
+        }
+      ],
+      "media_files": [
+        {
+          "type": "image",
+          "url": "assets/logo-badge.png"
+        }
+      ]
+    },
+    {
+      "id": 1794174061391,
+      "name": "BLUE MAGIC PATRON DRY SIFT-STATIC SIFT",
+      "category_id": 1,
+      "category_name": "ASH",
+      "subcategory_id": "static",
+      "subcategory_name": "STATIC",
+      "description": "BLUE MAGIC PATRON DRY SIFT-STATIC SIFT SEASON 2026",
+      "status": "available",
+      "flavours_strains": [
+        "APPLE NANA",
+        "TANGERINE SQUEEZE",
+        "GUAVA CAKE",
+        "ICE CANDY",
+        "WEDDING CAKE",
+        "STICKY BUNS",
+        "FUNKY DRIP"
+      ],
+      "pricing_tiers": [
+        {
+          "qty": "10g",
+          "price": "150€"
+        },
+        {
+          "qty": "25g",
+          "price": "300€"
+        },
+        {
+          "qty": "50g",
+          "price": "550€"
+        },
+        {
+          "qty": "100g",
+          "price": "1050€"
         },
         {
           "qty": "1000g (1 Kg)",
           "price": "9500€"
         }
       ],
-      "status": "available",
       "media_files": [
         {
           "type": "image",
@@ -163,100 +202,25 @@
       ]
     },
     {
-      "id": 202,
-      "name": "MLTD LABS – STATIC SIFT",
-      "category_id": 1,
-      "category_name": "ASH",
-      "subcategory_id": "static",
-      "subcategory_name": "STATIC",
-      "description": "Ultra refined static drysift plates directly from MLTD Labs California. Pristine melt quality.",
-      "flavours_strains": [
-        "Papaya Punch",
-        "Guava Gelato",
-        "Cherry Pie",
-        "Tangie Ghost"
-      ],
-      "pricing_tiers": [
-        {
-          "qty": "10g",
-          "price": "160€"
-        },
-        {
-          "qty": "25g",
-          "price": "320€"
-        },
-        {
-          "qty": "50g",
-          "price": "580€"
-        },
-        {
-          "qty": "100g",
-          "price": "1100€"
-        }
-      ],
-      "status": "available",
-      "media_files": [
-        {
-          "type": "image",
-          "url": "assets/logo-badge.png"
-        }
-      ]
-    },
-    {
-      "id": 203,
-      "name": "KARMA CARTEL x STATIC LABZ",
-      "category_id": 1,
-      "category_name": "ASH",
-      "subcategory_id": "static",
-      "subcategory_name": "STATIC",
-      "description": "Collaboration batch featuring signature genetics processed with proprietary electrostatic screens.",
-      "flavours_strains": [
-        "Zkittlez Static",
-        "Forbidden Runtz",
-        "Gelato 33 Terps"
-      ],
-      "pricing_tiers": [
-        {
-          "qty": "10g",
-          "price": "180€"
-        },
-        {
-          "qty": "25g",
-          "price": "350€"
-        },
-        {
-          "qty": "50g",
-          "price": "620€"
-        },
-        {
-          "qty": "100g",
-          "price": "1150€"
-        }
-      ],
-      "status": "available",
-      "media_files": [
-        {
-          "type": "image",
-          "url": "assets/logo-badge.png"
-        }
-      ]
-    },
-    {
-      "id": 402,
-      "name": "BLUE MAGIC 2025/2026 – PREMIUM FROZEN",
+      "id": 1794173883624,
+      "name": "BAD BERRED FARM PREMIUM FRESH FROZEN",
       "category_id": 1,
       "category_name": "ASH",
       "subcategory_id": "fresh-frozen",
       "subcategory_name": "FRESH FROZEN",
-      "description": "Cryogenic frozen sift preserved immediately at harvest. Extremely pungent nose and golden bubbling melt.",
+      "description": "BAD BERRED FARM PREMIUM FRESH FROZEN SEASON 2025",
+      "status": "available",
       "flavours_strains": [
-        "Forbidden Aglio",
-        "Double Zulcar",
-        "Sumo Shock",
-        "Hash Cherry",
-        "Peachy Gas",
-        "Butter Barb",
-        "Peach Squeeze"
+        "LEMON SHOKER PAPAYA",
+        "DIRTY ORANGE S1",
+        "TROPICNANA",
+        "BERRY W7",
+        "SOPAYALADA",
+        "ICE CREAM CAKE",
+        "MIMOSA X 26mm",
+        "MIMOSA PIE",
+        "FF X WM X CALIPPO",
+        "ORIGINAL MIMOZ"
       ],
       "pricing_tiers": [
         {
@@ -265,26 +229,21 @@
         },
         {
           "qty": "25g",
-          "price": "275€"
+          "price": "300€"
         },
         {
           "qty": "50g",
-          "price": "500€"
+          "price": "550€"
         },
         {
           "qty": "100g",
-          "price": "950€"
-        },
-        {
-          "qty": "250g",
-          "price": "2350€"
+          "price": "1050€"
         },
         {
           "qty": "1000g (1 Kg)",
-          "price": "9000€"
+          "price": "9500€"
         }
       ],
-      "status": "available",
       "media_files": [
         {
           "type": "image",
@@ -293,402 +252,86 @@
       ]
     },
     {
-      "id": 201,
-      "name": "SUMMER 6-STAR WPFF FRESH FROZEN",
+      "id": 1794173751391,
+      "name": "BAD BERRED FARM DRY SIFT 90u",
+      "category_id": 1,
+      "category_name": "ASH",
+      "subcategory_id": "dry-sift",
+      "subcategory_name": "DRY SIFT",
+      "description": "BAD BERRED FARM DRY SIFT 90u SEASON 2025",
+      "status": "available",
+      "flavours_strains": [
+        "MIMOZ X FF",
+        "BANANA GAZ",
+        "STRAWBERRY X CREAM",
+        "TACO BELL",
+        "GARLIC Z",
+        "MINT PIE"
+      ],
+      "pricing_tiers": [
+        {
+          "qty": "10g",
+          "price": "150€"
+        },
+        {
+          "qty": "25g",
+          "price": "300€"
+        },
+        {
+          "qty": "50g",
+          "price": "550€"
+        },
+        {
+          "qty": "100g",
+          "price": "1050€"
+        },
+        {
+          "qty": "1000g (1 Kg)",
+          "price": "9500€"
+        }
+      ],
+      "media_files": [
+        {
+          "type": "image",
+          "url": "assets/logo-badge.png"
+        }
+      ]
+    },
+    {
+      "id": 1794173604158,
+      "name": "BAD BERRED FARM FROZEN SIFT",
       "category_id": 1,
       "category_name": "ASH",
       "subcategory_id": "fresh-frozen",
       "subcategory_name": "FRESH FROZEN",
-      "description": "Whole Plant Fresh Frozen premium hash plates. Highest terpene expression with sweet candy and gassy notes.",
+      "description": "BAD BERRED FARM FROZEN SIFT SEASON 2026",
+      "status": "available",
       "flavours_strains": [
-        "Papaya Bomb",
-        "Tropicana Cookies",
-        "Rainbow Belts 2.0",
-        "Sour Tangie"
+        "BLUEMOSA X SB#26",
+        "RAINBOW PUSH POP X FJ"
       ],
       "pricing_tiers": [
         {
           "qty": "10g",
-          "price": "160€"
-        },
-        {
-          "qty": "25g",
-          "price": "340€"
-        },
-        {
-          "qty": "50g",
-          "price": "600€"
-        },
-        {
-          "qty": "100g",
-          "price": "1150€"
-        }
-      ],
-      "status": "available",
-      "media_files": [
-        {
-          "type": "image",
-          "url": "assets/logo-badge.png"
-        }
-      ]
-    },
-    {
-      "id": 404,
-      "name": "BLUE MAGIC 2026 – 105u DRY SIFT",
-      "category_id": 1,
-      "category_name": "ASH",
-      "subcategory_id": "dry-sift",
-      "subcategory_name": "DRY SIFT",
-      "description": "Precision 105 micron drysift from the latest harvest. Clean texture, easy to work and deep aroma.",
-      "flavours_strains": [
-        "Jarritos x Cherry Glue",
-        "Zafiro Anejo x LCG",
-        "Runtz x Barbara Bud",
-        "Tropicana Zkittlez x Barbara Bud",
-        "Red Velvet x Barbara Bud"
-      ],
-      "pricing_tiers": [
-        {
-          "qty": "10g",
-          "price": "100€"
-        },
-        {
-          "qty": "25g",
-          "price": "225€"
-        },
-        {
-          "qty": "50g",
-          "price": "425€"
-        },
-        {
-          "qty": "100g",
-          "price": "800€"
-        },
-        {
-          "qty": "250g",
-          "price": "1900€"
-        },
-        {
-          "qty": "500g",
-          "price": "3625€"
-        },
-        {
-          "qty": "1000g (1 Kg)",
-          "price": "7000€"
-        }
-      ],
-      "status": "available",
-      "media_files": [
-        {
-          "type": "image",
-          "url": "assets/logo-badge.png"
-        }
-      ]
-    },
-    {
-      "id": 403,
-      "name": "LA MOUSSE & PREMIUM GOLD LA MOUSSE",
-      "category_id": 1,
-      "category_name": "ASH",
-      "subcategory_id": "dry-sift",
-      "subcategory_name": "DRY SIFT",
-      "description": "Soft fluffy mousse texture with classic blonde appearance and sweet traditional taste. Commercial leader.",
-      "flavours_strains": [
-        "Classic Yellow Mousse",
-        "Premium Gold La Mousse"
-      ],
-      "pricing_tiers": [
-        {
-          "qty": "100g (Panetta)",
-          "price": "200€"
-        },
-        {
-          "qty": "250g",
-          "price": "500€"
-        },
-        {
-          "qty": "500g",
-          "price": "900€"
-        },
-        {
-          "qty": "1000g (1 Kg)",
-          "price": "1750€"
-        },
-        {
-          "qty": "2500g (2.5 Kg)",
-          "price": "4000€"
-        },
-        {
-          "qty": "5000g (5 Kg)",
-          "price": "7500€"
-        }
-      ],
-      "status": "available",
-      "media_files": [
-        {
-          "type": "image",
-          "url": "assets/logo-badge.png"
-        }
-      ]
-    },
-    {
-      "id": 301,
-      "name": "LA BOMBA – PREMIUM SPANISH (+ 3.5g BAGS)",
-      "category_id": 2,
-      "category_name": "WEED",
-      "subcategory_id": "cali-spain",
-      "subcategory_name": "CALI SPAIN",
-      "description": "Indoor grown in Barcelona under high-output LEDs. Intense purple hues loaded with diesel terpenes.",
-      "flavours_strains": [
-        "La Bomba Cut #4 (Compound Genetics)",
-        "Gasolina",
-        "Gummy Bear"
-      ],
-      "pricing_tiers": [
-        {
-          "qty": "5g",
-          "price": "40€"
-        },
-        {
-          "qty": "10g",
-          "price": "75€"
-        },
-        {
-          "qty": "25g",
-          "price": "160€"
-        },
-        {
-          "qty": "50g",
-          "price": "290€"
-        },
-        {
-          "qty": "100g",
-          "price": "520€"
-        }
-      ],
-      "status": "available",
-      "media_files": [
-        {
-          "type": "image",
-          "url": "assets/logo-badge.png"
-        }
-      ]
-    },
-    {
-      "id": 302,
-      "name": "TOP SHELF SPANISH (RUNTZ & CHERRY BOMB)",
-      "category_id": 2,
-      "category_name": "WEED",
-      "subcategory_id": "cali-spain",
-      "subcategory_name": "CALI SPAIN",
-      "description": "Barcelona indoor batch cured for 4 weeks. Fruity, pungent candy nose with dense compact calyxes.",
-      "flavours_strains": [
-        "Runtz OG BCN",
-        "Cherry Bomb",
-        "Biscotti BCN",
-        "Gelato 41"
-      ],
-      "pricing_tiers": [
-        {
-          "qty": "5g",
-          "price": "40€"
-        },
-        {
-          "qty": "10g",
-          "price": "75€"
-        },
-        {
-          "qty": "25g",
-          "price": "160€"
-        },
-        {
-          "qty": "50g",
-          "price": "290€"
-        },
-        {
-          "qty": "100g",
-          "price": "520€"
-        }
-      ],
-      "status": "available",
-      "media_files": [
-        {
-          "type": "image",
-          "url": "assets/logo-badge.png"
-        }
-      ]
-    },
-    {
-      "id": 303,
-      "name": "TOP AMNESIA HAZE SPANISH INDOOR",
-      "category_id": 2,
-      "category_name": "WEED",
-      "subcategory_id": "cali-spain",
-      "subcategory_name": "CALI SPAIN",
-      "description": "The eternal Dutch-Spanish classic. Citrus lemon zest aroma with electric uplifting haze buzz.",
-      "flavours_strains": [
-        "Pure Amnesia Core Cut",
-        "Super Silver Haze"
-      ],
-      "pricing_tiers": [
-        {
-          "qty": "10g",
-          "price": "60€"
-        },
-        {
-          "qty": "25g",
-          "price": "130€"
-        },
-        {
-          "qty": "50g",
-          "price": "230€"
-        },
-        {
-          "qty": "100g",
-          "price": "400€"
-        },
-        {
-          "qty": "250g",
-          "price": "900€"
-        },
-        {
-          "qty": "500g",
-          "price": "1700€"
-        },
-        {
-          "qty": "1000g (1 Kg)",
-          "price": "3200€"
-        }
-      ],
-      "status": "available",
-      "media_files": [
-        {
-          "type": "image",
-          "url": "assets/logo-badge.png"
-        }
-      ]
-    },
-    {
-      "id": 101,
-      "name": "THE TEN CO – BLUE ZUSHI (LIMITED EDITION)",
-      "category_id": 2,
-      "category_name": "WEED",
-      "subcategory_id": "cali-usa",
-      "subcategory_name": "CALI USA",
-      "description": "The world renowned award-winning cultivar directly in original sealed collectible jars. Rare minty sweet gas profile with pristine frosty trichomes.",
-      "flavours_strains": [
-        "Blue Zushi (The Ten Co Cut)"
-      ],
-      "pricing_tiers": [
-        {
-          "qty": "3.5g",
-          "price": "100€"
-        },
-        {
-          "qty": "7g",
-          "price": "200€"
-        },
-        {
-          "qty": "14g",
-          "price": "350€"
-        },
-        {
-          "qty": "28g (1 oz)",
-          "price": "650€"
-        }
-      ],
-      "status": "available",
-      "media_files": [
-        {
-          "type": "image",
-          "url": "assets/logo-badge.png"
-        }
-      ]
-    },
-    {
-      "id": 102,
-      "name": "CALI JARS & BOXES (Z MONEY & JHONNY DANK)",
-      "category_id": 2,
-      "category_name": "WEED",
-      "subcategory_id": "cali-usa",
-      "subcategory_name": "CALI USA",
-      "description": "Original verified California direct imports. Top designer genetics with extreme potency and unmistakable candy terps.",
-      "flavours_strains": [
-        "Sticky Z (Z Money)",
-        "Blue Zu (Jhonny Dank Co)",
-        "White Tahoe Cookies (Jhonny Dank Co)"
-      ],
-      "pricing_tiers": [
-        {
-          "qty": "7g",
           "price": "150€"
         },
         {
-          "qty": "14g",
-          "price": "275€"
-        },
-        {
-          "qty": "28g",
-          "price": "500€"
-        },
-        {
-          "qty": "56g",
-          "price": "900€"
-        },
-        {
-          "qty": "112g (Q-Pack)",
-          "price": "1750€"
-        }
-      ],
-      "status": "available",
-      "media_files": [
-        {
-          "type": "image",
-          "url": "assets/logo-badge.png"
-        }
-      ]
-    },
-    {
-      "id": 103,
-      "name": "CALI SELECTION TOP SHELF INDOOR",
-      "category_id": 2,
-      "category_name": "WEED",
-      "subcategory_id": "cali-usa",
-      "subcategory_name": "CALI USA",
-      "description": "Loose exotic cali buds from Los Angeles cultivations. Fresh drops every two weeks, cured to sticky perfection.",
-      "flavours_strains": [
-        "Lemon Cherry Gelato (LCG)",
-        "Zkittlez Original",
-        "RS11 (Rainbow Sherbet #11)",
-        "Permanent Marker (Doja Cut)",
-        "Blue Zushi",
-        "Gary Payton (Powerzzzup)",
-        "Jealousy F2",
-        "Biscotti Sundae"
-      ],
-      "pricing_tiers": [
-        {
-          "qty": "3.5g",
-          "price": "35€"
-        },
-        {
-          "qty": "10g",
-          "price": "90€"
-        },
-        {
           "qty": "25g",
-          "price": "200€"
+          "price": "300€"
         },
         {
           "qty": "50g",
-          "price": "370€"
+          "price": "550€"
         },
         {
           "qty": "100g",
-          "price": "680€"
+          "price": "1050€"
+        },
+        {
+          "qty": "1000g (1 Kg)",
+          "price": "9500€"
         }
       ],
-      "status": "available",
       "media_files": [
         {
           "type": "image",
@@ -697,123 +340,37 @@
       ]
     },
     {
-      "id": 501,
-      "name": "CALI 1.5g PRE-ROLLS (CLEAN TRIM / SMALL BUDS)",
-      "category_id": 2,
-      "category_name": "WEED",
-      "subcategory_id": "cali-usa",
-      "subcategory_name": "CALI USA",
-      "description": "Ready to smoke glass-tipped conical pre-rolls filled exclusively with 100% Cali flower and unbleached paper.",
-      "flavours_strains": [
-        "Gelato 41",
-        "Zkittlez Terp",
-        "Biscotti Mintz"
-      ],
-      "pricing_tiers": [
-        {
-          "qty": "5 pz",
-          "price": "50€"
-        },
-        {
-          "qty": "10 pz",
-          "price": "90€"
-        },
-        {
-          "qty": "25 pz",
-          "price": "200€"
-        },
-        {
-          "qty": "50 pz",
-          "price": "350€"
-        },
-        {
-          "qty": "100 pz",
-          "price": "600€"
-        }
-      ],
+      "id": 1794172828571,
+      "name": "BAD BERRED FARM STATIC SIFT",
+      "category_id": 1,
+      "category_name": "ASH",
+      "subcategory_id": "static",
+      "subcategory_name": "STATIC",
+      "description": "BAD BERRED FARM FRESH FROZEN-STATIC HANDMADE SEASON 2026",
       "status": "available",
-      "media_files": [
-        {
-          "type": "image",
-          "url": "assets/logo-badge.png"
-        }
-      ]
-    },
-    {
-      "id": 204,
-      "name": "GOLDEN HEADS WARRIORS – COLD CURE LIVE ROSIN (2g JARS)",
-      "category_id": 3,
-      "category_name": "ICE",
-      "subcategory_id": "all",
-      "subcategory_name": "",
-      "description": "First wash cold cure live rosin (73u-120u) extracted strictly using pure ice water and low pressure heat. 100% solventless.",
       "flavours_strains": [
-        "Dulce De Uva 90u",
-        "Papaya Bomb First Wash",
-        "Sour San Bacio"
+        "BOOF CHERRY X FRUIT JOY",
+        "ICE CREAM CAKE X ZOAP",
+        "CHERRY BURGER"
       ],
       "pricing_tiers": [
-        {
-          "qty": "1 Jar (2g)",
-          "price": "140€"
-        },
-        {
-          "qty": "3 Jars (6g)",
-          "price": "380€"
-        },
-        {
-          "qty": "5 Jars (10g)",
-          "price": "580€"
-        },
-        {
-          "qty": "100g (Bulk)",
-          "price": "4200€"
-        }
-      ],
-      "status": "available",
-      "media_files": [
-        {
-          "type": "image",
-          "url": "assets/logo-badge.png"
-        }
-      ]
-    },
-    {
-      "id": 305,
-      "name": "6-STAR FULL MELT ICE-O-LATOR (73u-90u)",
-      "category_id": 3,
-      "category_name": "ICE",
-      "subcategory_id": "all",
-      "subcategory_name": "",
-      "description": "True 6-star whole plant fresh frozen ice water hash. Bubbles completely to liquid clear oil on touch.",
-      "flavours_strains": [
-        "GMO Garlic Cookies",
-        "Tropicana Punch Fresh Frozen Water Wash",
-        "Papaya Melt"
-      ],
-      "pricing_tiers": [
-        {
-          "qty": "5g",
-          "price": "120€"
-        },
         {
           "qty": "10g",
-          "price": "220€"
+          "price": "150€"
         },
         {
           "qty": "25g",
-          "price": "480€"
+          "price": "300€"
         },
         {
           "qty": "50g",
-          "price": "880€"
+          "price": "550€"
         },
         {
           "qty": "100g",
-          "price": "1600€"
+          "price": "1050€"
         }
       ],
-      "status": "available",
       "media_files": [
         {
           "type": "image",

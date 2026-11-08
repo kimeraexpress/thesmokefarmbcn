@@ -796,8 +796,7 @@ function loadStoreData() {
         if (stored) {
             const parsed = JSON.parse(stored);
             if (parsed && Array.isArray(parsed.products) && Array.isArray(parsed.categories)) {
-                const hasAsh = parsed.categories.some(c => c.slug === "ash" || c.name === "ASH");
-                if (hasAsh) {
+                if (parsed.categories.length > 0) {
                     return parsed;
                 }
             }
