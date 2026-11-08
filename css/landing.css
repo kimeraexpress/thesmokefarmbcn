@@ -250,6 +250,20 @@
     pointer-events: none;
     user-select: none;
     -webkit-user-select: none;
+    transform: scale(1.3);
+    transform-origin: center center;
+}
+
+@media (max-width: 768px) {
+    .intro-video {
+        transform: scale(1.9);
+    }
+}
+
+@media (max-width: 480px) {
+    .intro-video {
+        transform: scale(2.0);
+    }
 }
 
 /* Nasconde categoricamente ogni tasto play nativo o controlli del player del browser (iOS Safari, Android Chrome, WebKit, Edge) */
