@@ -250,19 +250,27 @@
     pointer-events: none;
     user-select: none;
     -webkit-user-select: none;
-    transform: scale(1.3);
-    transform-origin: center center;
 }
 
+/* Su smartphone: allarga la visualizzazione del video così il logo diventa grande e protagonista
+   senza usare CSS transform che manda in blocco la decodifica video hardware su iPhone/Safari */
 @media (max-width: 768px) {
     .intro-video {
-        transform: scale(1.9);
+        width: 160vw !important;
+        max-width: none !important;
+        height: auto !important;
+        max-height: none !important;
+        object-fit: contain !important;
     }
 }
 
 @media (max-width: 480px) {
     .intro-video {
-        transform: scale(2.0);
+        width: 180vw !important;
+        max-width: none !important;
+        height: auto !important;
+        max-height: none !important;
+        object-fit: contain !important;
     }
 }
 

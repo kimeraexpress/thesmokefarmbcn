@@ -237,9 +237,13 @@
                 // Quando il video finisce (dura circa 5.5s), transizione automatica al sito
                 introVideo.addEventListener("ended", finishIntro);
 
-                // Tocco o click ovunque per saltare immediatamente senza pulsanti visibili
-                introOverlay.addEventListener("click", finishIntro);
-                introOverlay.addEventListener("touchstart", finishIntro, { passive: true });
+                // Permetti di saltare con tocco/click dopo 1s per evitare skip accidentali
+                let canSkip = false;
+                setTimeout(() => { canSkip = true; }, 1000);
+
+                introOverlay.addEventListener("click", () => {
+                    if (canSkip) finishIntro();
+                });
 
                 // Tasto ESC o Spazio per saltare
                 window.addEventListener("keydown", (e) => {
@@ -248,12 +252,12 @@
                     }
                 });
 
-                // Timeout di sicurezza (6.2s): assicura che il sito appaia anche in caso di rete lenta
+                // Timeout di sicurezza (6.5s): assicura che il sito appaia anche in caso di rete lenta
                 setTimeout(() => {
                     if (!introDone) {
                         finishIntro();
                     }
-                }, 6200);
+                }, 6500);
             }
         })();
     </script>
