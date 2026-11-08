@@ -107,43 +107,7 @@ window.TSF_INITIAL_DATA = {
       "slug": "info",
       "kind": "text",
       "icon": "ℹ️",
-      "text_content": "<b>THE SMOKE FARM BCN 🇪🇸 • SHIPPING & PAYMENT INFO 🚢</b>
-<i><u>MUST READ BEFORE ORDERING:</u></i>
-• EVERYTHING IS AT YOUR OWN RISK, % AVAILABLE FOR RESHIPS 📦
-• LANDING RATE IS 95%+ ✍️ WORLDWIDE & EUROPE STEALTH SHIPPING 🌐
-• IF YOU MAKE AN ORDER DO NOT USE ANY DELETING MESSAGE TIMERS 🔜
-• DROPSHIPPING ALSO AVAILABLE (PLAIN PACKAGING) 🛬
-
-<i><u>MEET UP IN BARCELONA 🇪🇸:</u></i>
-• Minimum Order: €500
-• Crypto ONLY unless you are a Verified Customer!
-• Meet-ups arranged in discreet and safe spots across central Barcelona.
-
-<i><u>SHIPPING OPTIONS & RATES 📦:</u></i>
-• <b>€50</b> - Make your own Label / Correos with Signature / Letter
-• <b>€75</b> - Correos without Signature / Package
-• <b>€100</b> - Mondial Relay / InPost Locker / UPS / DHL / DPD (SEUR)
-• <b>€100</b> - Transit+ No Address Needed (100% Landing Rate to collection point)
-• <b>€100</b> - Extra Stealth Multi-Layer (Recommended for larger orders)
-• <b>€200</b> - Cold Shipping & Express Stealth (Isothermic pack for Rosin & WPFF)
-
-<i><u>ACCEPTED PAYMENT METHODS 💳:</u></i>
-• <b>ALL Crypto Accepted (Instant Confirmation)</b>:
-  - <b>BTC</b>: <code>bc1qsfhzwrkv64sefs9sdjv48jmxpv8pzh4w32rpmm</code>
-  - <b>ETH & USDT (ERC20)</b>: <code>0xBDeB4ACA79b1ccFCd6EBC648f8e496Ecb046F228</code>
-  - <b>TRX & USDT (TRC20)</b>: <code>TJUuH9TuRdkCroAFq7r5eq1utVVr5xswxJ</code>
-• Cash In Barcelona (Meet-up)
-• Western Union / RIA / Moneygram (Ask for receiver details)
-• Bank Transfer (Verified Customers Only)
-• Cash Drop service available in major EU cities upon request 🇪🇺
-
-<i><u>PAYMENT & ORDER INSTRUCTIONS ✍️:</u></i>
-AFTER PAYMENT MUST SEND <b>3 SEPARATE MESSAGES</b>:
-1- (Amount of EURO - Time & Date) - <i>e.g. €1250 15:30 02/11/2026 + TXID photo</i>
-2- (Actual Order & Chosen Courier) - <i>e.g. 50g Blue Zushi / DHL Express</i>
-3- (Full Name & Address / Locker Name) - <i>e.g. InPost Locker Code, Phone Number & Email (Mandatory for couriers)</i>
-
-🚨 <b>PHOTO CONFIRMATION OF TXID IS REQUIRED. PRIVNOTE NOT ACCEPTED.</b>"
+      "text_content": "<b>THE SMOKE FARM BCN 🇪🇸 • SHIPPING & PAYMENT INFO 🚢</b>\n<i><u>MUST READ BEFORE ORDERING:</u></i>\n• EVERYTHING IS AT YOUR OWN RISK, % AVAILABLE FOR RESHIPS 📦\n• LANDING RATE IS 95%+ ✍️ WORLDWIDE & EUROPE STEALTH SHIPPING 🌐\n• IF YOU MAKE AN ORDER DO NOT USE ANY DELETING MESSAGE TIMERS 🔜\n• DROPSHIPPING ALSO AVAILABLE (PLAIN PACKAGING) 🛬\n\n<i><u>MEET UP IN BARCELONA 🇪🇸:</u></i>\n• Minimum Order: €500\n• Crypto ONLY unless you are a Verified Customer!\n• Meet-ups arranged in discreet and safe spots across central Barcelona.\n\n<i><u>SHIPPING OPTIONS & RATES 📦:</u></i>\n• <b>€50</b> - Make your own Label / Correos with Signature / Letter\n• <b>€75</b> - Correos without Signature / Package\n• <b>€100</b> - Mondial Relay / InPost Locker / UPS / DHL / DPD (SEUR)\n• <b>€100</b> - Transit+ No Address Needed (100% Landing Rate to collection point)\n• <b>€100</b> - Extra Stealth Multi-Layer (Recommended for larger orders)\n• <b>€200</b> - Cold Shipping & Express Stealth (Isothermic pack for Rosin & WPFF)\n\n<i><u>ACCEPTED PAYMENT METHODS 💳:</u></i>\n• <b>ALL Crypto Accepted (Instant Confirmation)</b>:\n  - <b>BTC</b>: <code>bc1qsfhzwrkv64sefs9sdjv48jmxpv8pzh4w32rpmm</code>\n  - <b>ETH & USDT (ERC20)</b>: <code>0xBDeB4ACA79b1ccFCd6EBC648f8e496Ecb046F228</code>\n  - <b>TRX & USDT (TRC20)</b>: <code>TJUuH9TuRdkCroAFq7r5eq1utVVr5xswxJ</code>\n• Cash In Barcelona (Meet-up)\n• Western Union / RIA / Moneygram (Ask for receiver details)\n• Bank Transfer (Verified Customers Only)\n• Cash Drop service available in major EU cities upon request 🇪🇺\n\n<i><u>PAYMENT & ORDER INSTRUCTIONS ✍️:</u></i>\nAFTER PAYMENT MUST SEND <b>3 SEPARATE MESSAGES</b>:\n1- (Amount of EURO - Time & Date) - <i>e.g. €1250 15:30 02/11/2026 + TXID photo</i>\n2- (Actual Order & Chosen Courier) - <i>e.g. 50g Blue Zushi / DHL Express</i>\n3- (Full Name & Address / Locker Name) - <i>e.g. InPost Locker Code, Phone Number & Email (Mandatory for couriers)</i>\n\n🚨 <b>PHOTO CONFIRMATION OF TXID IS REQUIRED. PRIVNOTE NOT ACCEPTED.</b>"
     }
   ],
   "products": [
