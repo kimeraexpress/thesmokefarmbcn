@@ -247,7 +247,7 @@
     object-fit: contain;
     background-color: #000000;
     display: block;
-    pointer-events: none;
+    pointer-events: auto;
     user-select: none;
     -webkit-user-select: none;
 }

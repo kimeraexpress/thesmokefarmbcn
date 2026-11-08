@@ -11,7 +11,7 @@
 <body>
     <!-- Intro Video Overlay (Autoplay automatico senza tasti player) -->
     <div id="intro-overlay" class="intro-overlay" aria-label="Intro Cinematic Video">
-        <video id="intro-video" class="intro-video" src="./assets/intro.mp4" autoplay muted playsinline webkit-playsinline preload="auto" disablepictureinpicture disableremoteplayback></video>
+        <video id="intro-video" class="intro-video" src="./assets/intro.mp4" poster="./assets/intro-poster.jpg" autoplay muted playsinline webkit-playsinline preload="auto" disablepictureinpicture disableremoteplayback></video>
     </div>
 
     <main id="landing-main" class="landing-container">
@@ -186,11 +186,14 @@
             } catch(e) {}
             applyLang(savedLang);
 
-            // --- Intro Video Controller (Autoplay automatico senza tasti player) ---
+            // --- Intro Video Controller ---
             const introOverlay = document.getElementById("intro-overlay");
             const introVideo = document.getElementById("intro-video");
 
             let introDone = false;
+            let hasStartedPlayback = false;
+            let canSkip = false;
+
             function finishIntro() {
                 if (introDone) return;
                 introDone = true;
@@ -209,7 +212,7 @@
             if (introVideo && introOverlay) {
                 document.body.style.overflow = "hidden";
 
-                // Impostazioni per garantire autoplay su tutti i browser e dispositivi mobili
+                // Impostazioni per garantire autoplay mobile
                 introVideo.muted = true;
                 introVideo.defaultMuted = true;
                 introVideo.playsInline = true;
@@ -217,47 +220,88 @@
                 introVideo.setAttribute("playsinline", "");
                 introVideo.setAttribute("webkit-playsinline", "");
 
-                // Avvia la riproduzione immediata
-                const tryPlay = () => {
+                // Tentativo di autoplay automatico
+                const attemptPlay = () => {
                     if (introDone) return;
                     introVideo.muted = true;
-                    const promise = introVideo.play();
-                    if (promise !== undefined) {
-                        promise.catch(() => {
-                            // Se le policy del browser richiedono interazione,
-                            // riproviamo al primo tocco
+                    const p = introVideo.play();
+                    if (p !== undefined) {
+                        p.then(() => {
+                            hasStartedPlayback = true;
+                        }).catch(() => {
+                            // Autoplay bloccato da iOS/Safari (es. Modalità Risparmio Energetico):
+                            // Il video resta pronto sul poster con il logo e partirà al primo tocco dell'utente!
                         });
                     }
                 };
 
-                tryPlay();
-                introVideo.addEventListener("loadeddata", tryPlay);
-                introVideo.addEventListener("canplay", tryPlay);
+                attemptPlay();
+                introVideo.addEventListener("loadeddata", attemptPlay);
+                introVideo.addEventListener("canplay", attemptPlay);
+
+                // Quando il video inizia la riproduzione effettiva
+                introVideo.addEventListener("play", () => {
+                    hasStartedPlayback = true;
+                    // Permetti lo skip solo dopo 1.5 secondi di visione effettiva
+                    setTimeout(() => {
+                        canSkip = true;
+                    }, 1500);
+                });
+
+                introVideo.addEventListener("timeupdate", () => {
+                    if (introVideo.currentTime > 0.1) {
+                        hasStartedPlayback = true;
+                    }
+                });
 
                 // Quando il video finisce (dura circa 5.5s), transizione automatica al sito
                 introVideo.addEventListener("ended", finishIntro);
 
-                // Permetti di saltare con tocco/click dopo 1s per evitare skip accidentali
-                let canSkip = false;
-                setTimeout(() => { canSkip = true; }, 1000);
+                // Gestione tocco/click:
+                // 1) Se il video è in pausa (es. Risparmio Energetico iPhone),
+                //    il tocco dell'utente AVVIA IL VIDEO anziché chiuderlo!
+                // 2) Se il video è già in riproduzione da oltre 1.2s, il tocco permette lo skip.
+                const handleUserInteraction = (e) => {
+                    if (introDone) return;
 
-                introOverlay.addEventListener("click", () => {
-                    if (canSkip) finishIntro();
-                });
+                    if (introVideo.paused || !hasStartedPlayback) {
+                        introVideo.muted = true;
+                        introVideo.play().then(() => {
+                            hasStartedPlayback = true;
+                        }).catch((err) => {
+                            console.log("Play on touch error:", err);
+                        });
+                        return;
+                    }
 
-                // Tasto ESC o Spazio per saltare
+                    if (canSkip && introVideo.currentTime > 1.0) {
+                        finishIntro();
+                    }
+                };
+
+                introOverlay.addEventListener("click", handleUserInteraction);
+                introVideo.addEventListener("click", handleUserInteraction);
+
+                // Tasto ESC o Spazio per saltare su desktop
                 window.addEventListener("keydown", (e) => {
                     if (!introDone && (e.key === "Escape" || e.key === " ")) {
                         finishIntro();
                     }
                 });
 
-                // Timeout di sicurezza (6.5s): assicura che il sito appaia anche in caso di rete lenta
+                // Timeout di sicurezza attivo solo DOPO l'avvio della riproduzione
+                introVideo.addEventListener("play", () => {
+                    setTimeout(() => {
+                        if (!introDone) finishIntro();
+                    }, 6500);
+                }, { once: true });
+
+                // Fallback globale (10s): se non c'è alcuna interazione e il video non parte
                 setTimeout(() => {
-                    if (!introDone) {
+                    if (!introDone && !hasStartedPlayback) {
                         finishIntro();
                     }
-                }, 6500);
+                }, 10000);
             }
         })();
     </script>
