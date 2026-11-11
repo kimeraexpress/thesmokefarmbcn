@@ -790,6 +790,14 @@ AFTER PAYMENT MUST SEND <b>3 SEPARATE MESSAGES</b>:
 const MAX_VISIBLE_STRAINS = 3;
 const MAX_VISIBLE_PRICES = 3;
 
+function sortProductsDesc(list) {
+    if (!Array.isArray(list)) return [];
+    if (typeof window !== "undefined" && window.TSFPriceSort) {
+        return window.TSFPriceSort.sortProductsByPriceDesc(list);
+    }
+    return list;
+}
+
 function loadStoreData() {
     try {
         const stored = localStorage.getItem("tsfbcn_menu_data");
@@ -797,6 +805,7 @@ function loadStoreData() {
             const parsed = JSON.parse(stored);
             if (parsed && Array.isArray(parsed.products) && Array.isArray(parsed.categories)) {
                 if (parsed.categories.length > 0) {
+                    sortProductsDesc(parsed.products);
                     return parsed;
                 }
             }
@@ -805,11 +814,13 @@ function loadStoreData() {
         console.warn("Storage load error:", e);
     }
     if (typeof window !== "undefined" && window.TSF_INITIAL_DATA) {
+        sortProductsDesc(window.TSF_INITIAL_DATA.products);
         try {
             localStorage.setItem("tsfbcn_menu_data", JSON.stringify(window.TSF_INITIAL_DATA));
         } catch(e) {}
         return window.TSF_INITIAL_DATA;
     }
+    sortProductsDesc(DB.products);
     return DB;
 }
 
@@ -1090,7 +1101,7 @@ function renderProducts() {
                 return;
             }
 
-            const prodsInSub = catProducts.filter(p => (p.subcategory_id || "all") === sub.id);
+            const prodsInSub = sortProductsDesc(catProducts.filter(p => (p.subcategory_id || "all") === sub.id));
             if (prodsInSub.length === 0) return;
 
             const subTitle = (sub.id !== "all" && sub.name) ? `-${sub.name.toUpperCase()}` : `-${cat.name.toUpperCase()}`;
@@ -1106,7 +1117,7 @@ function renderProducts() {
         });
 
         // Prodotti senza sottocategoria specifica
-        const unassignedProds = catProducts.filter(p => !subcategories.some(s => s.id === p.subcategory_id));
+        const unassignedProds = sortProductsDesc(catProducts.filter(p => !subcategories.some(s => s.id === p.subcategory_id)));
         if (unassignedProds.length > 0 && (activeSubcategoryId === "all" || activeCategoryId !== cat.id)) {
             sectionsHTML += `
                 <div class="menu-subcategory-block">
@@ -1371,6 +1382,7 @@ function initCatalog() {
         })
         .then(cloudData => {
             if (cloudData && Array.isArray(cloudData.products) && Array.isArray(cloudData.categories)) {
+                sortProductsDesc(cloudData.products);
                 allProducts = cloudData.products;
                 allCategories = cloudData.categories;
                 try {

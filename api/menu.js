@@ -1,6 +1,14 @@
 import { put, list } from '@vercel/blob';
 import fs from 'fs';
 import path from 'path';
+import '../js/utils/price-sort.js';
+
+function normalizeMenuOrder(menuData) {
+  if (menuData && Array.isArray(menuData.products) && globalThis.TSFPriceSort) {
+    globalThis.TSFPriceSort.sortProductsByPriceDesc(menuData.products);
+  }
+  return menuData;
+}
 
 export default async function handler(req, res) {
   // CORS & Anti-Cache Headers
@@ -22,7 +30,7 @@ export default async function handler(req, res) {
           const blobUrl = blobs[0].url;
           const resp = await fetch(blobUrl, { cache: 'no-store' });
           if (resp.ok) {
-            const data = await resp.json();
+            const data = normalizeMenuOrder(await resp.json());
             return res.status(200).json(data);
           }
         }
@@ -35,7 +43,7 @@ export default async function handler(req, res) {
     try {
       const localPath = path.join(process.cwd(), 'data.json');
       if (fs.existsSync(localPath)) {
-        const localData = JSON.parse(fs.readFileSync(localPath, 'utf8'));
+        const localData = normalizeMenuOrder(JSON.parse(fs.readFileSync(localPath, 'utf8')));
         return res.status(200).json(localData);
       }
     } catch (err) {
@@ -54,6 +62,9 @@ export default async function handler(req, res) {
       if (!data || !Array.isArray(data.products) || !Array.isArray(data.categories)) {
         return res.status(400).json({ error: 'Struttura dati non valida' });
       }
+
+      // Ordina sempre tutti i prodotti dal piu costoso al meno costoso prima di salvare
+      normalizeMenuOrder(data);
 
       if (!process.env.BLOB_READ_WRITE_TOKEN) {
         return res.status(500).json({

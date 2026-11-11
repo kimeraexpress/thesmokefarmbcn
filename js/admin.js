@@ -93,6 +93,12 @@
     };
 
 
+    function sortCurrentProducts() {
+        if (currentData && Array.isArray(currentData.products) && window.TSFPriceSort) {
+            window.TSFPriceSort.sortProductsByPriceDesc(currentData.products);
+        }
+    }
+
     // --- 2. Caricamento Dati ---
     function loadData() {
         try {
@@ -102,6 +108,7 @@
                 if (parsed && Array.isArray(parsed.products) && Array.isArray(parsed.categories)) {
                     if (parsed.categories.length > 0) {
                         currentData = parsed;
+                        sortCurrentProducts();
                         return;
                     }
                 }
@@ -112,6 +119,7 @@
 
         if (window.TSF_INITIAL_DATA) {
             currentData = JSON.parse(JSON.stringify(window.TSF_INITIAL_DATA));
+            sortCurrentProducts();
             try {
                 localStorage.setItem(STORAGE_KEY_DATA, JSON.stringify(currentData));
             } catch(e) {}
@@ -123,6 +131,7 @@
     window.saveAllChanges = async function(showFeedback = true) {
         if (!currentData) return;
         try {
+            sortCurrentProducts();
             localStorage.setItem(STORAGE_KEY_DATA, JSON.stringify(currentData));
             hasUnsavedChanges = false;
             updateSaveButtonIndicator();
@@ -191,6 +200,7 @@
         const container = document.getElementById("admin-products-container");
         if (!container) return;
 
+        sortCurrentProducts();
         const products = currentData.products || [];
         const categories = currentData.categories || [];
 
@@ -719,6 +729,9 @@
             currentData.products.unshift(prodObj);
         }
 
+        // Mantieni sempre i prodotti in ordine dal piu costoso al meno costoso
+        sortCurrentProducts();
+
         closeProductModal();
         renderProductsList();
         showToast(`✅ Prodotto "${nameVal}" salvato con successo!`);
@@ -967,6 +980,7 @@
                 const cloudData = await res.json();
                 if (cloudData && Array.isArray(cloudData.products) && Array.isArray(cloudData.categories)) {
                     currentData = cloudData;
+                    sortCurrentProducts();
                     try {
                         localStorage.setItem(STORAGE_KEY_DATA, JSON.stringify(currentData));
                     } catch(e) {}

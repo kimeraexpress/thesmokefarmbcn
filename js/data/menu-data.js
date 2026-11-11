@@ -69,6 +69,10 @@ window.TSF_INITIAL_DATA = {
         {
           "id": "dry-sift",
           "name": "DRY SIFT"
+        },
+        {
+          "id": "cali-ash",
+          "name": "CALI ASH"
         }
       ]
     },
@@ -90,6 +94,10 @@ window.TSF_INITIAL_DATA = {
         {
           "id": "cali-usa",
           "name": "CALI USA"
+        },
+        {
+          "id": "amnesia",
+          "name": "AMNESIA"
         }
       ]
     },
@@ -112,40 +120,511 @@ window.TSF_INITIAL_DATA = {
   ],
   "products": [
     {
-      "id": 1794174232167,
-      "name": "BLUE MAGIC PATRON PREMIUM FROZEN SIFT",
-      "category_id": 1,
-      "category_name": "ASH",
-      "subcategory_id": "fresh-frozen",
-      "subcategory_name": "FRESH FROZEN",
-      "description": "BLUE MAGIC PATRON PREMIUM FROZEN SIFT SEASON 2026",
+      "id": 1794325601649,
+      "name": "SYRA FARMER W.P.F.F. 1’90u",
+      "category_id": 3,
+      "category_name": "ICE",
+      "subcategory_id": "all",
+      "subcategory_name": "all",
+      "description": "SYRA FARM SPECIAL DROP LIVING SOIL W.P.F.F. 1’90u (WITH JARS 2g)",
       "status": "available",
       "flavours_strains": [
-        "FORBIDDEN PEEL",
+        "GOLDEN STATE BANANA 2016",
+        "GRAPE GAS",
+        "GRAPE HONEY",
+        "HONEY BANANA"
+      ],
+      "pricing_tiers": [
+        {
+          "qty": "1 JARS",
+          "price": "120€"
+        },
+        {
+          "qty": "5g",
+          "price": "260€"
+        },
+        {
+          "qty": "10g",
+          "price": "500€"
+        },
+        {
+          "qty": "25g",
+          "price": "1.150€"
+        },
+        {
+          "qty": "50g",
+          "price": "2.200€"
+        },
+        {
+          "qty": "100g",
+          "price": "4.200€"
+        }
+      ],
+      "media_files": [
+        {
+          "type": "image",
+          "url": "assets/logo-badge.png"
+        }
+      ]
+    },
+    {
+      "id": 1794325900895,
+      "name": "LEVELZ W.P.F.F. 1’ WASH 90u",
+      "category_id": 3,
+      "category_name": "ICE",
+      "subcategory_id": "all",
+      "subcategory_name": "all",
+      "description": "LEVELZ W.P.F.F. 1’ WASH 90u With Jars 2g",
+      "status": "available",
+      "flavours_strains": [
         "YELLOW MELON",
-        "FORBIDDEN ORANGE",
-        "WEDDING CAKE"
+        "TWISTER"
+      ],
+      "pricing_tiers": [
+        {
+          "qty": "1 JARS",
+          "price": "100€"
+        },
+        {
+          "qty": "5g",
+          "price": "240€"
+        },
+        {
+          "qty": "10g",
+          "price": "460€"
+        },
+        {
+          "qty": "25g",
+          "price": "1.025€"
+        },
+        {
+          "qty": "50g",
+          "price": "1.950€"
+        },
+        {
+          "qty": "100g",
+          "price": "3.700€"
+        }
+      ],
+      "media_files": [
+        {
+          "type": "image",
+          "url": "assets/logo-badge.png"
+        }
+      ]
+    },
+    {
+      "id": 1794326931182,
+      "name": "KOYAK TERPS W.P.F.F. 1’ 90u",
+      "category_id": 3,
+      "category_name": "ICE",
+      "subcategory_id": "all",
+      "subcategory_name": "all",
+      "description": "KOYAK TERPS W.P.F.F. 1’ 90u",
+      "status": "available",
+      "flavours_strains": [
+        "BLACK CHERRY",
+        "GRAPE GAS",
+        "DULCE DE UVA",
+        "GRAPE CHERRY"
+      ],
+      "pricing_tiers": [
+        {
+          "qty": "5g",
+          "price": "230€"
+        },
+        {
+          "qty": "10g",
+          "price": "440€"
+        },
+        {
+          "qty": "25g",
+          "price": "975€"
+        },
+        {
+          "qty": "50g",
+          "price": "1.850€"
+        },
+        {
+          "qty": "100g",
+          "price": "3.500€"
+        }
+      ],
+      "media_files": [
+        {
+          "type": "image",
+          "url": "assets/logo-badge.png"
+        }
+      ]
+    },
+    {
+      "id": 1794329193033,
+      "name": "STATIC LABZ WPFF STATIC BY KARMA",
+      "category_id": 1,
+      "category_name": "ASH",
+      "subcategory_id": "cali-ash",
+      "subcategory_name": "CALI ASH",
+      "description": "STATIC LABZ BY KARMA WPFF STATIC ULTRA FILTERED",
+      "status": "available",
+      "flavours_strains": [
+        "ZKITTLEZ",
+        "GARLIC JUICE",
+        "HASH BURGER X PAPAYA"
       ],
       "pricing_tiers": [
         {
           "qty": "10g",
-          "price": "150€"
-        },
-        {
-          "qty": "25g",
           "price": "300€"
         },
         {
           "qty": "50g",
-          "price": "550€"
+          "price": "1.450€"
         },
         {
           "qty": "100g",
-          "price": "1050€"
+          "price": "2.800€"
+        },
+        {
+          "qty": "300g",
+          "price": "8.250€"
+        },
+        {
+          "qty": "500g",
+          "price": "13.500€"
+        }
+      ],
+      "media_files": [
+        {
+          "type": "image",
+          "url": "assets/logo-badge.png"
+        }
+      ]
+    },
+    {
+      "id": 1794327397975,
+      "name": "FUCK FRESH FROZEN STATIC SIFT SINGLE SOURCE",
+      "category_id": 1,
+      "category_name": "ASH",
+      "subcategory_id": "cali-ash",
+      "subcategory_name": "CALI ASH",
+      "description": "F.F.F. X HUCLEBERRY HILL FARMS, DROP LIMITED STATIC SIFT SINGLE SOURCE",
+      "status": "available",
+      "flavours_strains": [
+        "WHITETHORN ROSE",
+        "WHITETHORN ROSE X STRAWBERRY WILSON"
+      ],
+      "pricing_tiers": [
+        {
+          "qty": "10g",
+          "price": "300€"
+        },
+        {
+          "qty": "50g",
+          "price": "1.150€"
+        },
+        {
+          "qty": "100g",
+          "price": "2.200€"
+        },
+        {
+          "qty": "250g",
+          "price": "5.375€"
+        },
+        {
+          "qty": "500g",
+          "price": "10.500€"
+        },
+        {
+          "qty": "1kg",
+          "price": "20.000€"
+        }
+      ],
+      "media_files": [
+        {
+          "type": "image",
+          "url": "assets/logo-badge.png"
+        }
+      ]
+    },
+    {
+      "id": 1794328416564,
+      "name": "SAHAS TERPS STATIC SIFT RED LINE PREMIUM",
+      "category_id": 1,
+      "category_name": "ASH",
+      "subcategory_id": "cali-ash",
+      "subcategory_name": "CALI ASH",
+      "description": "SAHAS TERPS STATIC SIFT RED LINE PREMIUM NEW EDITION 2026/27",
+      "status": "available",
+      "flavours_strains": [
+        "SUPERBOOF",
+        "TROPICANA COOKIES",
+        "MARACUYA DRIPS"
+      ],
+      "pricing_tiers": [
+        {
+          "qty": "50g",
+          "price": "1.100€"
+        },
+        {
+          "qty": "100g",
+          "price": "2.050€"
+        },
+        {
+          "qty": "250g",
+          "price": "5.000€"
+        },
+        {
+          "qty": "500g",
+          "price": "9.750€"
         },
         {
           "qty": "1000g (1 Kg)",
+          "price": "19.000€"
+        }
+      ],
+      "media_files": [
+        {
+          "type": "image",
+          "url": "assets/logo-badge.png"
+        }
+      ]
+    },
+    {
+      "id": 1794329409088,
+      "name": "HASH FORCE ONE PERSY STATIC",
+      "category_id": 1,
+      "category_name": "ASH",
+      "subcategory_id": "cali-ash",
+      "subcategory_name": "CALI ASH",
+      "description": "HASH FORCE ONE PERSY EDITION STATIC SIFT 130/90u",
+      "status": "available",
+      "flavours_strains": [
+        "BLUEBERRY CAVIAR",
+        "BRAIN WASH",
+        "LANTZ",
+        "TOAD VENOM",
+        "KAIZEN",
+        "SNAKE CHARMER",
+        "ZANGBANGER",
+        "PERMANENT MARKET",
+        "SUPERBOOF",
+        "Z CUBE",
+        "PERMANENT GAS"
+      ],
+      "pricing_tiers": [
+        {
+          "qty": "10g",
+          "price": "250€"
+        },
+        {
+          "qty": "50g",
+          "price": "1.050€"
+        },
+        {
+          "qty": "100g",
+          "price": "2.000€"
+        },
+        {
+          "qty": "300g",
+          "price": "5.850€"
+        },
+        {
+          "qty": "500g",
           "price": "9500€"
+        },
+        {
+          "qty": "1kg",
+          "price": "18.000€"
+        }
+      ],
+      "media_files": [
+        {
+          "type": "image",
+          "url": "assets/logo-badge.png"
+        }
+      ]
+    },
+    {
+      "id": 1794328955156,
+      "name": "SAHAS TERPS RED LINE PREMIUM OLD SEASON 2025",
+      "category_id": 1,
+      "category_name": "ASH",
+      "subcategory_id": "cali-ash",
+      "subcategory_name": "CALI ASH",
+      "description": "SAHAS TERPS RED LINE PREMIUM OLD SEASON 2025",
+      "status": "available",
+      "flavours_strains": [
+        "CADILLAC RAINBOW",
+        "CRUNCH BERRY",
+        "COSMIC SMOOTHIE",
+        "CAKE OG",
+        "CREAMIEZ",
+        "PILLOW MINTS",
+        "WHIPLASH",
+        "CARMELITA"
+      ],
+      "pricing_tiers": [
+        {
+          "qty": "50g",
+          "price": "1.050€"
+        },
+        {
+          "qty": "100g",
+          "price": "2.000€"
+        },
+        {
+          "qty": "250g",
+          "price": "4.750€"
+        },
+        {
+          "qty": "500g",
+          "price": "9.250€"
+        },
+        {
+          "qty": "1000g (1 Kg)",
+          "price": "18.000€"
+        }
+      ],
+      "media_files": [
+        {
+          "type": "image",
+          "url": "assets/logo-badge.png"
+        }
+      ]
+    },
+    {
+      "id": 1794328658441,
+      "name": "SAHAS TERPS STATIC SIFT BLUE LINE",
+      "category_id": 1,
+      "category_name": "ASH",
+      "subcategory_id": "cali-ash",
+      "subcategory_name": "CALI ASH",
+      "description": "SAHAS TERPS STATIC SIFT BLUE LINE SEASON 2026/27",
+      "status": "available",
+      "flavours_strains": [
+        "DOUBLE RUNTZ",
+        "TOAD VENOM",
+        "BLACKSCOTTI",
+        "TROPICAL JUICE",
+        "MELONADE",
+        "ALIEN COOKIES",
+        "LA RUNTZ"
+      ],
+      "pricing_tiers": [
+        {
+          "qty": "50g",
+          "price": "950€"
+        },
+        {
+          "qty": "100g",
+          "price": "1.800€"
+        },
+        {
+          "qty": "250g",
+          "price": "4.375€"
+        },
+        {
+          "qty": "500g",
+          "price": "8.500€"
+        },
+        {
+          "qty": "1000g (1 Kg)",
+          "price": "16.500€"
+        }
+      ],
+      "media_files": [
+        {
+          "type": "image",
+          "url": "assets/logo-badge.png"
+        }
+      ]
+    },
+    {
+      "id": 1794329558504,
+      "name": "UNIVERSAL STASH REGULAR STATIC SIFT",
+      "category_id": 1,
+      "category_name": "ASH",
+      "subcategory_id": "cali-ash",
+      "subcategory_name": "CALI ASH",
+      "description": "UNIVERSAL STASH REGULAR STATIC SIFT SEASON 2026",
+      "status": "available",
+      "flavours_strains": [
+        "CERAL MILK",
+        "MEGAN FOX",
+        "GLITTER BOMB",
+        "CAPRICORN OG"
+      ],
+      "pricing_tiers": [
+        {
+          "qty": "50g",
+          "price": "850€"
+        },
+        {
+          "qty": "100g",
+          "price": "1.650€"
+        },
+        {
+          "qty": "300g",
+          "price": "4.500€"
+        },
+        {
+          "qty": "500g",
+          "price": "7.250€"
+        },
+        {
+          "qty": "1000g (1 Kg)",
+          "price": "14.000€"
+        }
+      ],
+      "media_files": [
+        {
+          "type": "image",
+          "url": "assets/logo-badge.png"
+        }
+      ]
+    },
+    {
+      "id": 1794177438482,
+      "name": "BAD BERRED FARM STATIC SIFT",
+      "category_id": 1,
+      "category_name": "ASH",
+      "subcategory_id": "static",
+      "subcategory_name": "STATIC",
+      "description": "BAD BERRED FARM FRESH FROZEN-STATIC SIFT HANDMADE SEASON 2026",
+      "status": "available",
+      "flavours_strains": [
+        "BOOF CHERRY X FRUIT JOY",
+        "ICE CREAM CAKE X ZOAP",
+        "CHERRY BUGER (Hashburger x Tropcherry)"
+      ],
+      "pricing_tiers": [
+        {
+          "qty": "10g",
+          "price": "140€"
+        },
+        {
+          "qty": "30g",
+          "price": "375€"
+        },
+        {
+          "qty": "50g",
+          "price": "600€"
+        },
+        {
+          "qty": "100g",
+          "price": "1100€"
+        },
+        {
+          "qty": "300g",
+          "price": "3150€"
+        },
+        {
+          "qty": "500g",
+          "price": "5.100€"
+        },
+        {
+          "qty": "1000g (1kg)",
+          "price": "10.000€"
         }
       ],
       "media_files": [
@@ -175,24 +654,197 @@ window.TSF_INITIAL_DATA = {
       ],
       "pricing_tiers": [
         {
-          "qty": "10g",
-          "price": "150€"
-        },
-        {
-          "qty": "25g",
-          "price": "300€"
-        },
-        {
           "qty": "50g",
-          "price": "550€"
+          "price": "600€"
         },
         {
           "qty": "100g",
-          "price": "1050€"
+          "price": "1.100€"
+        },
+        {
+          "qty": "300g",
+          "price": "3.150€"
+        },
+        {
+          "qty": "500g",
+          "price": "5.100€"
         },
         {
           "qty": "1000g (1 Kg)",
-          "price": "9500€"
+          "price": "10.000€"
+        }
+      ],
+      "media_files": [
+        {
+          "type": "image",
+          "url": "assets/logo-badge.png"
+        }
+      ]
+    },
+    {
+      "id": 1794174232167,
+      "name": "BLUE MAGIC PATRON PREMIUM FROZEN SIFT",
+      "category_id": 1,
+      "category_name": "ASH",
+      "subcategory_id": "fresh-frozen",
+      "subcategory_name": "FRESH FROZEN",
+      "description": "BLUE MAGIC PATRON PREMIUM FROZEN SIFT SEASON 2026",
+      "status": "available",
+      "flavours_strains": [
+        "FORBIDDEN PEEL",
+        "YELLOW MELON",
+        "FORBIDDEN ORANGE",
+        "WEDDING CAKE"
+      ],
+      "pricing_tiers": [
+        {
+          "qty": "50g",
+          "price": "450€"
+        },
+        {
+          "qty": "100g",
+          "price": "850€"
+        },
+        {
+          "qty": "300g",
+          "price": "2.450€"
+        },
+        {
+          "qty": "500g",
+          "price": "4.000€"
+        },
+        {
+          "qty": "1000g (1 Kg)",
+          "price": "7.800€"
+        }
+      ],
+      "media_files": [
+        {
+          "type": "image",
+          "url": "assets/logo-badge.png"
+        }
+      ]
+    },
+    {
+      "id": 1794173604158,
+      "name": "BAD BERRED FARM FROZEN SIFT",
+      "category_id": 1,
+      "category_name": "ASH",
+      "subcategory_id": "fresh-frozen",
+      "subcategory_name": "FRESH FROZEN",
+      "description": "BAD BERRED FARM FROZEN SIFT SEASON 2026",
+      "status": "available",
+      "flavours_strains": [
+        "BLUEMOSA X SB#26",
+        "RAINBOW PUSH POP X FJ"
+      ],
+      "pricing_tiers": [
+        {
+          "qty": "50g",
+          "price": "425€"
+        },
+        {
+          "qty": "100g",
+          "price": "1.100€"
+        },
+        {
+          "qty": "300g",
+          "price": "2.350€"
+        },
+        {
+          "qty": "500g",
+          "price": "3.850€"
+        },
+        {
+          "qty": "1000g (1 Kg)",
+          "price": "7.500€"
+        }
+      ],
+      "media_files": [
+        {
+          "type": "image",
+          "url": "assets/logo-badge.png"
+        }
+      ]
+    },
+    {
+      "id": 1794177987420,
+      "name": "MISTERY FARMZ FROZEN SIFT",
+      "category_id": 1,
+      "category_name": "ASH",
+      "subcategory_id": "fresh-frozen",
+      "subcategory_name": "FRESH FROZEN",
+      "description": "MISTERY FARMZ FROZEN SIFT SEASON 2026",
+      "status": "available",
+      "flavours_strains": [
+        "LONDON GAS",
+        "RIMOZ",
+        "TROPCHERRY",
+        "PAPAYA RUNTZ",
+        "RS11 X BANANA",
+        "GMO RUNTZ"
+      ],
+      "pricing_tiers": [
+        {
+          "qty": "50g",
+          "price": "400€"
+        },
+        {
+          "qty": "100g",
+          "price": "780€"
+        },
+        {
+          "qty": "300g",
+          "price": "2.300€"
+        },
+        {
+          "qty": "500g",
+          "price": "3.700€"
+        },
+        {
+          "qty": "1000g (1 Kg)",
+          "price": "7.200€"
+        }
+      ],
+      "media_files": [
+        {
+          "type": "image",
+          "url": "assets/logo-badge.png"
+        }
+      ]
+    },
+    {
+      "id": 1794177879251,
+      "name": "MEDICAL FARM PLASMA STATIC",
+      "category_id": 1,
+      "category_name": "ASH",
+      "subcategory_id": "static",
+      "subcategory_name": "STATIC",
+      "description": "MEDICAL FARM PLASMA STATIC SIFT SEASON 2025",
+      "status": "available",
+      "flavours_strains": [
+        "TROPIC THUNDER"
+      ],
+      "pricing_tiers": [
+        {
+          "qty": "50g",
+          "price": "400€"
+        },
+        {
+          "qty": "100g",
+          "price": "770€"
+        },
+        {
+          "qty": "300g",
+          "price": "2.200€"
+        },
+        {
+          "qty": "500g",
+          "price": "3.600€"
+        },
+        {
+          "qty": "1000g (1 Kg)",
+          "price": "7.000€"
         }
       ],
       "media_files": [
@@ -225,24 +877,249 @@ window.TSF_INITIAL_DATA = {
       ],
       "pricing_tiers": [
         {
-          "qty": "10g",
-          "price": "150€"
-        },
-        {
-          "qty": "25g",
-          "price": "300€"
-        },
-        {
           "qty": "50g",
-          "price": "550€"
+          "price": "400€"
         },
         {
           "qty": "100g",
-          "price": "1050€"
+          "price": "750€"
+        },
+        {
+          "qty": "300g",
+          "price": "2.200€"
+        },
+        {
+          "qty": "500g",
+          "price": "3.600€"
         },
         {
           "qty": "1000g (1 Kg)",
-          "price": "9500€"
+          "price": "7.000€"
+        }
+      ],
+      "media_files": [
+        {
+          "type": "image",
+          "url": "assets/logo-badge.png"
+        }
+      ]
+    },
+    {
+      "id": 1794178076419,
+      "name": "NO FARM DOUBLE STATIC",
+      "category_id": 1,
+      "category_name": "ASH",
+      "subcategory_id": "static",
+      "subcategory_name": "STATIC",
+      "description": "HASH NO FARM PREMIUM DOUBLE STATIC",
+      "status": "available",
+      "flavours_strains": [
+        "CARBON FIRE",
+        "FF X LONDON CAKE",
+        "STRAWBERRY GUAVA"
+      ],
+      "pricing_tiers": [
+        {
+          "qty": "50g",
+          "price": "400€"
+        },
+        {
+          "qty": "100g",
+          "price": "750€"
+        },
+        {
+          "qty": "300g",
+          "price": "2.160€"
+        },
+        {
+          "qty": "500g",
+          "price": "3.500€"
+        },
+        {
+          "qty": "1000g (1 Kg)",
+          "price": "6.800€"
+        }
+      ],
+      "media_files": [
+        {
+          "type": "image",
+          "url": "assets/logo-badge.png"
+        }
+      ]
+    },
+    {
+      "id": 1794267279094,
+      "name": "STATIC SIFT NO FARM",
+      "category_id": 1,
+      "category_name": "ASH",
+      "subcategory_id": "static",
+      "subcategory_name": "STATIC",
+      "description": "STATIC SIFT NO FARM",
+      "status": "available",
+      "flavours_strains": [
+        "TROPICAL JUICE",
+        "MELON CANDY"
+      ],
+      "pricing_tiers": [
+        {
+          "qty": "50g",
+          "price": "340€"
+        },
+        {
+          "qty": "100g",
+          "price": "650€"
+        },
+        {
+          "qty": "500g",
+          "price": "3.150€"
+        },
+        {
+          "qty": "1000g (1kg)",
+          "price": "6.000€"
+        },
+        {
+          "qty": "3kg",
+          "price": "17.400€"
+        }
+      ],
+      "media_files": [
+        {
+          "type": "image",
+          "url": "assets/logo-badge.png"
+        }
+      ]
+    },
+    {
+      "id": 1794178297837,
+      "name": "FRUTATECH FARM FRESH FROZEN CROWN",
+      "category_id": 1,
+      "category_name": "ASH",
+      "subcategory_id": "fresh-frozen",
+      "subcategory_name": "FRESH FROZEN",
+      "description": "FRUTATECH FARM FRESH FROZEN CROWN EDITION SEASON 2026",
+      "status": "available",
+      "flavours_strains": [
+        "GRAPE GASOLINE",
+        "ALIEN COOKIES OG",
+        "BLACK CHERRY",
+        "FF X 24K",
+        "FF X RIMOWA",
+        "RAINBOW SHERBET",
+        "HASH BURGER X TROPCHERRY",
+        "PEACH TSUNAMI",
+        "SOUR DIESEL MINTS",
+        "GRAPE GAS"
+      ],
+      "pricing_tiers": [
+        {
+          "qty": "50g",
+          "price": "340€"
+        },
+        {
+          "qty": "100g",
+          "price": "650€"
+        },
+        {
+          "qty": "300g",
+          "price": "1.850€"
+        },
+        {
+          "qty": "500g",
+          "price": "3.000€"
+        },
+        {
+          "qty": "1000g (1 Kg)",
+          "price": "5.800€"
+        },
+        {
+          "qty": "3000g (3 Kg)",
+          "price": "16.500€"
+        }
+      ],
+      "media_files": [
+        {
+          "type": "image",
+          "url": "assets/logo-badge.png"
+        }
+      ]
+    },
+    {
+      "id": 1794267592767,
+      "name": "ILLUMINATI TECH FARM FRESH FROZEN",
+      "category_id": 1,
+      "category_name": "ASH",
+      "subcategory_id": "fresh-frozen",
+      "subcategory_name": "FRESH FROZEN",
+      "description": "ILLUMINATI TECH FARM FRESH FROZEN SEASON 2025/26",
+      "status": "available",
+      "flavours_strains": [
+        "LEMON TREE",
+        "LEMON BEAN",
+        "GRAPE CREAM",
+        "KING LOUIS"
+      ],
+      "pricing_tiers": [
+        {
+          "qty": "50g",
+          "price": "300€"
+        },
+        {
+          "qty": "100g",
+          "price": "600€"
+        },
+        {
+          "qty": "500g",
+          "price": "2.750€"
+        },
+        {
+          "qty": "1000g (1 Kg)",
+          "price": "5.000€"
+        }
+      ],
+      "media_files": [
+        {
+          "type": "image",
+          "url": "assets/logo-badge.png"
+        }
+      ]
+    },
+    {
+      "id": 1794267149235,
+      "name": "NO FARM PREMIUM FRESH FROZEN",
+      "category_id": 1,
+      "category_name": "ASH",
+      "subcategory_id": "fresh-frozen",
+      "subcategory_name": "FRESH FROZEN",
+      "description": "PREMIUM FRESH FROZEN NO FARM",
+      "status": "available",
+      "flavours_strains": [
+        "YELLOW MELON",
+        "ORANGE GROOVIE",
+        "TANGILAND",
+        "FF X 26mm",
+        "TROPICAL PIE",
+        "FF X GOLD 24K"
+      ],
+      "pricing_tiers": [
+        {
+          "qty": "50g",
+          "price": "300€"
+        },
+        {
+          "qty": "100g",
+          "price": "580€"
+        },
+        {
+          "qty": "500g",
+          "price": "2.750€"
+        },
+        {
+          "qty": "1000g (1kg)",
+          "price": "5.250€"
+        },
+        {
+          "qty": "3kg",
+          "price": "15.000€"
         }
       ],
       "media_files": [
@@ -271,24 +1148,24 @@ window.TSF_INITIAL_DATA = {
       ],
       "pricing_tiers": [
         {
-          "qty": "10g",
-          "price": "150€"
-        },
-        {
-          "qty": "25g",
-          "price": "300€"
-        },
-        {
           "qty": "50g",
-          "price": "550€"
+          "price": "275€"
         },
         {
           "qty": "100g",
-          "price": "1050€"
+          "price": "500€"
+        },
+        {
+          "qty": "300g",
+          "price": "1.450€"
+        },
+        {
+          "qty": "500g",
+          "price": "3.850€"
         },
         {
           "qty": "1000g (1 Kg)",
-          "price": "9500€"
+          "price": "4.500€"
         }
       ],
       "media_files": [
@@ -299,38 +1176,45 @@ window.TSF_INITIAL_DATA = {
       ]
     },
     {
-      "id": 1794173604158,
-      "name": "BAD BERRED FARM FROZEN SIFT",
+      "id": 1794266957945,
+      "name": "HARAMBOYZ FROZEN SIFT",
       "category_id": 1,
       "category_name": "ASH",
       "subcategory_id": "fresh-frozen",
       "subcategory_name": "FRESH FROZEN",
-      "description": "BAD BERRED FARM FROZEN SIFT SEASON 2026",
+      "description": "HARAMBOYZ FROZEN SIFT SEASON 2026",
       "status": "available",
       "flavours_strains": [
-        "BLUEMOSA X SB#26",
-        "RAINBOW PUSH POP X FJ"
+        "FORBIDDEN LIMEZ",
+        "YELLOW MELON S1",
+        "YELLOW SMASH OG",
+        "YELLOW MELON TROPICANA",
+        "YELLOW MELON SKITTLEZ"
       ],
       "pricing_tiers": [
         {
-          "qty": "10g",
-          "price": "150€"
-        },
-        {
-          "qty": "25g",
-          "price": "300€"
-        },
-        {
           "qty": "50g",
-          "price": "550€"
+          "price": "275€"
         },
         {
           "qty": "100g",
-          "price": "1050€"
+          "price": "500€"
+        },
+        {
+          "qty": "300g",
+          "price": "1.450€"
+        },
+        {
+          "qty": "500g",
+          "price": "2.350€"
         },
         {
           "qty": "1000g (1 Kg)",
-          "price": "9500€"
+          "price": "4.500€"
+        },
+        {
+          "qty": "10kg",
+          "price": "37.500€"
         }
       ],
       "media_files": [
@@ -341,35 +1225,199 @@ window.TSF_INITIAL_DATA = {
       ]
     },
     {
-      "id": 1794172828571,
-      "name": "BAD BERRED FARM STATIC SIFT",
+      "id": 1794267481331,
+      "name": "EGGS NO FARM FRESH FROZEN",
       "category_id": 1,
       "category_name": "ASH",
-      "subcategory_id": "static",
-      "subcategory_name": "STATIC",
-      "description": "BAD BERRED FARM FRESH FROZEN-STATIC HANDMADE SEASON 2026",
+      "subcategory_id": "fresh-frozen",
+      "subcategory_name": "FRESH FROZEN",
+      "description": "EGGS NO FARM FRESH FROZEN",
       "status": "available",
       "flavours_strains": [
-        "BOOF CHERRY X FRUIT JOY",
-        "ICE CREAM CAKE X ZOAP",
-        "CHERRY BURGER"
+        "MELONADE"
       ],
       "pricing_tiers": [
         {
-          "qty": "10g",
-          "price": "150€"
-        },
-        {
-          "qty": "25g",
-          "price": "300€"
-        },
-        {
           "qty": "50g",
-          "price": "550€"
+          "price": "225€"
         },
         {
           "qty": "100g",
-          "price": "1050€"
+          "price": "400€"
+        },
+        {
+          "qty": "300g",
+          "price": "1.100€"
+        },
+        {
+          "qty": "500g",
+          "price": "1.750€"
+        },
+        {
+          "qty": "1000g (1 Kg)",
+          "price": "3.300€"
+        }
+      ],
+      "media_files": [
+        {
+          "type": "image",
+          "url": "assets/logo-badge.png"
+        }
+      ]
+    },
+    {
+      "id": 1794354361520,
+      "name": "TOPSHELF SPANISH FLOWER",
+      "category_id": 2,
+      "category_name": "WEED",
+      "subcategory_id": "cali-spain",
+      "subcategory_name": "CALI SPAIN",
+      "description": "TOPSHELF CALI SPAIN",
+      "status": "available",
+      "flavours_strains": [
+        "BLUE ZUSHI",
+        "SUPERBOOF"
+      ],
+      "pricing_tiers": [
+        {
+          "qty": "50g",
+          "price": "210€"
+        },
+        {
+          "qty": "100g",
+          "price": "400€"
+        },
+        {
+          "qty": "300g",
+          "price": "1.100€"
+        },
+        {
+          "qty": "500g",
+          "price": "1.750€"
+        },
+        {
+          "qty": "1000g (1 Kg)",
+          "price": "3.300€"
+        }
+      ],
+      "media_files": [
+        {
+          "type": "image",
+          "url": "assets/logo-badge.png"
+        }
+      ]
+    },
+    {
+      "id": 1794354551775,
+      "name": "WORKER FLAVOUR SPANISH FLOWER",
+      "category_id": 2,
+      "category_name": "WEED",
+      "subcategory_id": "cali-spain",
+      "subcategory_name": "CALI SPAIN",
+      "description": "WORKER FLAVOUR SPANISH FLOWER",
+      "status": "available",
+      "flavours_strains": [
+        "SUNSET SHERBET",
+        "MANGO"
+      ],
+      "pricing_tiers": [
+        {
+          "qty": "50g",
+          "price": "180€"
+        },
+        {
+          "qty": "100g",
+          "price": "350€"
+        },
+        {
+          "qty": "300g",
+          "price": "1.100€"
+        },
+        {
+          "qty": "500g",
+          "price": "1.500€"
+        },
+        {
+          "qty": "1000g (1 Kg)",
+          "price": "2.800€"
+        }
+      ],
+      "media_files": [
+        {
+          "type": "image",
+          "url": "assets/logo-badge.png"
+        }
+      ]
+    },
+    {
+      "id": 1794354666682,
+      "name": "AMNESIA TOPSHELF",
+      "category_id": 2,
+      "category_name": "WEED",
+      "subcategory_id": "amnesia",
+      "subcategory_name": "AMNESIA",
+      "description": "AMNESIA TOPSHELF 10/10",
+      "status": "available",
+      "flavours_strains": [],
+      "pricing_tiers": [
+        {
+          "qty": "100g",
+          "price": "290€"
+        },
+        {
+          "qty": "300g",
+          "price": "850€"
+        },
+        {
+          "qty": "500g",
+          "price": "1.500€"
+        },
+        {
+          "qty": "1000g (1 Kg)",
+          "price": "2.500€"
+        }
+      ],
+      "media_files": [
+        {
+          "type": "image",
+          "url": "assets/logo-badge.png"
+        }
+      ]
+    },
+    {
+      "id": 1794267736567,
+      "name": "DRY WORK",
+      "category_id": 1,
+      "category_name": "ASH",
+      "subcategory_id": "dry-sift",
+      "subcategory_name": "DRY SIFT",
+      "description": "DRY WORK",
+      "status": "available",
+      "flavours_strains": [],
+      "pricing_tiers": [
+        {
+          "qty": "100g",
+          "price": "270€"
+        },
+        {
+          "qty": "500g",
+          "price": "1.100€"
+        },
+        {
+          "qty": "1kg",
+          "price": "2.000€"
+        },
+        {
+          "qty": "3kg",
+          "price": "5.900€"
+        },
+        {
+          "qty": "5kg",
+          "price": "9.750€"
+        },
+        {
+          "qty": "10kg",
+          "price": "19.000€"
         }
       ],
       "media_files": [
