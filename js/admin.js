@@ -938,7 +938,7 @@
 
         const slug = makeSlug(name);
         if ((currentData.categories || []).some(c => c.slug === slug || c.name.toUpperCase() === name)) {
-            alert("Esiste Ã  giÃ  una macro categoria con questo nome. Scegli un nome diverso.");
+            alert("Esiste già una macro categoria con questo nome. Scegli un nome diverso.");
             return;
         }
 
@@ -946,9 +946,9 @@
             (m, c) => Math.max(m, typeof c.id === "number" ? c.id : 0), 0);
         const newCat = {
             id: maxId + 1,
-            name,
-            slug,
-            icon: icon || "ð",
+            name: name,
+            slug: slug,
+            icon: icon || "📁",
             kind: "products",
             subcategories: [{ id: "all", name: "All " + name }]
         };
@@ -969,7 +969,7 @@
         saveAllChanges(false);
         renderCategoriesManager();
         renderProductsList();
-        showToast("â Macro categoria \"" + name + "\" creata con successo!");
+        showToast("✅ Macro categoria \"" + name + "\" creata con successo!");
     };
 
     window.editCategory = function(catId) {
@@ -980,8 +980,8 @@
         if (!newName || !newName.trim()) return;
         const trimmedName = newName.trim().toUpperCase();
 
-        const newIconRaw = prompt("Nuova icona emoji per \"" + trimmedName + "\" (lascia vuoto per mantenere \"" + (cat.icon || "ð") + "\"):", cat.icon || "");
-        const newIcon = (newIconRaw !== null && newIconRaw.trim()) ? newIconRaw.trim() : (cat.icon || "ð");
+        const newIconRaw = prompt("Nuova icona emoji per \"" + trimmedName + "\" (lascia vuoto per mantenere \"" + (cat.icon || "📁") + "\"):", cat.icon || "");
+        const newIcon = (newIconRaw !== null && newIconRaw.trim()) ? newIconRaw.trim() : (cat.icon || "📁");
 
         const oldName = cat.name;
         cat.name = trimmedName;
@@ -1000,13 +1000,13 @@
         saveAllChanges(false);
         renderCategoriesManager();
         renderProductsList();
-        showToast("âï¸ Macro categoria rinominata in \"" + trimmedName + "\".");
+        showToast("✏️ Macro categoria rinominata in \"" + trimmedName + "\".");
     };
 
     window.deleteCategory = function(catId) {
         const cat = (currentData.categories || []).find(c => c.id === catId);
         if (!cat || cat.kind === "text") {
-            alert("Questa categoria non puÃ² essere eliminata.");
+            alert("Questa categoria non può essere eliminata.");
             return;
         }
         const productCats = (currentData.categories || []).filter(c => c.kind !== "text");
@@ -1019,9 +1019,7 @@
         const targetCat = otherCats[0];
         let confirmMsg = "Eliminare la macro categoria \"" + cat.name + "\"?";
         if (linked.length > 0) {
-            confirmMsg = "â ï¸ Attenzione: " + linked.length + " prodotti appartengono a \"" + cat.name + "\".
-
-Se procedi, verranno spostati in \"" + targetCat.name + "\". Continuare?";
+            confirmMsg = "⚠️ Attenzione: " + linked.length + " prodotti appartengono a \"" + cat.name + "\".\n\nSe procedi, verranno spostati in \"" + targetCat.name + "\". Continuare?";
         }
         if (!confirm(confirmMsg)) return;
 
@@ -1044,7 +1042,7 @@ Se procedi, verranno spostati in \"" + targetCat.name + "\". Continuare?";
         saveAllChanges(false);
         renderCategoriesManager();
         renderProductsList();
-        showToast("ðï¸ Macro categoria \"" + cat.name + "\" eliminata.");
+        showToast("🗑️ Macro categoria \"" + cat.name + "\" eliminata.");
     };
 
     // --- 7. Info & Spedizioni (Tab 3) ---
