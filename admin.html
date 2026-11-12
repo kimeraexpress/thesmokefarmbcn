@@ -157,10 +157,21 @@
                 <!-- Colonna Sinistra: Categorie Principali -->
                 <aside class="categories-sidebar">
                     <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.5rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border-subtle);">
-                        <span style="font-size: 0.82rem; font-weight: 700; text-transform: uppercase; color: var(--accent); letter-spacing: 0.5px;">Categorie</span>
+                        <span style="font-size: 0.82rem; font-weight: 700; text-transform: uppercase; color: var(--accent); letter-spacing: 0.5px;">Macro Categorie</span>
                     </div>
                     <div id="cat-nav-list">
                         <!-- Popolato dinamicamente da admin.js -->
+                    </div>
+                    <!-- Aggiungi Nuova Macro Categoria -->
+                    <div class="add-macrocat-card">
+                        <div class="add-macrocat-title">â Nuova Macro Categoria</div>
+                        <form id="add-macrocat-form" class="add-macrocat-form" onsubmit="event.preventDefault(); handleAddCategory();">
+                            <div class="add-macrocat-row">
+                                <input type="text" id="new-macrocat-icon-input" class="add-macrocat-icon-input" placeholder="ð¿" maxlength="4" title="Emoji icona (opzionale)">
+                                <input type="text" id="new-macrocat-name-input" class="add-macrocat-name-input" placeholder="Es. EDIBLES, HASH..." required>
+                            </div>
+                            <button type="submit" class="btn-primary-action" style="width:100%; margin-top:0.5rem;">+ Aggiungi Categoria</button>
+                        </form>
                     </div>
                 </aside>
 
@@ -171,7 +182,11 @@
                             <h2 id="active-cat-title" class="panel-title">Cali Flower</h2>
                             <p id="active-cat-slug" style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-muted); margin-top: 2px;">slug: cali-flower</p>
                         </div>
-                        <span id="active-cat-count" class="tab-badge" style="font-size: 0.82rem; padding: 4px 10px;">0 Sottocategorie</span>
+                        <div style="display:flex; align-items:center; gap:0.5rem;">
+                            <span id="active-cat-count" class="tab-badge" style="font-size: 0.82rem; padding: 4px 10px;">0 Sottocategorie</span>
+                            <button type="button" class="btn-icon-sm" id="btn-edit-macrocat" title="Rinomina / Modifica questa macro categoria" onclick="editCategory(window.__activeCategoryTabId)">âï¸</button>
+                            <button type="button" class="btn-icon-sm delete-subcat" id="btn-delete-macrocat" title="Elimina questa macro categoria" onclick="deleteCategory(window.__activeCategoryTabId)">ðï¸</button>
+                        </div>
                     </div>
 
                     <!-- Elenco Sottocategorie Esistenti -->

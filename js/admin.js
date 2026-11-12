@@ -748,6 +748,7 @@
         if (!categories.some(c => c.id === activeCategoryTabId) && categories.length > 0) {
             activeCategoryTabId = categories[0].id;
         }
+        window.__activeCategoryTabId = activeCategoryTabId;
 
         navList.innerHTML = categories.map(c => `
             <button type="button" class="cat-nav-btn ${c.id === activeCategoryTabId ? 'active' : ''}" onclick="selectCategoryTab(${c.id})">
@@ -795,6 +796,7 @@
 
     window.selectCategoryTab = function(catId) {
         activeCategoryTabId = Number(catId);
+        window.__activeCategoryTabId = activeCategoryTabId;
         renderCategoriesManager();
     };
 
@@ -884,6 +886,133 @@
         }
     };
 
+
+    // --- 6b. Gestione Macro Categorie ---
+
+    function makeSlug(name) {
+        return name.toLowerCase()
+            .replace(/[^\w\s-]/g, "")
+            .replace(/[\s_-]+/g, "-")
+            .replace(/^-+|-+$/g, "");
+    }
+
+    window.handleAddCategory = function() {
+        const iconInput = document.getElementById("new-macrocat-icon-input");
+        const nameInput = document.getElementById("new-macrocat-name-input");
+        const name = (nameInput ? nameInput.value : "").trim().toUpperCase();
+        const icon = (iconInput ? iconInput.value : "").trim();
+        if (!name) return;
+
+        const slug = makeSlug(name);
+        if ((currentData.categories || []).some(c => c.slug === slug || c.name.toUpperCase() === name)) {
+            alert("Esiste Ã  giÃ  una macro categoria con questo nome. Scegli un nome diverso.");
+            return;
+        }
+
+        const maxId = (currentData.categories || []).reduce(
+            (m, c) => Math.max(m, typeof c.id === "number" ? c.id : 0), 0);
+        const newCat = {
+            id: maxId + 1,
+            name,
+            slug,
+            icon: icon || "ð",
+            kind: "products",
+            subcategories: [{ id: "all", name: "All " + name }]
+        };
+
+        if (!currentData.categories) currentData.categories = [];
+        const infoIdx = currentData.categories.findIndex(c => c.kind === "text");
+        if (infoIdx !== -1) {
+            currentData.categories.splice(infoIdx, 0, newCat);
+        } else {
+            currentData.categories.push(newCat);
+        }
+
+        if (iconInput) iconInput.value = "";
+        if (nameInput) nameInput.value = "";
+
+        activeCategoryTabId = newCat.id;
+        window.__activeCategoryTabId = newCat.id;
+        saveAllChanges(false);
+        renderCategoriesManager();
+        renderProductsList();
+        showToast("â Macro categoria \"" + name + "\" creata con successo!");
+    };
+
+    window.editCategory = function(catId) {
+        const cat = (currentData.categories || []).find(c => c.id === catId);
+        if (!cat || cat.kind === "text") return;
+
+        const newName = prompt("Nuovo nome per la macro categoria \"" + cat.name + "\":", cat.name);
+        if (!newName || !newName.trim()) return;
+        const trimmedName = newName.trim().toUpperCase();
+
+        const newIconRaw = prompt("Nuova icona emoji per \"" + trimmedName + "\" (lascia vuoto per mantenere \"" + (cat.icon || "ð") + "\"):", cat.icon || "");
+        const newIcon = (newIconRaw !== null && newIconRaw.trim()) ? newIconRaw.trim() : (cat.icon || "ð");
+
+        const oldName = cat.name;
+        cat.name = trimmedName;
+        cat.icon = newIcon;
+        cat.slug = makeSlug(trimmedName);
+
+        // Aggiorna sottocategoria "All <NOME>" se presente
+        const allSub = (cat.subcategories || []).find(s => s.id === "all" || s.name === "All " + oldName);
+        if (allSub) allSub.name = "All " + trimmedName;
+
+        // Cascata: aggiorna category_name in tutti i prodotti collegati
+        (currentData.products || []).forEach(p => {
+            if (p.category_id === cat.id) p.category_name = trimmedName;
+        });
+
+        saveAllChanges(false);
+        renderCategoriesManager();
+        renderProductsList();
+        showToast("âï¸ Macro categoria rinominata in \"" + trimmedName + "\".");
+    };
+
+    window.deleteCategory = function(catId) {
+        const cat = (currentData.categories || []).find(c => c.id === catId);
+        if (!cat || cat.kind === "text") {
+            alert("Questa categoria non puÃ² essere eliminata.");
+            return;
+        }
+        const productCats = (currentData.categories || []).filter(c => c.kind !== "text");
+        if (productCats.length <= 1) {
+            alert("Non puoi eliminare l'ultima macro categoria. Crea prima un'altra categoria.");
+            return;
+        }
+        const linked = (currentData.products || []).filter(p => p.category_id === cat.id);
+        const otherCats = productCats.filter(c => c.id !== cat.id);
+        const targetCat = otherCats[0];
+        let confirmMsg = "Eliminare la macro categoria \"" + cat.name + "\"?";
+        if (linked.length > 0) {
+            confirmMsg = "â ï¸ Attenzione: " + linked.length + " prodotti appartengono a \"" + cat.name + "\".
+
+Se procedi, verranno spostati in \"" + targetCat.name + "\". Continuare?";
+        }
+        if (!confirm(confirmMsg)) return;
+
+        if (linked.length > 0) {
+            const targetAllSub = (targetCat.subcategories || []).find(s => s.id === "all") || (targetCat.subcategories || [])[0];
+            linked.forEach(p => {
+                p.category_id = targetCat.id;
+                p.category_name = targetCat.name;
+                if (targetAllSub) {
+                    p.subcategory_id = targetAllSub.id;
+                    p.subcategory_name = targetAllSub.name;
+                }
+            });
+        }
+
+        currentData.categories = currentData.categories.filter(c => c.id !== cat.id);
+        activeCategoryTabId = null;
+        window.__activeCategoryTabId = null;
+
+        saveAllChanges(false);
+        renderCategoriesManager();
+        renderProductsList();
+        showToast("ðï¸ Macro categoria \"" + cat.name + "\" eliminata.");
+    };
 
     // --- 7. Info & Spedizioni (Tab 3) ---
     function loadInfoText() {
