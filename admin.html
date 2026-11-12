@@ -22,11 +22,17 @@
             <p class="lock-subtitle">Pannello di Amministrazione Riservato</p>
             
             <form id="lock-form" class="lock-form" onsubmit="event.preventDefault(); handleAdminLogin();">
-                <div class="input-password-wrap">
-                    <input type="password" id="admin-pin-input" class="lock-input" placeholder="Inserisci Password / PIN" autofocus autocomplete="current-password">
+                <div class="input-password-wrap" style="position: relative; display: flex; align-items: center;">
+                    <input type="password" id="admin-pin-input" class="lock-input" placeholder="Inserisci Password / PIN" autofocus autocomplete="current-password" autocapitalize="none" autocorrect="off" spellcheck="false" style="padding-right: 2.8rem;">
+                    <button type="button" id="btn-toggle-pin" onclick="togglePinVisibility()" title="Mostra/Nascondi password" style="position: absolute; right: 10px; background: none; border: none; font-size: 1.15rem; cursor: pointer; color: var(--text-secondary); padding: 4px 6px;">👁️</button>
                 </div>
                 <div id="lock-error-msg" class="lock-error">Password errata. Riprova.</div>
                 <button type="submit" class="btn-lock-submit">Accedi al Pannello</button>
+                <div style="margin-top: 0.85rem; text-align: center;">
+                    <button type="button" onclick="resetAdminPinToDefault()" style="background: none; border: none; color: var(--accent); font-size: 0.8rem; text-decoration: underline; cursor: pointer; padding: 4px 8px; opacity: 0.85;">
+                        Reimposta PIN predefinito (tsfbcn2026)
+                    </button>
+                </div>
             </form>
             <p class="lock-footer-hint">Accesso autorizzato solo per il team di gestione TSF BCN</p>
         </div>

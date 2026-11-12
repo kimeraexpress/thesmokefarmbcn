@@ -43,20 +43,53 @@
         }
     }
 
+    window.togglePinVisibility = function() {
+        const input = document.getElementById("admin-pin-input");
+        const btn = document.getElementById("btn-toggle-pin");
+        if (!input) return;
+        if (input.type === "password") {
+            input.type = "text";
+            if (btn) btn.textContent = "🙈";
+        } else {
+            input.type = "password";
+            if (btn) btn.textContent = "👁️";
+        }
+    };
+
+    window.resetAdminPinToDefault = function() {
+        localStorage.removeItem(STORAGE_KEY_PIN);
+        const pinInput = document.getElementById("admin-pin-input");
+        if (pinInput) pinInput.value = DEFAULT_PIN;
+        const errorMsg = document.getElementById("lock-error-msg");
+        if (errorMsg) errorMsg.style.display = "none";
+        showToast("🔒 PIN reimpostato su: " + DEFAULT_PIN);
+        window.handleAdminLogin();
+    };
+
     window.handleAdminLogin = function() {
         const pinInput = document.getElementById("admin-pin-input");
         const errorMsg = document.getElementById("lock-error-msg");
-        const enteredPin = (pinInput.value || "").trim();
+        const enteredPin = (pinInput ? (pinInput.value || "").trim() : "");
+        const storedPin = (getStoredPin() || "").trim();
 
-        if (enteredPin === getStoredPin()) {
+        // Accetta tsfbcn2026 come Master PIN sempre valido (anche case-insensitive),
+        // oltre al PIN eventualmente salvato in localStorage
+        const isValid = 
+            enteredPin === DEFAULT_PIN ||
+            enteredPin.toLowerCase() === DEFAULT_PIN.toLowerCase() ||
+            enteredPin === storedPin ||
+            enteredPin.toLowerCase() === storedPin.toLowerCase();
+
+        if (isValid) {
             sessionStorage.setItem(STORAGE_KEY_AUTH, "true");
-            errorMsg.style.display = "none";
-            document.getElementById("admin-lock-screen").style.display = "none";
+            if (errorMsg) errorMsg.style.display = "none";
+            const lock = document.getElementById("admin-lock-screen");
+            if (lock) lock.style.display = "none";
             showToast("✅ Accesso effettuato! Benvenuto nel pannello.");
-            pinInput.value = "";
+            if (pinInput) pinInput.value = "";
         } else {
-            errorMsg.style.display = "block";
-            pinInput.select();
+            if (errorMsg) errorMsg.style.display = "block";
+            if (pinInput) pinInput.select();
         }
     };
 
