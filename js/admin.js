@@ -128,9 +128,59 @@
 
     function sortCurrentProducts() {
         if (currentData && Array.isArray(currentData.products) && window.TSFPriceSort) {
-            window.TSFPriceSort.sortProductsByPriceDesc(currentData.products);
+            if ((currentData.sort_mode || "price") !== "manual") {
+                window.TSFPriceSort.sortProductsByPriceDesc(currentData.products);
+            }
         }
     }
+
+    function isManualOrder() {
+        return (currentData && currentData.sort_mode === "manual");
+    }
+
+    function updateSortModeButton() {
+        const btn = document.getElementById("btn-toggle-sort-mode");
+        if (!btn) return;
+        if (isManualOrder()) {
+            btn.textContent = "✋ Ordine: Manuale";
+            btn.style.borderColor = "var(--accent)";
+            btn.style.color = "var(--accent)";
+        } else {
+            btn.textContent = "🔃 Ordine: Prezzo";
+            btn.style.borderColor = "";
+            btn.style.color = "";
+        }
+    }
+
+    window.toggleSortMode = function() {
+        if (!currentData) return;
+        if (isManualOrder()) {
+            currentData.sort_mode = "price";
+            sortCurrentProducts();
+            showToast("🔃 Ordine automatico per prezzo attivato.");
+        } else {
+            currentData.sort_mode = "manual";
+            showToast("✋ Ordine manuale attivato. Usa le frecce ↑↓ per riordinare.");
+        }
+        updateSortModeButton();
+        saveAllChanges(false);
+        renderProductsList();
+    };
+
+    window.moveProduct = function(productId, direction) {
+        if (!currentData || !currentData.products) return;
+        const products = currentData.products;
+        const idx = products.findIndex(p => p.id === Number(productId));
+        if (idx === -1) return;
+        const newIdx = direction === "up" ? idx - 1 : idx + 1;
+        if (newIdx < 0 || newIdx >= products.length) return;
+        // Swap
+        const tmp = products[idx];
+        products[idx] = products[newIdx];
+        products[newIdx] = tmp;
+        saveAllChanges(false);
+        renderProductsList();
+    };
 
     // --- 2. Caricamento Dati ---
     function loadData() {
@@ -233,7 +283,8 @@
         const container = document.getElementById("admin-products-container");
         if (!container) return;
 
-        sortCurrentProducts();
+        if (!isManualOrder()) sortCurrentProducts();
+        updateSortModeButton();
         const products = currentData.products || [];
         const categories = currentData.categories || [];
 
@@ -326,6 +377,11 @@
                         </div>
 
                         <div class="admin-card-actions">
+                            ${isManualOrder() ? `
+                            <div class="admin-move-btns">
+                                <button type="button" class="btn-move" title="Sposta su" onclick="moveProduct(${p.id}, 'up')">↑</button>
+                                <button type="button" class="btn-move" title="Sposta giù" onclick="moveProduct(${p.id}, 'down')">↓</button>
+                            </div>` : ""}
                             <button type="button" class="btn-card-action" onclick="openProductModal(${p.id})">✏️ Modifica</button>
                             <button type="button" class="btn-card-action" onclick="duplicateProduct(${p.id})">📋 Duplica</button>
                             <button type="button" class="btn-card-action btn-delete" onclick="deleteProduct(${p.id})">🗑️</button>
@@ -762,8 +818,8 @@
             currentData.products.unshift(prodObj);
         }
 
-        // Mantieni sempre i prodotti in ordine dal piu costoso al meno costoso
-        sortCurrentProducts();
+        // Riordina solo se non in modalità manuale
+        if (!isManualOrder()) sortCurrentProducts();
 
         closeProductModal();
         renderProductsList();

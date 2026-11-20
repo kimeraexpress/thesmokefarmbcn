@@ -814,7 +814,7 @@ function loadStoreData() {
             const parsed = JSON.parse(stored);
             if (parsed && Array.isArray(parsed.products) && Array.isArray(parsed.categories)) {
                 if (parsed.categories.length > 0) {
-                    sortProductsDesc(parsed.products);
+                    if ((parsed.sort_mode || "price") !== "manual") sortProductsDesc(parsed.products);
                     return parsed;
                 }
             }
@@ -823,7 +823,7 @@ function loadStoreData() {
         console.warn("Storage load error:", e);
     }
     if (typeof window !== "undefined" && window.TSF_INITIAL_DATA) {
-        sortProductsDesc(window.TSF_INITIAL_DATA.products);
+        if ((window.TSF_INITIAL_DATA.sort_mode || "price") !== "manual") sortProductsDesc(window.TSF_INITIAL_DATA.products);
         try {
             localStorage.setItem("tsfbcn_menu_data", JSON.stringify(window.TSF_INITIAL_DATA));
         } catch(e) {}
@@ -836,6 +836,7 @@ function loadStoreData() {
 let currentStore = loadStoreData();
 let allProducts = currentStore.products || [];
 let allCategories = currentStore.categories || [];
+let _globalSortMode = currentStore.sort_mode || "price";
 let activeCategoryId = "ALL";
 let activeSubcategoryId = "all";
 let activeModalProduct = null;
@@ -1110,7 +1111,8 @@ function renderProducts() {
                 return;
             }
 
-            const prodsInSub = sortProductsDesc(catProducts.filter(p => (p.subcategory_id || "all") === sub.id));
+            const rawProdsInSub = catProducts.filter(p => (p.subcategory_id || "all") === sub.id);
+            const prodsInSub = (_globalSortMode === "manual") ? rawProdsInSub : sortProductsDesc(rawProdsInSub);
             if (prodsInSub.length === 0) return;
 
             const subTitle = (sub.id !== "all" && sub.name) ? `-${sub.name.toUpperCase()}` : `-${cat.name.toUpperCase()}`;
@@ -1126,7 +1128,8 @@ function renderProducts() {
         });
 
         // Prodotti senza sottocategoria specifica
-        const unassignedProds = sortProductsDesc(catProducts.filter(p => !subcategories.some(s => s.id === p.subcategory_id)));
+        const rawUnassigned = catProducts.filter(p => !subcategories.some(s => s.id === p.subcategory_id));
+        const unassignedProds = (_globalSortMode === "manual") ? rawUnassigned : sortProductsDesc(rawUnassigned);
         if (unassignedProds.length > 0 && (activeSubcategoryId === "all" || activeCategoryId !== cat.id)) {
             sectionsHTML += `
                 <div class="menu-subcategory-block">
@@ -1379,6 +1382,7 @@ function initCatalog() {
             currentStore = loadStoreData();
             allProducts = currentStore.products || [];
             allCategories = currentStore.categories || [];
+            _globalSortMode = currentStore.sort_mode || "price";
             updateCatalogUI();
         }
     });
@@ -1394,6 +1398,7 @@ function initCatalog() {
                 sortProductsDesc(cloudData.products);
                 allProducts = cloudData.products;
                 allCategories = cloudData.categories;
+                _globalSortMode = cloudData.sort_mode || "price";
                 try {
                     localStorage.setItem("tsfbcn_menu_data", JSON.stringify(cloudData));
                 } catch(e) {}

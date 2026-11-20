@@ -144,9 +144,14 @@
                     </select>
                 </div>
 
-                <button type="button" class="btn-primary-action" onclick="openProductModal()">
-                    <span>➕</span> <span>Nuovo Prodotto</span>
-                </button>
+                <div style="display:flex; gap:0.5rem; align-items:center;">
+                    <button type="button" id="btn-toggle-sort-mode" class="btn-header btn-header-secondary" onclick="toggleSortMode()" title="Cambia modalità ordine prodotti" style="white-space:nowrap; font-size:0.8rem;">
+                        🔃 Ordine: Prezzo
+                    </button>
+                    <button type="button" class="btn-primary-action" onclick="openProductModal()">
+                        <span>➕</span> <span>Nuovo Prodotto</span>
+                    </button>
+                </div>
             </div>
 
             <!-- Griglia Prodotti -->
