@@ -25,7 +25,13 @@ const ICONS = {
     camera: `<svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>`,
 
     // Freccia destra elegante
-    arrowRight: `<svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>`
+    arrowRight: `<svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>`,
+
+    // Signal (bullseye / signal logo minimal)
+    signal: `<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M1.42 9a11 11 0 0 0 0 6"></path><path d="M5.08 5.08a9 9 0 0 0 0 13.84"></path><path d="M22.58 9a11 11 0 0 1 0 6"></path><path d="M18.92 5.08a9 9 0 0 1 0 13.84"></path></svg>`,
+
+    // Threema (lock/shield minimal)
+    threema: `<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>`
 };
 
 
@@ -65,9 +71,10 @@ const TRANSLATIONS = {
         modal_all_prices: "Tutti i Formati & Prezzi:",
         modal_cta: "Ordina su Telegram",
         order_msg_prefix: "Ciao The Smoke Farm BCN! Vorrei informazioni/ordinare:",
-        footer_telegram: "Telegram",
-        footer_website: "Sito Web",
-        footer_instagram: "Instagram",
+        footer_telegram: "TELEGRAM",
+        footer_signal: "SIGNAL",
+        footer_threema: "THREEMA",
+        footer_website: "SITO WEB",
 
         // Categorie
         cat_ash: "ASH",
@@ -113,9 +120,10 @@ const TRANSLATIONS = {
         modal_all_prices: "Todos los Formatos y Precios:",
         modal_cta: "Ordenar en Telegram",
         order_msg_prefix: "¡Hola The Smoke Farm BCN! Quisiera consultar/ordenar:",
-        footer_telegram: "Telegram",
-        footer_website: "Sitio Web",
-        footer_instagram: "Instagram",
+        footer_telegram: "TELEGRAM",
+        footer_signal: "SIGNAL",
+        footer_threema: "THREEMA",
+        footer_website: "SITIO WEB",
 
         // Categorie
         cat_ash: "ASH",
@@ -161,9 +169,10 @@ const TRANSLATIONS = {
         modal_all_prices: "All Quantities & Prices:",
         modal_cta: "Order via Telegram",
         order_msg_prefix: "Hello The Smoke Farm BCN! I would like to inquire/order:",
-        footer_telegram: "Telegram",
-        footer_website: "Website",
-        footer_instagram: "Instagram",
+        footer_telegram: "TELEGRAM",
+        footer_signal: "SIGNAL",
+        footer_threema: "THREEMA",
+        footer_website: "WEBSITE",
 
         // Categorie
         cat_ash: "ASH",
@@ -1314,14 +1323,14 @@ function renderFooter() {
         <a href="https://t.me/+fe7RDT8eo9E0MjZk" target="_blank" rel="noopener noreferrer" class="footer-btn">
             ${ICONS.telegram} ${t("footer_telegram")}
         </a>
+        <a href="https://signal.me/#eu/kdv8L0hQpp17bL02Dcimlz6FnW2fuwQwBZywMhvAOToPQJn1wohERZeBhLnMkNAn" target="_blank" rel="noopener noreferrer" class="footer-btn">
+            ${ICONS.signal} ${t("footer_signal")}
+        </a>
+        <a href="https://threema.id/M3WXARE4" target="_blank" rel="noopener noreferrer" class="footer-btn">
+            ${ICONS.threema} ${t("footer_threema")}
+        </a>
         <a href="https://thesmokefarmspain.vercel.app/" target="_blank" rel="noopener noreferrer" class="footer-btn">
             ${ICONS.website} ${t("footer_website")}
-        </a>
-        <a href="https://www.instagram.com/thesmokeofbarcelona?xtok=d3pqcmY2cTlhZWpn" target="_blank" rel="noopener noreferrer" class="footer-btn">
-            ${ICONS.instagram} ${t("footer_instagram")}
-        </a>
-        <a href="../admin.html" class="footer-btn" title="Pannello Amministratore" style="opacity: 0.35; padding: 0.5rem 0.65rem;">
-            🔒
         </a>
     `;
 }
