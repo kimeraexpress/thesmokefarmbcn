@@ -47,7 +47,7 @@ const TRANSLATIONS = {
         btn_menu_desc: "Catalogo Completo & Listino",
         
         // Tasti Ufficiali
-        telegram_title: "CANALE TELEGRAM",
+        telegram_title: "CONTATTO TELEGRAM",
         telegram_desc: "Drop Live, Macro Video & Aggiornamenti",
         telegram_badge: "DROP & VIDEO",
         
@@ -96,7 +96,7 @@ const TRANSLATIONS = {
         btn_menu_desc: "Catálogo Completo y Precios",
         
         // Tasti Ufficiali
-        telegram_title: "CANAL TELEGRAM",
+        telegram_title: "CONTACTO TELEGRAM",
         telegram_desc: "Drops en Vivo, Macro Vídeos & Novedades",
         telegram_badge: "DROPS Y VÍDEOS",
         
@@ -145,7 +145,7 @@ const TRANSLATIONS = {
         btn_menu_desc: "Full Catalog & Price List",
         
         // Tasti Ufficiali
-        telegram_title: "TELEGRAM CHANNEL",
+        telegram_title: "TELEGRAM CONTACT",
         telegram_desc: "Live Drops, Macro Videos & Updates",
         telegram_badge: "DROPS & VIDEOS",
         
@@ -270,7 +270,7 @@ const DB = {
     links: [
         {
             id: 1,
-            title: "CANALE TELEGRAM",
+            title: "CONTATTO TELEGRAM",
             desc: "Drop Live, Macro Video & Aggiornamenti",
             url: "https://t.me/+fe7RDT8eo9E0MjZk",
             icon: "telegram"
