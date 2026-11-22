@@ -825,3 +825,24 @@
     border-radius: 4px;
     font-size: 0.85em;
 }
+
+
+@media (max-width: 480px) {
+    .catalog-footer {
+        gap: 0.35rem;
+        padding: 0.5rem 0.5rem calc(0.5rem + env(safe-area-inset-bottom));
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        justify-content: flex-start;
+        scrollbar-width: none;
+    }
+    .catalog-footer::-webkit-scrollbar {
+        display: none;
+    }
+    .footer-btn {
+        min-width: auto;
+        padding: 0.5rem 0.75rem;
+        font-size: 0.72rem;
+        flex-shrink: 0;
+    }
+}

@@ -240,6 +240,17 @@
     pointer-events: none;
 }
 
+/* Mobile-first: su schermi smartphone e touch l'overlay video non viene mai visualizzato per evitare blocchi batteria o risparmio energetico */
+@media (max-width: 768px), (pointer: coarse), (hover: none) {
+    .intro-overlay {
+        display: none !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
+        pointer-events: none !important;
+    }
+}
+
+
 .intro-video {
     width: 100%;
     height: 100%;

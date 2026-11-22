@@ -2,17 +2,41 @@
 <html lang="it">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>The Smoke Farm BCN | Official Links</title>
     <link rel="icon" type="image/png" href="./assets/favicon.png">
     <link rel="stylesheet" href="./css/main.css">
     <link rel="stylesheet" href="./css/landing.css">
+    <style>
+        /* Mobile-First: su smartphone e touch/in-app browser l'overlay video non esiste visivamente a priori */
+        @media (max-width: 768px), (pointer: coarse), (hover: none) {
+            #intro-overlay, .intro-overlay {
+                display: none !important;
+                visibility: hidden !important;
+                opacity: 0 !important;
+                pointer-events: none !important;
+            }
+        }
+    </style>
 </head>
 <body>
-    <!-- Intro Video Overlay (Autoplay automatico senza tasti player) -->
+    <!-- Intro Video Overlay (Solo Desktop - su mobile rimosso all'istante a monte) -->
     <div id="intro-overlay" class="intro-overlay" aria-label="Intro Cinematic Video">
-        <video id="intro-video" class="intro-video" src="./assets/intro.mp4" poster="./assets/intro-poster.jpg" autoplay muted playsinline webkit-playsinline preload="metadata" disablepictureinpicture disableremoteplayback></video>
+        <video id="intro-video" class="intro-video" poster="./assets/intro-poster.jpg" autoplay muted playsinline webkit-playsinline preload="none" disablepictureinpicture disableremoteplayback></video>
     </div>
+    <script>
+        (function() {
+            var isMobile = (window.innerWidth <= 768) || ('ontouchstart' in window) || (navigator.maxTouchPoints && navigator.maxTouchPoints > 0) || /iPhone|iPad|iPod|Android|Mobile|Instagram|FBAN|FBAV|Telegram|TikTok/i.test(navigator.userAgent);
+            var ov = document.getElementById('intro-overlay');
+            if (isMobile) {
+                if (ov) { ov.style.display = 'none'; ov.remove(); }
+                document.body.style.overflow = '';
+            } else {
+                var v = document.getElementById('intro-video');
+                if (v) v.src = './assets/intro.mp4';
+            }
+        })();
+    </script>
 
     <main id="landing-main" class="landing-container">
         
@@ -189,6 +213,17 @@
 
             let introDone = false;
             let hasStartedPlayback = false;
+
+            // Mobile-first: su qualsiasi smartphone/tablet, touch o browser in-app (Instagram, TikTok, etc.)
+            // bypassa ed elimina immediatamente l'overlay per garantire visualizzazione istantanea (0 ritardo)
+            // a prescindere dal risparmio energetico o stato della batteria.
+            const isMobileDevice = (window.innerWidth <= 768) || ('ontouchstart' in window) || (navigator.maxTouchPoints && navigator.maxTouchPoints > 0) || /iPhone|iPad|iPod|Android|Mobile|Instagram|FBAN|FBAV|Telegram|TikTok/i.test(navigator.userAgent);
+            if (isMobileDevice || !introOverlay || !introOverlay.parentNode || !introVideo) {
+                if (introOverlay) introOverlay.remove();
+                document.body.style.overflow = "";
+                introDone = true;
+                return;
+            }
 
             function finishIntro() {
                 if (introDone) return;
