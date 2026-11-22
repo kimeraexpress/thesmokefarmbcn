@@ -22,9 +22,9 @@ export const DB = {
         },
         {
             id: 2,
-            title: "TELEGRAM",
+            title: "CANALE TELEGRAM",
             desc: "Drop Live, Macro Video & Aggiornamenti",
-            url: "https://t.me/smokefarmorder",
+            url: "https://t.me/+fe7RDT8eo9E0MjZk",
             icon: "telegram"
         },
         {

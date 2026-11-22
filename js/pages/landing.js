@@ -9,7 +9,7 @@ function renderLanding() {
         bioElem.textContent = t("bio");
     }
 
-    // 2. Canali Ufficiali (MENU, TELEGRAM, SITO WEB, INSTAGRAM - tutti identici)
+    // 2. Canali Ufficiali (MENU, CANALE TELEGRAM, SITO WEB, INSTAGRAM - tutti identici)
     const linksContainer = document.getElementById("links-container");
     if (linksContainer) {
         const channels = [
@@ -25,7 +25,7 @@ function renderLanding() {
                 id: "telegram",
                 title: t("telegram_title"),
                 desc: t("telegram_desc"),
-                url: "https://t.me/smokefarmorder",
+                url: "https://t.me/+fe7RDT8eo9E0MjZk",
                 icon: ICONS.telegram,
                 isInternal: false
             },
