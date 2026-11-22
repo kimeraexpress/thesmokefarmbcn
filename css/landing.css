@@ -244,7 +244,7 @@
     pointer-events: none;
 }
 
-.intro-video {
+.intro-canvas {
     width: 100%;
     height: 100%;
     max-width: 100vw;
@@ -253,29 +253,4 @@
     background-color: #000000;
     display: block;
     pointer-events: auto;
-}
-
-/* Nasconde categoricamente ogni tasto play nativo o controlli del player del browser */
-.intro-video::-webkit-media-controls,
-.intro-video::-webkit-media-controls-enclosure,
-.intro-video::-webkit-media-controls-panel,
-.intro-video::-webkit-media-controls-play-button,
-.intro-video::-webkit-media-controls-start-playback-button,
-.intro-video::-webkit-media-controls-overlay-play-button,
-.intro-video::-webkit-media-controls-current-time-display,
-.intro-video::-webkit-media-controls-time-remaining-display,
-.intro-video::-webkit-media-controls-timeline,
-.intro-video::-webkit-media-controls-volume-slider,
-.intro-video::-webkit-media-controls-mute-button,
-.intro-video::-webkit-media-controls-fullscreen-button {
-    display: none !important;
-    -webkit-appearance: none !important;
-    opacity: 0 !important;
-    visibility: hidden !important;
-    pointer-events: none !important;
-}
-
-video::-webkit-media-controls-start-playback-button {
-    display: none !important;
-    -webkit-appearance: none;
 }
