@@ -165,6 +165,7 @@
                 <aside class="categories-sidebar">
                     <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.5rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border-subtle);">
                         <span style="font-size: 0.82rem; font-weight: 700; text-transform: uppercase; color: var(--accent); letter-spacing: 0.5px;">Macro Categorie</span>
+                        <span style="font-size: 0.72rem; color: var(--text-muted); font-weight: 500;" title="Usa le frecce ↑ e ↓ per cambiare l'ordine delle categorie nel menu">Ordina ↑↓</span>
                     </div>
                     <div id="cat-nav-list">
                         <!-- Popolato dinamicamente da admin.js -->
@@ -189,8 +190,10 @@
                             <h2 id="active-cat-title" class="panel-title">Cali Flower</h2>
                             <p id="active-cat-slug" style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-muted); margin-top: 2px;">slug: cali-flower</p>
                         </div>
-                        <div style="display:flex; align-items:center; gap:0.5rem;">
+                        <div style="display:flex; align-items:center; gap:0.4rem;">
                             <span id="active-cat-count" class="tab-badge" style="font-size: 0.82rem; padding: 4px 10px;">0 Sottocategorie</span>
+                            <button type="button" class="btn-icon-sm" id="btn-moveup-macrocat" title="Sposta prima nel menu (in alto)" onclick="moveCategory(window.__activeCategoryTabId, 'up')">↑</button>
+                            <button type="button" class="btn-icon-sm" id="btn-movedown-macrocat" title="Sposta dopo nel menu (in basso)" onclick="moveCategory(window.__activeCategoryTabId, 'down')">↓</button>
                             <button type="button" class="btn-icon-sm" id="btn-edit-macrocat" title="Rinomina / Modifica questa macro categoria" onclick="editCategory(window.__activeCategoryTabId)">✏️</button>
                             <button type="button" class="btn-icon-sm delete-subcat" id="btn-delete-macrocat" title="Elimina questa macro categoria" onclick="deleteCategory(window.__activeCategoryTabId)">🗑️</button>
                         </div>

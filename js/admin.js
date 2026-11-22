@@ -839,15 +839,27 @@
         }
         window.__activeCategoryTabId = activeCategoryTabId;
 
-        navList.innerHTML = categories.map(c => `
-            <button type="button" class="cat-nav-btn ${c.id === activeCategoryTabId ? 'active' : ''}" onclick="selectCategoryTab(${c.id})">
-                <span>${c.icon || '📁'} ${c.name}</span>
-                <span class="subcat-count-badge">${(c.subcategories || []).length}</span>
-            </button>
+        navList.innerHTML = categories.map((c, idx) => `
+            <div class="cat-nav-row ${c.id === activeCategoryTabId ? 'active' : ''}">
+                <button type="button" class="cat-nav-btn ${c.id === activeCategoryTabId ? 'active' : ''}" onclick="selectCategoryTab(${c.id})">
+                    <span>${c.icon || '📁'} ${c.name}</span>
+                    <span class="subcat-count-badge">${(c.subcategories || []).length}</span>
+                </button>
+                <div class="cat-nav-order-btns">
+                    <button type="button" class="btn-move-cat" title="Sposta prima (${c.name})" onclick="event.stopPropagation(); moveCategory(${c.id}, 'up')" ${idx === 0 ? 'disabled' : ''}>↑</button>
+                    <button type="button" class="btn-move-cat" title="Sposta dopo (${c.name})" onclick="event.stopPropagation(); moveCategory(${c.id}, 'down')" ${idx === categories.length - 1 ? 'disabled' : ''}>↓</button>
+                </div>
+            </div>
         `).join("");
 
         const currentCat = categories.find(c => c.id === activeCategoryTabId);
         if (!currentCat) return;
+
+        const activeIdx = categories.findIndex(c => c.id === activeCategoryTabId);
+        const btnUp = document.getElementById("btn-moveup-macrocat");
+        const btnDown = document.getElementById("btn-movedown-macrocat");
+        if (btnUp) btnUp.disabled = (activeIdx <= 0);
+        if (btnDown) btnDown.disabled = (activeIdx === -1 || activeIdx >= categories.length - 1);
 
         document.getElementById("active-cat-title").textContent = currentCat.name;
         document.getElementById("active-cat-slug").textContent = `slug: ${currentCat.slug || currentCat.name.toLowerCase().replace(/ /g, '-')}`;
@@ -861,7 +873,7 @@
             return;
         }
 
-        subContainer.innerHTML = subcats.map(s => {
+        subContainer.innerHTML = subcats.map((s, idx) => {
             // Calcola quanti prodotti appartengono a questa sottocategoria
             const count = (currentData.products || []).filter(p => p.category_id === currentCat.id && p.subcategory_id === s.id).length;
 
@@ -873,6 +885,8 @@
                         <span class="subcat-count-badge">${count} prodotti</span>
                     </div>
                     <div class="subcat-actions">
+                        <button type="button" class="btn-icon-sm" title="Sposta su" onclick="moveSubcategory('${s.id}', 'up')" ${idx === 0 ? 'disabled' : ''}>↑</button>
+                        <button type="button" class="btn-icon-sm" title="Sposta giù" onclick="moveSubcategory('${s.id}', 'down')" ${idx === subcats.length - 1 ? 'disabled' : ''}>↓</button>
                         <button type="button" class="btn-icon-sm" title="Rinomina sottocategoria" onclick="renameSubcategory('${s.id}')">✏️</button>
                         ${s.id !== 'all' ? `
                             <button type="button" class="btn-icon-sm delete-subcat" title="Elimina sottocategoria" onclick="deleteSubcategory('${s.id}')">🗑️</button>
@@ -1099,6 +1113,53 @@
         renderCategoriesManager();
         renderProductsList();
         showToast("🗑️ Macro categoria \"" + cat.name + "\" eliminata.");
+    };
+
+    window.moveCategory = async function(catId, direction) {
+        if (!currentData || !currentData.categories) return;
+        const catIdNum = Number(catId);
+
+        const prodCats = currentData.categories.filter(c => c.kind !== "text");
+        const otherCats = currentData.categories.filter(c => c.kind === "text");
+
+        const idx = prodCats.findIndex(c => c.id === catIdNum);
+        if (idx === -1) return;
+
+        const newIdx = direction === "up" ? idx - 1 : idx + 1;
+        if (newIdx < 0 || newIdx >= prodCats.length) return;
+
+        const targetCat = prodCats[idx];
+        prodCats[idx] = prodCats[newIdx];
+        prodCats[newIdx] = targetCat;
+
+        currentData.categories = [...prodCats, ...otherCats];
+        activeCategoryTabId = catIdNum;
+        window.__activeCategoryTabId = catIdNum;
+
+        await saveAllChanges(false);
+        renderCategoriesManager();
+        renderProductsList();
+        showToast("↕️ Categoria \"" + targetCat.name + "\" spostata " + (direction === "up" ? "prima" : "dopo") + " nel menu!");
+    };
+
+    window.moveSubcategory = async function(subcatId, direction) {
+        const currentCat = (currentData.categories || []).find(c => c.id === activeCategoryTabId);
+        if (!currentCat || !currentCat.subcategories) return;
+
+        const subcats = currentCat.subcategories;
+        const idx = subcats.findIndex(s => s.id === subcatId);
+        if (idx === -1) return;
+
+        const newIdx = direction === "up" ? idx - 1 : idx + 1;
+        if (newIdx < 0 || newIdx >= subcats.length) return;
+
+        const targetSub = subcats[idx];
+        subcats[idx] = subcats[newIdx];
+        subcats[newIdx] = targetSub;
+
+        await saveAllChanges(false);
+        renderCategoriesManager();
+        showToast("↕️ Sottocategoria \"" + targetSub.name + "\" spostata " + (direction === "up" ? "in alto" : "in basso") + "!");
     };
 
     // --- 7. Info & Spedizioni (Tab 3) ---
