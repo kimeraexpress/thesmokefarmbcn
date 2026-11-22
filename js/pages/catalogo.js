@@ -47,7 +47,7 @@ const TRANSLATIONS = {
         btn_menu_desc: "Catalogo Completo & Listino",
         
         // Tasti Ufficiali
-        telegram_title: "CONTATTO TELEGRAM",
+        telegram_title: "TELEGRAM",
         telegram_desc: "Drop Live, Macro Video & Aggiornamenti",
         telegram_badge: "DROP & VIDEO",
         
@@ -96,7 +96,7 @@ const TRANSLATIONS = {
         btn_menu_desc: "Catálogo Completo y Precios",
         
         // Tasti Ufficiali
-        telegram_title: "CONTACTO TELEGRAM",
+        telegram_title: "TELEGRAM",
         telegram_desc: "Drops en Vivo, Macro Vídeos & Novedades",
         telegram_badge: "DROPS Y VÍDEOS",
         
@@ -145,7 +145,7 @@ const TRANSLATIONS = {
         btn_menu_desc: "Full Catalog & Price List",
         
         // Tasti Ufficiali
-        telegram_title: "TELEGRAM CONTACT",
+        telegram_title: "TELEGRAM",
         telegram_desc: "Live Drops, Macro Videos & Updates",
         telegram_badge: "DROPS & VIDEOS",
         
@@ -270,9 +270,9 @@ const DB = {
     links: [
         {
             id: 1,
-            title: "CONTATTO TELEGRAM",
+            title: "TELEGRAM",
             desc: "Drop Live, Macro Video & Aggiornamenti",
-            url: "https://t.me/+fe7RDT8eo9E0MjZk",
+            url: "https://t.me/smokefarmorder",
             icon: "telegram"
         },
         {
@@ -293,7 +293,7 @@ const DB = {
 
     // Footer rapido del catalogo
     footer_links: [
-        { id: 1, title: "Telegram", url: "https://t.me/+fe7RDT8eo9E0MjZk" },
+        { id: 1, title: "Telegram", url: "https://t.me/smokefarmorder" },
         { id: 2, title: "Galleria Prodotti", url: "https://thesmokefarmspain.vercel.app/" },
         { id: 3, title: "Instagram", url: "https://www.instagram.com/thesmokeofbarcelona?xtok=d3pqcmY2cTlhZWpn" }
     ],
@@ -974,7 +974,7 @@ function createProductModal(product, currentMediaIndex = 0) {
         `).join("");
 
     const orderMsg = encodeURIComponent(`${t("order_msg_prefix")} ${product.name}`);
-    const telegramOrderUrl = `https://t.me/+fe7RDT8eo9E0MjZk?text=${orderMsg}`;
+    const telegramOrderUrl = `https://t.me/smokefarmorder?text=${orderMsg}`;
 
     return `
         <div class="modal-media">
@@ -1025,7 +1025,7 @@ function renderTextMenuItem(product) {
     }).join(", ");
 
     const orderMsg = encodeURIComponent(`Ciao The Smoke Farm BCN! Vorrei ordinare: ${product.name}`);
-    const telegramUrl = `https://t.me/+fe7RDT8eo9E0MjZk?text=${orderMsg}`;
+    const telegramUrl = `https://t.me/smokefarmorder?text=${orderMsg}`;
 
     return `
         <div class="menu-text-item ${isSoldOut ? 'menu-item-soldout' : ''}" data-product-id="${product.id}" onclick="window.open('${telegramUrl}', '_blank', 'noopener')">
@@ -1323,7 +1323,7 @@ function renderFooter() {
     const footer = document.getElementById("catalog-footer");
     if (!footer) return;
     footer.innerHTML = `
-        <a href="https://t.me/+fe7RDT8eo9E0MjZk" target="_blank" rel="noopener noreferrer" class="footer-btn">
+        <a href="https://t.me/smokefarmorder" target="_blank" rel="noopener noreferrer" class="footer-btn">
             ${ICONS.telegram} ${t("footer_telegram")}
         </a>
         <a href="https://signal.me/#eu/kdv8L0hQpp17bL02Dcimlz6FnW2fuwQwBZywMhvAOToPQJn1wohERZeBhLnMkNAn" target="_blank" rel="noopener noreferrer" class="footer-btn">

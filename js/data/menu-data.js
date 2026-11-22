@@ -9,9 +9,9 @@ window.TSF_INITIAL_DATA = {
   "links": [
     {
       "id": 1,
-      "title": "CANALE TELEGRAM",
+      "title": "TELEGRAM",
       "desc": "Drop Live, Macro Video & Aggiornamenti",
-      "url": "https://t.me/+fe7RDT8eo9E0MjZk",
+      "url": "https://t.me/smokefarmorder",
       "icon": "telegram"
     },
     {
@@ -33,7 +33,7 @@ window.TSF_INITIAL_DATA = {
     {
       "id": 1,
       "title": "Telegram",
-      "url": "https://t.me/+fe7RDT8eo9E0MjZk"
+      "url": "https://t.me/smokefarmorder"
     },
     {
       "id": 2,
