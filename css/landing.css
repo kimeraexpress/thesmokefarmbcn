@@ -229,7 +229,8 @@
     cursor: pointer;
 }
 
-.intro-overlay[hidden] {
+.intro-overlay[hidden],
+.intro-overlay.hidden-overlay {
     display: none !important;
 }
 

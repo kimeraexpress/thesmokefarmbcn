@@ -11,7 +11,7 @@
 <body>
     <!-- Intro Video Overlay (Autoplay automatico senza tasti player) -->
     <div id="intro-overlay" class="intro-overlay" aria-label="Intro Cinematic Video">
-        <video id="intro-video" class="intro-video" src="./assets/intro.mp4" poster="./assets/intro-poster.jpg" autoplay muted playsinline webkit-playsinline preload="auto" disablepictureinpicture disableremoteplayback></video>
+        <video id="intro-video" class="intro-video" src="./assets/intro.mp4" poster="./assets/intro-poster.jpg" autoplay muted playsinline webkit-playsinline preload="metadata" disablepictureinpicture disableremoteplayback></video>
     </div>
 
     <main id="landing-main" class="landing-container">
@@ -29,8 +29,8 @@
 
         <!-- Profile Header -->
         <header id="profile-container" class="profile-header">
-            <img src="./assets/logo-badge.png" alt="The Smoke Farm BCN" class="profile-avatar">
-            <img src="./assets/scritta-transparent.png" alt="The Smoke Farm BCN" class="profile-scritta">
+            <img src="./assets/logo-badge.png" alt="The Smoke Farm BCN" class="profile-avatar" width="106" height="106" loading="eager" decoding="async">
+            <img src="./assets/scritta-transparent.png" alt="The Smoke Farm BCN" class="profile-scritta" width="310" height="131" loading="eager" decoding="async">
             <p id="profile-bio" class="profile-bio">Link Ufficiali &amp; Menu Riservato &nbsp;·&nbsp; Barcellona 🇪🇸</p>
         </header>
 
@@ -183,33 +183,48 @@
             } catch(e) {}
             applyLang(savedLang);
 
-            // --- Intro Video Controller ---
+            // --- Bulletproof Intro Video Controller ---
             const introOverlay = document.getElementById("intro-overlay");
             const introVideo = document.getElementById("intro-video");
 
             let introDone = false;
             let hasStartedPlayback = false;
-            let canSkip = false;
 
             function finishIntro() {
                 if (introDone) return;
                 introDone = true;
+                try { sessionStorage.setItem("tsf_intro_seen", "true"); } catch(e) {}
+                document.body.style.overflow = "";
+
+                if (introVideo) {
+                    try { introVideo.pause(); } catch(e) {}
+                }
+
                 if (introOverlay) {
                     introOverlay.classList.add("fade-out");
                     setTimeout(() => {
-                        introOverlay.hidden = true;
-                        if (introVideo) {
-                            try { introVideo.pause(); } catch(e) {}
-                        }
-                        document.body.style.overflow = "";
-                    }, 500);
+                        introOverlay.style.display = "none";
+                        try { introOverlay.remove(); } catch(e) {}
+                    }, 350);
                 }
             }
 
-            if (introVideo && introOverlay) {
+            // Se l'utente ha già visto l'intro in questa sessione, salta subito
+            try {
+                if (sessionStorage.getItem("tsf_intro_seen") === "true") {
+                    if (introOverlay) introOverlay.remove();
+                    document.body.style.overflow = "";
+                    introDone = true;
+                }
+            } catch(e) {}
+
+            if (!introDone && introVideo && introOverlay) {
+                // Rileva in-app browser (Instagram, Facebook, etc.)
+                const isInstagramOrInApp = /Instagram|FBAN|FBAV|Twitter|TikTok|Snapchat/i.test(navigator.userAgent);
+
                 document.body.style.overflow = "hidden";
 
-                // Impostazioni per garantire autoplay mobile
+                // Impostazioni rigorose per autoplay mobile
                 introVideo.muted = true;
                 introVideo.defaultMuted = true;
                 introVideo.playsInline = true;
@@ -217,7 +232,7 @@
                 introVideo.setAttribute("playsinline", "");
                 introVideo.setAttribute("webkit-playsinline", "");
 
-                // Tentativo di autoplay automatico
+                // Tentativo di autoplay
                 const attemptPlay = () => {
                     if (introDone) return;
                     introVideo.muted = true;
@@ -226,23 +241,20 @@
                         p.then(() => {
                             hasStartedPlayback = true;
                         }).catch(() => {
-                            // Autoplay bloccato da iOS/Safari (es. Modalità Risparmio Energetico):
-                            // Il video resta pronto sul poster con il logo e partirà al primo tocco dell'utente!
+                            // Autoplay bloccato (es. Instagram in-app browser o Risparmio Energetico iPhone):
+                            // Mostra subito il sito senza bloccare l'utente su schermata nera!
+                            finishIntro();
                         });
                     }
                 };
 
+                // Avvia subito o non appena i metadata sono pronti
                 attemptPlay();
-                introVideo.addEventListener("loadeddata", attemptPlay);
-                introVideo.addEventListener("canplay", attemptPlay);
+                introVideo.addEventListener("loadedmetadata", attemptPlay, { once: true });
+                introVideo.addEventListener("canplay", attemptPlay, { once: true });
 
-                // Quando il video inizia la riproduzione effettiva
                 introVideo.addEventListener("play", () => {
                     hasStartedPlayback = true;
-                    // Permetti lo skip solo dopo 1.5 secondi di visione effettiva
-                    setTimeout(() => {
-                        canSkip = true;
-                    }, 1500);
                 });
 
                 introVideo.addEventListener("timeupdate", () => {
@@ -251,54 +263,37 @@
                     }
                 });
 
-                // Quando il video finisce (dura circa 5.5s), transizione automatica al sito
+                // Fine naturale del video
                 introVideo.addEventListener("ended", finishIntro);
 
-                // Gestione tocco/click:
-                // 1) Se il video è in pausa (es. Risparmio Energetico iPhone),
-                //    il tocco dell'utente AVVIA IL VIDEO anziché chiuderlo!
-                // 2) Se il video è già in riproduzione da oltre 1.2s, il tocco permette lo skip.
-                const handleUserInteraction = (e) => {
-                    if (introDone) return;
+                // IMPORTANTE: qualsiasi tocco o click dell'utente CHIUDE IMMEDIATAMENTE l'intro
+                // Nessun blocco, nessun ritardo!
+                introOverlay.addEventListener("click", finishIntro);
+                introVideo.addEventListener("click", finishIntro);
+                introOverlay.addEventListener("touchstart", finishIntro, { passive: true });
 
-                    if (introVideo.paused || !hasStartedPlayback) {
-                        introVideo.muted = true;
-                        introVideo.play().then(() => {
-                            hasStartedPlayback = true;
-                        }).catch((err) => {
-                            console.log("Play on touch error:", err);
-                        });
-                        return;
-                    }
-
-                    if (canSkip && introVideo.currentTime > 1.0) {
-                        finishIntro();
-                    }
-                };
-
-                introOverlay.addEventListener("click", handleUserInteraction);
-                introVideo.addEventListener("click", handleUserInteraction);
-
-                // Tasto ESC o Spazio per saltare su desktop
+                // Tasto ESC o Spazio per saltare
                 window.addEventListener("keydown", (e) => {
                     if (!introDone && (e.key === "Escape" || e.key === " ")) {
                         finishIntro();
                     }
                 });
 
-                // Timeout di sicurezza attivo solo DOPO l'avvio della riproduzione
+                // Timeout di sicurezza per la durata del video (max 5.8s)
                 introVideo.addEventListener("play", () => {
                     setTimeout(() => {
                         if (!introDone) finishIntro();
-                    }, 6500);
+                    }, 5800);
                 }, { once: true });
 
-                // Fallback globale (10s): se non c'è alcuna interazione e il video non parte
+                // Fallback di avvio rapido: se dopo 1.5 secondi il video non è partito (o se siamo su Instagram),
+                // chiudi l'overlay e mostra immediatamente il sito!
+                const startupTimeout = isInstagramOrInApp ? 800 : 1500;
                 setTimeout(() => {
                     if (!introDone && !hasStartedPlayback) {
                         finishIntro();
                     }
-                }, 10000);
+                }, startupTimeout);
             }
         })();
     </script>
